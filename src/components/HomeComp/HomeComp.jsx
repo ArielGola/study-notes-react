@@ -44,7 +44,7 @@ function HomeComp() {
                     <h1 className='title-sizing'>Welcome to TESchool!</h1>
                 </div>
                 <div>
-                    <p className='p-text-sizing'>Hello userName, these are action for today :)</p>
+                    <p className='p-text-sizing'>Hello userName, these are actions for today :)</p>
                 </div>
             </div>
             <div className='sizing-container-div-nv'>
