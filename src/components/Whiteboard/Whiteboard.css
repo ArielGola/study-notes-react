@@ -58,6 +58,11 @@ p {
 
 
 .sizing-div-canvas {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    align-content: center;
+    
     background-color: rgb(70, 70, 70);
     height: 90vh;
     width: 182vh;
@@ -105,7 +110,7 @@ p {
     position: fixed;
     float: left;
 
-    margin-bottom: 40vh;
+    margin-bottom: 14vh;
     margin-right: 168vh;
 }
 
@@ -125,6 +130,11 @@ p {
     position: fixed;
     float: left;
 
-    margin-bottom: 3vh;
+    margin-top: 24vh;
     margin-right: 144vh;
+}
+
+
+.grid-dark {
+    background-image: url("../../images/darkgrid.png");
 }

@@ -78,18 +78,15 @@ function Whiteboard() {
                 context.closePath();
             };
         };
-        
+
 
         initCanvas();
         initEventsListeners();
     }, []);
 
-    
 
 
-
-
-    function showRange() {
+    function showRange(e) {
 
         let newCount = pencilCounter + 1;
         setPencilCounter(newCount);
@@ -98,16 +95,20 @@ function Whiteboard() {
 
         let rangeDiv = document.getElementById('RangeDiv');
 
+        let thicknessIcon = e.target;
+
         if (String(division).includes('.')) {
             rangeDiv.className = "range-div display-on";
+            thicknessIcon.className = "m-fas-w fas fa-brush fa-lg active";
         } else {
             rangeDiv.className = "display-off";
+            thicknessIcon.className = "m-fas-w fas fa-brush fa-lg";
         }
 
     }
 
 
-    function shapesSelect() {
+    function shapesSelect(e) {
 
         let newCount = shapesCounter + 1;
         setShapesCounter(newCount);
@@ -116,16 +117,20 @@ function Whiteboard() {
 
         let shapesDiv = document.getElementById('ShapesDiv');
 
+        let shapesIcon = e.target;
+
         if (String(division).includes('.')) {
             shapesDiv.className = "shapes-div display-on";
+            shapesIcon.className = "m-fas-w fas fa-shapes fa-lg active";
         } else {
             shapesDiv.className = "display-off";
+            shapesIcon.className = "m-fas-w fas fa-shapes fa-lg";
         }
 
     }
 
 
-    function selectFont() {
+    function selectFont(e) {
 
         let newCount = fontCounter + 1;
         setFontCounter(newCount);
@@ -134,10 +139,14 @@ function Whiteboard() {
 
         let fontDiv = document.getElementById('FontDiv');
 
+        let fontIcon = e.target;
+
         if (String(division).includes('.')) {
             fontDiv.className = "font-div display-on";
+            fontIcon.className = "m-fas-w fas fa-font fa-lg active";
         } else {
             fontDiv.className = "display-off";
+            fontIcon.className = "m-fas-w fas fa-font fa-lg";
         }
 
         console.log(fontSize, fontFamily);
@@ -213,10 +222,14 @@ function Whiteboard() {
 
         let gridIcon = e.target;
 
+        let canvasBG = document.getElementById('Canvas');
+
         if (String(division).includes('.')) {
             gridIcon.className = "m-fas-w fas fa-border-all fa-lg active";
+            canvasBG.className = "grid-dark";
         } else {
             gridIcon.className = "m-fas-w fas fa-border-all fa-lg";
+            canvasBG.className = "";
         }
     };
 
@@ -252,8 +265,8 @@ function Whiteboard() {
                             <i id='Line' className="m-fas-w fas fa-arrows-alt-h fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i id='Eraser' className="m-fas-w fas fa-eraser fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i id='Curve' className="m-fas-w fas fa-route fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i className="m-fas-w fas fa-shapes fa-lg" onClick={() => shapesSelect()}></i>
-                            <i className="m-fas-w fas fa-font fa-lg" onClick={() => selectFont()}></i>
+                            <i className="m-fas-w fas fa-shapes fa-lg" onClick={(e) => shapesSelect(e)}></i>
+                            <i className="m-fas-w fas fa-font fa-lg" onClick={(e) => selectFont(e)}></i>
                             <i className="m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
                             <i className="m-fas-w fas fa-save fa-lg"></i>
                             <i className="m-fas-w fas fa-file-download fa-lg"></i>
@@ -261,7 +274,7 @@ function Whiteboard() {
                         </div>
 
                         <div className='sizing-div-canvas'>
-                            <canvas id='Canvas' width="820" height="405"></canvas>
+                            <canvas id='Canvas' width="1195" height="590"></canvas>
                         </div>
 
                     </div>
