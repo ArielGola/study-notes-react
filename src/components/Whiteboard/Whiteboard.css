@@ -28,10 +28,34 @@ p {
 }
 
 .sizing-icons-canvas {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+
     background-color: rgb(45, 45, 45);
     height: 90vh;
     width: 8vh;
 }
+
+.m-fas-w {
+    margin: 15px;
+}
+
+
+.active {
+    color: rgb(55, 163, 196);
+}
+
+
+.input-color {
+    margin-top: 15px;
+    width: 30px;
+    height: 30px;
+}
+
 
 .sizing-div-canvas {
     background-color: rgb(70, 70, 70);
@@ -48,4 +72,59 @@ p {
     background-color: rgb(45, 45, 45);
     width: 100%;
     height: 4vh;
+}
+
+
+.range-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(44, 44, 44, 0.9);
+    position: fixed;
+    float: left;
+    margin-bottom: 68vh;
+    margin-right: 152vh;
+    width: 150px;
+    height: 42px;
+}
+
+
+.shapes-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+
+    background-color: rgba(44, 44, 44, 0.9);
+
+    width: 40px;
+    height: 140px;
+
+    position: fixed;
+    float: left;
+
+    margin-bottom: 40vh;
+    margin-right: 168vh;
+}
+
+
+.font-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+
+    background-color: rgba(44, 44, 44, 0.9);
+
+    width: 200px;
+    height: 100px;
+
+    position: fixed;
+    float: left;
+
+    margin-bottom: 3vh;
+    margin-right: 144vh;
 }
