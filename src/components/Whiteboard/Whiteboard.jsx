@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+import CanvasComp from '../CanvasComp/CanvasComp';
 
 import './Whiteboard.css';
 
@@ -17,74 +19,6 @@ function Whiteboard() {
     const [color, setColor] = useState("");
     const [thickness, setThickness] = useState(1);
     
-
-    var canvas;
-    var context;
-    var rect;
-    var x = 0;
-    var y = 0;
-    var drawing = false;
-
-    useEffect(() => {
-        function initCanvas() {
-            canvas = document.getElementById('Canvas');
-            console.log(canvas);
-            context = canvas.getContext('2d');
-            console.log(context);
-            rect = canvas.getBoundingClientRect();
-            console.log(rect);
-        };
-
-        function initEventsListeners() {
-
-            canvas.addEventListener('mousedown', (e) => {
-                x = e.clientX - rect.left;
-                y = e.clientY - rect.top;
-                drawing = true;
-            })
-        
-            canvas.addEventListener('mousemove', (e) => {
-        
-                let x2 = e.clientX - rect.left;
-                let y2 = e.clientY - rect.top;
-        
-                if (drawing === true) {
-                    drawAsPen(x, y, x2, y2);
-                    x = e.clientX - rect.left;
-                    y = e.clientY - rect.top;
-                }
-            })
-        
-            canvas.addEventListener('mouseup', (e) => {
-        
-                let x2 = e.clientX - rect.left;
-                let y2 = e.clientY - rect.top;
-        
-                if (drawing === true) {
-                    drawAsPen(x, y, x2, y2);
-                    x = 0;
-                    y = 0;
-                    drawing = false;
-                }
-            })
-        
-            function drawAsPen(x1, y1, x2, y2) {
-                context.beginPath();
-                context.strokeStyle = color;
-                context.lineWidth = thickness;
-                context.moveTo(x1, y1);
-                context.lineTo(x2, y2);
-                context.stroke();
-                context.closePath();
-            };
-        };
-
-
-        initCanvas();
-        initEventsListeners();
-    }, []);
-
-
 
     function showRange(e) {
 
@@ -274,7 +208,8 @@ function Whiteboard() {
                         </div>
 
                         <div className='sizing-div-canvas'>
-                            <canvas id='Canvas' width="1195" height="590"></canvas>
+                            {/*<canvas id='Canvas' width="1195" height="590"></canvas>*/}
+                            <CanvasComp color={color} thickness={thickness}></CanvasComp>
                         </div>
 
                     </div>
