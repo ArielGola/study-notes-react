@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 function CanvasComp(props) {
 
@@ -28,7 +28,7 @@ function CanvasComp(props) {
             let y2 = e.clientY - rect.top;
 
             if (drawing === true) {
-                drawAsPen(x, y, x2, y2);
+                drawAsPen(x, y, x2, y2, context);
                 x = e.clientX - rect.left;
                 y = e.clientY - rect.top;
             }
@@ -40,7 +40,7 @@ function CanvasComp(props) {
             let y2 = e.clientY - rect.top;
 
             if (drawing === true) {
-                drawAsPen(x, y, x2, y2);
+                drawAsPen(x, y, x2, y2, context);
                 x = 0;
                 y = 0;
                 drawing = false;
@@ -50,18 +50,26 @@ function CanvasComp(props) {
         canvas.addEventListener('mouseout', () => {
             drawing = false;
         })
-
-        function drawAsPen(x1, y1, x2, y2) {
-            context.beginPath();
-            context.strokeStyle = props.color;
-            context.lineWidth = props.thickness;
-            context.moveTo(x1, y1);
-            context.lineTo(x2, y2);
-            context.stroke();
-            context.closePath();
-        };
         
     }, [])
+
+
+    function drawAsPen(x1, y1, x2, y2, context) {
+        let values = execFunc();
+        context.beginPath();
+        context.strokeStyle = values.color;
+        context.lineWidth = values.thickness;
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+    };
+
+
+    const execFunc = () => { 
+        const func = props.func;
+        return func();
+    }   
 
     
     const whiteboard = (

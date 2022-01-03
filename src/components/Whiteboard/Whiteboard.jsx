@@ -4,6 +4,8 @@ import CanvasComp from '../CanvasComp/CanvasComp';
 
 import './Whiteboard.css';
 
+var color;
+var thickness;
 
 function Whiteboard() {
 
@@ -16,8 +18,14 @@ function Whiteboard() {
 
     const [fontSize, setFontSize] = useState("");
     const [fontFamily, setFontFamily] = useState("");
-    const [color, setColor] = useState("");
-    const [thickness, setThickness] = useState(1);
+    //const [color, setColor] = useState("#FFFF");
+    //const [thickness, setThickness] = useState(5);
+
+
+    function returnValues() {
+        console.log(color, thickness);
+        return {color, thickness};
+    }
     
 
     function showRange(e) {
@@ -192,7 +200,8 @@ function Whiteboard() {
                             <input 
                                 type="color" 
                                 className='input-color'
-                                onInput={(e) => setColor(e.target.value)}
+                                //onInput={(e) => setColor(e.target.value)}
+                                onInput={(e) => color = e.target.value}
                             />
                             <i className="m-fas-w fas fa-brush fa-lg" onClick={(e) => showRange(e)}></i>
                             <i id='Pencil' className="m-fas-w fas fa-pen fa-lg" onClick={(e) => changeActive(e)}></i>
@@ -209,7 +218,7 @@ function Whiteboard() {
 
                         <div className='sizing-div-canvas'>
                             {/*<canvas id='Canvas' width="1195" height="590"></canvas>*/}
-                            <CanvasComp color={color} thickness={thickness}></CanvasComp>
+                            <CanvasComp color={color} thickness={thickness} func={() => returnValues()}></CanvasComp>
                         </div>
 
                     </div>
@@ -221,7 +230,8 @@ function Whiteboard() {
                             min="1" 
                             max="5" 
                             defaultValue={thickness}
-                            onInput={(e) => setThickness(Number(e.target.value))}
+                            //onInput={(e) => setThickness(e.target.value)}
+                            onInput={(e) => thickness = Number(e.target.value)}
                         />
                     </div>
 
