@@ -9,11 +9,11 @@ function CanvasComp(props) {
         var drawing = false;
 
         var canvas = document.getElementById('Canvas');
-        console.log(canvas);
+        //console.log(canvas);
         var context = canvas.getContext('2d');
-        console.log(context);
+        //console.log(context);
         var rect = canvas.getBoundingClientRect();
-        console.log(rect);
+        //console.log(rect);
 
 
         canvas.addEventListener('mousedown', (e) => {
@@ -28,7 +28,7 @@ function CanvasComp(props) {
             let y2 = e.clientY - rect.top;
 
             if (drawing === true) {
-                drawAsPen(x, y, x2, y2, context);
+                onDrawing(x, y, x2, y2, context);
                 x = e.clientX - rect.left;
                 y = e.clientY - rect.top;
             }
@@ -40,7 +40,7 @@ function CanvasComp(props) {
             let y2 = e.clientY - rect.top;
 
             if (drawing === true) {
-                drawAsPen(x, y, x2, y2, context);
+                onDrawing(x, y, x2, y2, context);
                 x = 0;
                 y = 0;
                 drawing = false;
@@ -54,8 +54,13 @@ function CanvasComp(props) {
     }, [])
 
 
-    function drawAsPen(x1, y1, x2, y2, context) {
+    function onDrawing(x1, y1, x2, y2, context) {
         let values = execFunc();
+        if (values.selectedTool.pencil) asPencil(x1, y1, x2, y2, context, values);
+    };
+
+
+    function asPencil(x1, y1, x2, y2, context, values) {
         context.beginPath();
         context.strokeStyle = values.color;
         context.lineWidth = values.thickness;
@@ -64,6 +69,16 @@ function CanvasComp(props) {
         context.stroke();
         context.closePath();
     };
+
+    function asLine(x1, y1, x2, y2, context, values) {
+        context.beginPath();
+        context.strokeStyle = values.color;
+        context.lineWidth = values.thickness;
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+    }
 
 
     const execFunc = () => { 

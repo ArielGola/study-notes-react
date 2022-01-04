@@ -6,6 +6,7 @@ import './Whiteboard.css';
 
 var color;
 var thickness;
+var tools;
 
 function Whiteboard() {
 
@@ -18,13 +19,19 @@ function Whiteboard() {
 
     const [fontSize, setFontSize] = useState("");
     const [fontFamily, setFontFamily] = useState("");
+    //const [tools, setTools] = useState({});
     //const [color, setColor] = useState("#FFFF");
     //const [thickness, setThickness] = useState(5);
 
 
     function returnValues() {
-        console.log(color, thickness);
-        return {color, thickness};
+        //console.log(color, thickness);
+        //console.log(tools);
+        return {
+            color,
+            thickness,
+            selectedTool: tools
+        };
     }
     
 
@@ -110,6 +117,21 @@ function Whiteboard() {
         let eraser = document.getElementById('Eraser');
         let curve = document.getElementById('Curve');
 
+        tools = {
+            pencil: false,
+            line: false,
+            eraser: false,
+            curve: false
+        };
+
+        disableActives(e, selectedClassName, pencil, line, eraser, curve);
+        enableActives(division, selected, pencil, line, eraser, curve);
+
+    };
+
+
+    function disableActives(e, selectedClassName, pencil, line, eraser, curve) {
+
         if (selectedClassName.includes('active')) {
 
             let splited = selectedClassName.split(' ');
@@ -141,19 +163,45 @@ function Whiteboard() {
             curve.className = push;
 
         };
+    };
 
+    function enableActives(division, selected, pencil, line, eraser, curve) {
 
         if (String(division).includes('.') && selected === pencil.id) {
-            pencil.className = `${pencil.className} active`; 
+            pencil.className = `${pencil.className} active`;
+            tools = {
+                pencil: true,
+                line: false,
+                eraser: false,
+                curve: false
+            }; 
         } else if (String(division).includes('.') && selected === line.id) {
             line.className = `${line.className} active`;
+            tools = {
+                pencil: false,
+                line: true,
+                eraser: false,
+                curve: false
+            };
         } else if (String(division).includes('.') && selected === eraser.id) {
             eraser.className = `${eraser.className} active`;
+            tools = {
+                pencil: false,
+                line: false,
+                eraser: true,
+                curve: false
+            };
         } else if (String(division).includes('.') && selected === curve.id) {
             curve.className = `${curve.className} active`;
+            tools = {
+                pencil: false,
+                line: false,
+                eraser: false,
+                curve: true
+            };
         }
 
-    }; // Ver si es mejor reemplazar estos if por whiles
+    };
 
 
     function gridActive(e) {
@@ -218,7 +266,7 @@ function Whiteboard() {
 
                         <div className='sizing-div-canvas'>
                             {/*<canvas id='Canvas' width="1195" height="590"></canvas>*/}
-                            <CanvasComp color={color} thickness={thickness} func={() => returnValues()}></CanvasComp>
+                            <CanvasComp func={() => returnValues()}></CanvasComp>
                         </div>
 
                     </div>
