@@ -277,7 +277,7 @@ function Whiteboard() {
                             type="range" 
                             min="1" 
                             max="5" 
-                            defaultValue={thickness}
+                            defaultValue={1}
                             //onInput={(e) => setThickness(e.target.value)}
                             onInput={(e) => thickness = Number(e.target.value)}
                         />

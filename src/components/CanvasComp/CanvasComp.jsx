@@ -1,6 +1,14 @@
 import React, { useEffect } from 'react';
 
+var propsValues;
+
 function CanvasComp(props) {
+
+    const execFunc = () => { 
+        const func = props.func;
+        return func();
+    };
+
 
     useEffect(() => {
 
@@ -9,12 +17,11 @@ function CanvasComp(props) {
         var drawing = false;
 
         var canvas = document.getElementById('Canvas');
-        //console.log(canvas);
         var context = canvas.getContext('2d');
-        //console.log(context);
         var rect = canvas.getBoundingClientRect();
-        //console.log(rect);
 
+        propsValues = execFunc();
+        //console.log(propsValues);
 
         canvas.addEventListener('mousedown', (e) => {
             x = e.clientX - rect.left;
@@ -23,11 +30,10 @@ function CanvasComp(props) {
         })
 
         canvas.addEventListener('mousemove', (e) => {
-
             let x2 = e.clientX - rect.left;
             let y2 = e.clientY - rect.top;
 
-            if (drawing === true) {
+            if (drawing === true && propsValues.selectedTool.pencil) {
                 onDrawing(x, y, x2, y2, context);
                 x = e.clientX - rect.left;
                 y = e.clientY - rect.top;
@@ -53,44 +59,37 @@ function CanvasComp(props) {
         
     }, [])
 
-
     function onDrawing(x1, y1, x2, y2, context) {
-        let values = execFunc();
-        if (values.selectedTool.pencil) asPencil(x1, y1, x2, y2, context, values);
+        propsValues = execFunc();
+        if (propsValues.selectedTool.pencil) asPencil(x1, y1, x2, y2, context, propsValues);
+        if (propsValues.selectedTool.line) asLine(x1, y1, x2, y2, context, propsValues);
     };
 
 
-    function asPencil(x1, y1, x2, y2, context, values) {
+    function asPencil(x1, y1, x2, y2, context, propsValues) {
         context.beginPath();
-        context.strokeStyle = values.color;
-        context.lineWidth = values.thickness;
+        context.strokeStyle = propsValues.color;
+        context.lineWidth = propsValues.thickness;
         context.moveTo(x1, y1);
         context.lineTo(x2, y2);
         context.stroke();
         context.closePath();
     };
 
-    function asLine(x1, y1, x2, y2, context, values) {
+    function asLine(x1, y1, x2, y2, context, propsValues) {
         context.beginPath();
-        context.strokeStyle = values.color;
-        context.lineWidth = values.thickness;
+        context.strokeStyle = propsValues.color;
+        context.lineWidth = propsValues.thickness;
         context.moveTo(x1, y1);
         context.lineTo(x2, y2);
         context.stroke();
         context.closePath();
     }
 
-
-    const execFunc = () => { 
-        const func = props.func;
-        return func();
-    }   
-
     
     const whiteboard = (
         <canvas id='Canvas' width="1195" height="590"></canvas>
     )
-
 
     return (
         whiteboard
