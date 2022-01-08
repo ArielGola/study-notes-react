@@ -32,12 +32,14 @@ function CanvasComp(props) {
             x2 = e.clientX - rect.left;
             y2 = e.clientY - rect.top;
 
-            if (drawing === true && propsValues.selectedTool.pencil) {
-                onDrawing(x, y, x2, y2, context, propsValues);
-                x = e.clientX - rect.left;
-                y = e.clientY - rect.top;
-                x2 = 0;
-                y2 = 0;
+            if (drawing === true) {
+                if (propsValues.selectedTool.pencil || propsValues.selectedTool.eraser) {   
+                    onDrawing(x, y, x2, y2, context, propsValues);
+                    x = e.clientX - rect.left;
+                    y = e.clientY - rect.top;
+                    x2 = 0;
+                    y2 = 0;
+                }
             }
         })
 
@@ -65,6 +67,7 @@ function CanvasComp(props) {
     function onDrawing(x1, y1, x2, y2, context, propsValues) {
         if (propsValues.selectedTool.pencil) asPencil(x1, y1, x2, y2, context, propsValues);
         if (propsValues.selectedTool.line) asLine(x1, y1, x2, y2, context, propsValues);
+        if (propsValues.selectedTool.eraser) asEraser(x1, y1, x2, y2, context, propsValues);
     };
 
 
@@ -82,6 +85,16 @@ function CanvasComp(props) {
         context.beginPath();
         context.strokeStyle = propsValues.color;
         context.lineWidth = propsValues.thickness;
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+    }
+
+    function asEraser(x1, y1, x2, y2, context, propsValues) {
+        context.beginPath();
+        context.strokeStyle = "#464646";
+        context.lineWidth = propsValues.thickness * 2;
         context.moveTo(x1, y1);
         context.lineTo(x2, y2);
         context.stroke();
