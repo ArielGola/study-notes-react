@@ -52,7 +52,7 @@ function CanvasComp(props) {
 
         canvas.addEventListener('mouseup', (e) => {
             propsValues = execFunc();
-            
+
             x2 = e.clientX - rect.left;
             y2 = e.clientY - rect.top;
             
@@ -113,7 +113,7 @@ function CanvasComp(props) {
     function asEraser(x1, y1, x2, y2, context, propsValues) {
         context.beginPath();
         context.strokeStyle = "#464646";
-        context.lineWidth = propsValues.thickness * 2;
+        context.lineWidth = propsValues.thickness * 3;
         context.moveTo(x1, y1);
         context.lineTo(x2, y2);
         context.stroke();
