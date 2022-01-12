@@ -7,6 +7,7 @@ import './Whiteboard.css';
 var color;
 var thickness;
 var tools;
+var selectedShape;
 
 function Whiteboard() {
 
@@ -116,56 +117,72 @@ function Whiteboard() {
         let line = document.getElementById('Line');
         let eraser = document.getElementById('Eraser');
         let curve = document.getElementById('Curve');
+        let shapes = document.getElementById('Shapes');
+        
+        let shapesDiv = document.getElementById('ShapesDiv');
 
         tools = {
             pencil: false,
             line: false,
             eraser: false,
-            curve: false
+            curve: false,
+            shapes: false
         };
 
-        disableActives(e, selectedClassName, pencil, line, eraser, curve);
-        enableActives(division, selected, pencil, line, eraser, curve);
+        disableActives(e, selectedClassName, pencil, line, eraser, curve, shapes, shapesDiv);
+        enableActives(division, selected, pencil, line, eraser, curve, shapes, shapesDiv);
 
     };
 
 
-    function disableActives(e, selectedClassName, pencil, line, eraser, curve) {
+    function disableActives(e, selectedClassName, pencil, line, eraser, curve, shapes, shapesDiv) {
 
         if (selectedClassName.includes('active')) {
 
             let splited = selectedClassName.split(' ');
             let push = `${splited[0]} ${splited[1]} ${splited[2]} ${splited[3]}`;
             e.target.className = push;
+            shapesDiv.className = "display-off";
 
         } else if (pencil.className.includes('active')) {
 
             let splited = pencil.className.split(' ');
             let push = `${splited[0]} ${splited[1]} ${splited[2]} ${splited[3]}`;
             pencil.className = push;
+            shapesDiv.className = "display-off";
 
         } else if (line.className.includes('active')) {
 
             let splited = line.className.split(' ');
             let push = `${splited[0]} ${splited[1]} ${splited[2]} ${splited[3]}`;
             line.className = push;
+            shapesDiv.className = "display-off";
 
         } else if (eraser.className.includes('active')) {
 
             let splited = eraser.className.split(' ');
             let push = `${splited[0]} ${splited[1]} ${splited[2]} ${splited[3]}`;
             eraser.className = push;
+            shapesDiv.className = "display-off";
 
         } else if (curve.className.includes('active')) {
 
             let splited = curve.className.split(' ');
             let push = `${splited[0]} ${splited[1]} ${splited[2]} ${splited[3]}`;
             curve.className = push;
+            shapesDiv.className = "display-off";
 
-        };
+        } else if (shapes.className.includes('active')) {
+
+            let splited = shapes.className.split(' ');
+            let push = `${splited[0]} ${splited[1]} ${splited[2]} ${splited[3]}`;
+            shapes.className = push;
+            shapesDiv.className = "display-off";
+
+        }
     };
 
-    function enableActives(division, selected, pencil, line, eraser, curve) {
+    function enableActives(division, selected, pencil, line, eraser, curve, shapes, shapesDiv) {
 
         if (String(division).includes('.') && selected === pencil.id) {
             pencil.className = `${pencil.className} active`;
@@ -173,7 +190,8 @@ function Whiteboard() {
                 pencil: true,
                 line: false,
                 eraser: false,
-                curve: false
+                curve: false,
+                shapes: false
             }; 
         } else if (String(division).includes('.') && selected === line.id) {
             line.className = `${line.className} active`;
@@ -181,7 +199,8 @@ function Whiteboard() {
                 pencil: false,
                 line: true,
                 eraser: false,
-                curve: false
+                curve: false,
+                shapes: false
             };
         } else if (String(division).includes('.') && selected === eraser.id) {
             eraser.className = `${eraser.className} active`;
@@ -189,7 +208,8 @@ function Whiteboard() {
                 pencil: false,
                 line: false,
                 eraser: true,
-                curve: false
+                curve: false,
+                shapes: false
             };
         } else if (String(division).includes('.') && selected === curve.id) {
             curve.className = `${curve.className} active`;
@@ -197,10 +217,125 @@ function Whiteboard() {
                 pencil: false,
                 line: false,
                 eraser: false,
-                curve: true
+                curve: true,
+                shapes: false
             };
+        } else if (String(division).includes('.') && selected === shapes.id) {
+
+            shapesDiv.className = "shapes-div display-on";
+            shapes.className = `${shapes.className} active`;
+            tools = {
+                pencil: false,
+                line: false,
+                eraser: false,
+                curve: false,
+                shapes: selectedShape
+            };
+            
         }
 
+    };
+
+
+    function handleShapes(e) {
+
+        let newCount = shapesCounter + 1;
+        setShapesCounter(newCount);
+
+        let division = shapesCounter / 2;
+
+        let selectedCN = e.target.className;
+        let selected = e.target.id;
+
+        let squareF = document.getElementById('SquareF');
+        let square = document.getElementById('Square');
+        let circleF = document.getElementById('CircleF');
+        let circle = document.getElementById('Circle');
+
+        selectedShape = {
+            squareF: false,
+            square: false,
+            circleF: false,
+            circle: false
+        };
+
+        disableShapes(e, selectedCN, squareF, square, circleF, circle);
+        enableShapes(selected, division, squareF, square, circleF, circle);
+    }
+
+
+    function enableShapes(selected, division, squareF, square, circleF, circle) {
+
+        if (String(division).includes('.') && selected === squareF.id) {
+            squareF.className = `${squareF.className} active`;
+            selectedShape = {
+                squareF: true,
+                square: false,
+                circleF: false,
+                circle: false
+            }; 
+            console.log(squareF.className);
+        } else if (String(division).includes('.') && selected === square.id) {
+            square.className = `${square.className} active`;
+            selectedShape = {
+                squareF: false,
+                square: true,
+                circleF: false,
+                circle: false
+            }; 
+        } else if (String(division).includes('.') && selected === circleF.id) {
+            circleF.className = `${circleF.className} active`;
+            selectedShape = {
+                squareF: false,
+                square: false,
+                circleF: true,
+                circle: false
+            }; 
+        } else if (String(division).includes('.') && selected === circle.id) {
+            circle.className = `${circle.className} active`;
+            selectedShape = {
+                squareF: false,
+                square: false,
+                circleF: false,
+                circle: true
+            }; 
+        }
+    };
+
+
+    function disableShapes(e, selectedCN, squareF, square, circleF, circle) {
+            
+        if (selectedCN.includes('active')) {
+
+            let splited = selectedCN.split(' ');
+            let push = `${splited[0]} ${splited[1]} ${splited[2]}`;
+            e.target.className = push;
+
+        } else if (squareF.className.includes('active')) {
+
+            let splited = squareF.className.split(' ');
+            let push = `${splited[0]} ${splited[1]} ${splited[2]}`;
+            squareF.className = push;
+
+        } else if (square.className.includes('active')) {
+
+            let splited = square.className.split(' ');
+            let push = `${splited[0]} ${splited[1]} ${splited[2]}`;
+            square.className = push;
+
+        } else if (circleF.className.includes('active')) {
+
+            let splited = circleF.className.split(' ');
+            let push = `${splited[0]} ${splited[1]} ${splited[2]}`;
+            circleF.className = push;
+
+        } else if (circle.className.includes('active')) {
+
+            let splited = circle.className.split(' ');
+            let push = `${splited[0]} ${splited[1]} ${splited[2]}`;
+            circle.className = push;
+
+        }
     };
 
 
@@ -256,7 +391,7 @@ function Whiteboard() {
                             <i id='Line' className="m-fas-w fas fa-arrows-alt-h fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i id='Eraser' className="m-fas-w fas fa-eraser fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i id='Curve' className="m-fas-w fas fa-route fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i className="m-fas-w fas fa-shapes fa-lg" onClick={(e) => shapesSelect(e)}></i>
+                            <i id='Shapes' className="m-fas-w fas fa-shapes fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i className="m-fas-w fas fa-font fa-lg" onClick={(e) => selectFont(e)}></i>
                             <i className="m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
                             <i className="m-fas-w fas fa-save fa-lg"></i>
@@ -284,10 +419,10 @@ function Whiteboard() {
                     </div>
 
                     <div id='ShapesDiv' className='display-off'>
-                        <i className="fas fa-circle fa-lg"></i>
-                        <i className="far fa-circle fa-lg"></i>
-                        <i className="fas fa-square fa-lg"></i>
-                        <i className="far fa-square fa-lg"></i>
+                        <i id='CircleF' className="fas fa-circle fa-lg" onClick={(e) => handleShapes(e)}></i>
+                        <i id='Circle' className="far fa-circle fa-lg" onClick={(e) => handleShapes(e)}></i>
+                        <i id='SquareF' className="fas fa-square fa-lg" onClick={(e) => handleShapes(e)}></i>
+                        <i id='Square' className="far fa-square fa-lg" onClick={(e) => handleShapes(e)}></i>
                     </div>
 
                     <div id='FontDiv' className='display-off'>
