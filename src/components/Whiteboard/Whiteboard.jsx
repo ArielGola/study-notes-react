@@ -7,7 +7,12 @@ import './Whiteboard.css';
 var color;
 var thickness;
 var tools;
-var selectedShape;
+var selectedShape = {
+    squareF: false,
+    square: false,
+    circleF: false,
+    circle: false
+};
 
 function Whiteboard() {
 
@@ -31,7 +36,8 @@ function Whiteboard() {
         return {
             color,
             thickness,
-            selectedTool: tools
+            selectedTool: tools,
+            selectedShape
         };
     }
     
@@ -126,7 +132,12 @@ function Whiteboard() {
             line: false,
             eraser: false,
             curve: false,
-            shapes: false
+            shapes: {
+                squareF: false,
+                square: false,
+                circleF: false,
+                circle: false
+            }
         };
 
         disableActives(e, selectedClassName, pencil, line, eraser, curve, shapes, shapesDiv);
@@ -222,6 +233,7 @@ function Whiteboard() {
             };
         } else if (String(division).includes('.') && selected === shapes.id) {
 
+            console.log(selectedShape);
             shapesDiv.className = "shapes-div display-on";
             shapes.className = `${shapes.className} active`;
             tools = {
@@ -252,6 +264,8 @@ function Whiteboard() {
         let circleF = document.getElementById('CircleF');
         let circle = document.getElementById('Circle');
 
+        let shapesDiv = document.getElementById('ShapesDiv');
+
         selectedShape = {
             squareF: false,
             square: false,
@@ -260,45 +274,44 @@ function Whiteboard() {
         };
 
         disableShapes(e, selectedCN, squareF, square, circleF, circle);
-        enableShapes(selected, division, squareF, square, circleF, circle);
+        enableShapes(selected, division, squareF, square, circleF, circle, shapesDiv);
     }
 
 
-    function enableShapes(selected, division, squareF, square, circleF, circle) {
+    function enableShapes(selected, division, squareF, square, circleF, circle, shapesDiv) {
+        console.log(selected);
+        console.log(division);
+        console.log(shapesDiv);
+        console.log(selectedShape);
 
         if (String(division).includes('.') && selected === squareF.id) {
+            selectedShape.squareF = true;
+            selectedShape.square = false;
+            selectedShape.circleF = false;
+            selectedShape.circle = false;
+            shapesDiv.className = "display-off";
             squareF.className = `${squareF.className} active`;
-            selectedShape = {
-                squareF: true,
-                square: false,
-                circleF: false,
-                circle: false
-            }; 
-            console.log(squareF.className);
         } else if (String(division).includes('.') && selected === square.id) {
+            selectedShape.squareF = false;
+            selectedShape.square = true;
+            selectedShape.circleF = false;
+            selectedShape.circle = false;
+            shapesDiv.className = "display-off";
             square.className = `${square.className} active`;
-            selectedShape = {
-                squareF: false,
-                square: true,
-                circleF: false,
-                circle: false
-            }; 
         } else if (String(division).includes('.') && selected === circleF.id) {
+            selectedShape.squareF = false;
+            selectedShape.square = false;
+            selectedShape.circleF = true;
+            selectedShape.circle = false;
+            shapesDiv.className = "display-off";
             circleF.className = `${circleF.className} active`;
-            selectedShape = {
-                squareF: false,
-                square: false,
-                circleF: true,
-                circle: false
-            }; 
         } else if (String(division).includes('.') && selected === circle.id) {
+            selectedShape.squareF = false;
+            selectedShape.square = false;
+            selectedShape.circleF = false;
+            selectedShape.circle = true;
+            shapesDiv.className = "display-off";
             circle.className = `${circle.className} active`;
-            selectedShape = {
-                squareF: false,
-                square: false,
-                circleF: false,
-                circle: true
-            }; 
         }
     };
 

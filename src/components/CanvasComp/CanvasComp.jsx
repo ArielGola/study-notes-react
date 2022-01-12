@@ -83,10 +83,30 @@ function CanvasComp(props) {
     }, [])
 
     function onDrawing(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY) {
+        console.log(propsValues);
         if (propsValues.selectedTool.pencil) asPencil(x1, y1, x2, y2, context, propsValues);
         if (propsValues.selectedTool.line) asLine(x1, y1, x2, y2, context, propsValues);
         if (propsValues.selectedTool.eraser) asEraser(x1, y1, x2, y2, context, propsValues);
         if (propsValues.selectedTool.curve) asCurve(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY);
+        if (propsValues.selectedShape) {
+            let fill;
+            if (propsValues.selectedShape.square) {
+                fill = false;
+                asSquare(x1, y1, x2, y2, context, propsValues, fill);
+            }
+            if (propsValues.selectedShape.squareF) {
+                fill = true;
+                asSquare(x1, y1, x2, y2, context, propsValues, fill);
+            }
+            if (propsValues.selectedShape.circle) {
+                fill = false;
+                asCircle(x1, y1, x2, y2, context, propsValues, fill);
+            }
+            if (propsValues.selectedShape.circleF) {
+                fill = true;
+                asCircle(x1, y1, x2, y2, context, propsValues, fill);
+            }
+        }
     };
 
 
@@ -127,6 +147,30 @@ function CanvasComp(props) {
         context.moveTo(x1, y1);
         context.quadraticCurveTo(curvePointX, curvePointY, x2, y2);
         console.log(x1, y1, x2, y2);
+        context.stroke();
+        context.closePath();
+    }
+
+    function asSquare(x1, y1, x2, y2, context, propsValues, fill) {
+        context.beginPath();
+        context.strokeStyle = propsValues.color;
+        context.lineWidth = propsValues.thickness;
+        if (fill) {
+            context.fillStyle = propsValues.color;
+            context.fillRect(x1, y1, x2-x1, y2-y1);
+        }
+        if (!fill) {
+            context.rect(x1, y1, x2-x1, y2-y1);
+        }
+        context.stroke();
+        context.closePath();
+    }
+
+    function asCircle(x1, y1, x2, y2, context, propsValues, fill) {
+        context.beginPath();
+        context.strokeStyle = propsValues.color;
+        context.lineWidth = propsValues.thickness;
+        context.arc(200, 200, 70, 0, 2 * Math.PI, false);
         context.stroke();
         context.closePath();
     }
