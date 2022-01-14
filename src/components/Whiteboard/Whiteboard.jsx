@@ -14,6 +14,9 @@ var selectedShape = {
     circle: false
 };
 
+var fontSize = '10px';
+var fontFamily = 'Arial';
+
 function Whiteboard() {
 
     const [pencilCounter, setPencilCounter] = useState(1);
@@ -23,16 +26,14 @@ function Whiteboard() {
     const [gridCouter, setGridCouter] = useState(1);
     const [favCounter, setFavCounter] = useState(1);
 
-    const [fontSize, setFontSize] = useState("");
-    const [fontFamily, setFontFamily] = useState("");
+    //const [fontSize, setFontSize] = useState("");
+    //const [fontFamily, setFontFamily] = useState("");
     //const [tools, setTools] = useState({});
     //const [color, setColor] = useState("#FFFF");
     //const [thickness, setThickness] = useState(5);
 
 
     function returnValues() {
-        //console.log(color, thickness);
-        //console.log(tools);
         return {
             color,
             thickness,
@@ -64,51 +65,6 @@ function Whiteboard() {
     }
 
 
-    function shapesSelect(e) {
-
-        let newCount = shapesCounter + 1;
-        setShapesCounter(newCount);
-
-        let division = shapesCounter / 2;
-
-        let shapesDiv = document.getElementById('ShapesDiv');
-
-        let shapesIcon = e.target;
-
-        if (String(division).includes('.')) {
-            shapesDiv.className = "shapes-div display-on";
-            shapesIcon.className = "m-fas-w fas fa-shapes fa-lg active";
-        } else {
-            shapesDiv.className = "display-off";
-            shapesIcon.className = "m-fas-w fas fa-shapes fa-lg";
-        }
-
-    }
-
-
-    function selectFont(e) {
-
-        let newCount = fontCounter + 1;
-        setFontCounter(newCount);
-
-        let division = fontCounter / 2;
-
-        let fontDiv = document.getElementById('FontDiv');
-
-        let fontIcon = e.target;
-
-        if (String(division).includes('.')) {
-            fontDiv.className = "font-div display-on";
-            fontIcon.className = "m-fas-w fas fa-font fa-lg active";
-        } else {
-            fontDiv.className = "display-off";
-            fontIcon.className = "m-fas-w fas fa-font fa-lg";
-        }
-
-        console.log(fontSize, fontFamily);
-    }
-
-
     function changeActive(e) {
 
         let newCount = activeCounter + 1;
@@ -124,14 +80,17 @@ function Whiteboard() {
         let eraser = document.getElementById('Eraser');
         let curve = document.getElementById('Curve');
         let shapes = document.getElementById('Shapes');
+        let iconText = document.getElementById('FontIcon');
         
         let shapesDiv = document.getElementById('ShapesDiv');
+        let fontDiv = document.getElementById('FontDiv');
 
         tools = {
             pencil: false,
             line: false,
             eraser: false,
             curve: false,
+            text: false,
             shapes: {
                 squareF: false,
                 square: false,
@@ -140,13 +99,24 @@ function Whiteboard() {
             }
         };
 
-        disableActives(e, selectedClassName, pencil, line, eraser, curve, shapes, shapesDiv);
-        enableActives(division, selected, pencil, line, eraser, curve, shapes, shapesDiv);
+        disableActives(e, selectedClassName, pencil, line, eraser, curve, shapes, iconText, shapesDiv, fontDiv);
+        enableActives(division, selected, pencil, line, eraser, curve, shapes, iconText, shapesDiv, fontDiv);
 
     };
 
 
-    function disableActives(e, selectedClassName, pencil, line, eraser, curve, shapes, shapesDiv) {
+    function disableActives(
+        e, 
+        selectedClassName, 
+        pencil, 
+        line, 
+        eraser, 
+        curve, 
+        shapes, 
+        iconText, 
+        shapesDiv, 
+        fontDiv
+    ) {
 
         if (selectedClassName.includes('active')) {
 
@@ -154,6 +124,7 @@ function Whiteboard() {
             let push = `${splited[0]} ${splited[1]} ${splited[2]} ${splited[3]}`;
             e.target.className = push;
             shapesDiv.className = "display-off";
+            fontDiv.className = 'display-off';
 
         } else if (pencil.className.includes('active')) {
 
@@ -190,10 +161,26 @@ function Whiteboard() {
             shapes.className = push;
             shapesDiv.className = "display-off";
 
+        } else if (iconText.className.includes('active')) {
+            
+            fontDiv.className = 'display-off';
+            iconText.className = 'm-fas-w fas fa-font fa-lg';
+
         }
     };
 
-    function enableActives(division, selected, pencil, line, eraser, curve, shapes, shapesDiv) {
+    function enableActives(
+        division, 
+        selected, 
+        pencil, 
+        line, 
+        eraser, 
+        curve, 
+        shapes, 
+        iconText, 
+        shapesDiv, 
+        fontDiv
+    ) {
 
         if (String(division).includes('.') && selected === pencil.id) {
             pencil.className = `${pencil.className} active`;
@@ -202,6 +189,7 @@ function Whiteboard() {
                 line: false,
                 eraser: false,
                 curve: false,
+                text: false,
                 shapes: false
             }; 
         } else if (String(division).includes('.') && selected === line.id) {
@@ -211,6 +199,7 @@ function Whiteboard() {
                 line: true,
                 eraser: false,
                 curve: false,
+                text: false,
                 shapes: false
             };
         } else if (String(division).includes('.') && selected === eraser.id) {
@@ -220,6 +209,7 @@ function Whiteboard() {
                 line: false,
                 eraser: true,
                 curve: false,
+                text: false,
                 shapes: false
             };
         } else if (String(division).includes('.') && selected === curve.id) {
@@ -229,11 +219,11 @@ function Whiteboard() {
                 line: false,
                 eraser: false,
                 curve: true,
+                text: false,
                 shapes: false
             };
         } else if (String(division).includes('.') && selected === shapes.id) {
 
-            console.log(selectedShape);
             shapesDiv.className = "shapes-div display-on";
             shapes.className = `${shapes.className} active`;
             tools = {
@@ -241,9 +231,22 @@ function Whiteboard() {
                 line: false,
                 eraser: false,
                 curve: false,
+                text: false,
                 shapes: selectedShape
             };
             
+        } else if (String(division).includes('.') && selected === iconText.id) {
+            
+            fontDiv.className = 'font-div display-on';
+            iconText.className = `${iconText.className} active`;
+            tools = {
+                pencil: false,
+                line: false,
+                eraser: false,
+                curve: false,
+                text: {fontFamily, fontSize},
+                shapes: false
+            };
         }
 
     };
@@ -279,10 +282,6 @@ function Whiteboard() {
 
 
     function enableShapes(selected, division, squareF, square, circleF, circle, shapesDiv) {
-        console.log(selected);
-        console.log(division);
-        console.log(shapesDiv);
-        console.log(selectedShape);
 
         if (String(division).includes('.') && selected === squareF.id) {
             selectedShape.squareF = true;
@@ -396,7 +395,6 @@ function Whiteboard() {
                             <input 
                                 type="color" 
                                 className='input-color'
-                                //onInput={(e) => setColor(e.target.value)}
                                 onInput={(e) => color = e.target.value}
                             />
                             <i className="m-fas-w fas fa-brush fa-lg" onClick={(e) => showRange(e)}></i>
@@ -405,7 +403,7 @@ function Whiteboard() {
                             <i id='Eraser' className="m-fas-w fas fa-eraser fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i id='Curve' className="m-fas-w fas fa-route fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i id='Shapes' className="m-fas-w fas fa-shapes fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i className="m-fas-w fas fa-font fa-lg" onClick={(e) => selectFont(e)}></i>
+                            <i id='FontIcon' className="m-fas-w fas fa-font fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i className="m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
                             <i className="m-fas-w fas fa-save fa-lg"></i>
                             <i className="m-fas-w fas fa-file-download fa-lg"></i>
@@ -413,7 +411,6 @@ function Whiteboard() {
                         </div>
 
                         <div className='sizing-div-canvas'>
-                            {/*<canvas id='Canvas' width="1195" height="590"></canvas>*/}
                             <CanvasComp func={() => returnValues()}></CanvasComp>
                         </div>
 
@@ -426,7 +423,6 @@ function Whiteboard() {
                             min="1" 
                             max="5" 
                             defaultValue={1}
-                            //onInput={(e) => setThickness(e.target.value)}
                             onInput={(e) => thickness = Number(e.target.value)}
                         />
                     </div>
@@ -440,9 +436,9 @@ function Whiteboard() {
 
                     <div id='FontDiv' className='display-off'>
                         <label className='font-light'>Font size:</label>
-                        <input type="number" onInput={(e) => setFontSize(e.target.value)} />
+                        <input type="number" onInput={(e) => fontSize = `${e.target.value}px`} />
                         <label className='font-light'>Font familiy:</label>
-                        <select name="font-family" id="FontFamily" onInput={(e) => setFontFamily(e.target.value)}>
+                        <select name="font-family" id="FontFamily" onInput={(e) => fontFamily = e.target.value}>
                             <option value="Arial" style={{"fontFamily": "Arial"}}>Arial</option>
                             <option value="Helvetica" style={{"fontFamily": "Helvetica"}}>Helvetica</option>
                             <option value="Calibri" style={{"fontFamily": "Calibri"}}>Calibri</option>
