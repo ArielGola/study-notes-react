@@ -125,7 +125,9 @@ p {
     background-color: rgba(44, 44, 44, 0.9);
 
     width: 200px;
-    height: 100px;
+    height: 210px;
+
+    padding-bottom: 10px;
 
     position: fixed;
     float: left;

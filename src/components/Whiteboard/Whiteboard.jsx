@@ -14,8 +14,9 @@ var selectedShape = {
     circle: false
 };
 
-var fontSize = '10px';
-var fontFamily = 'Arial';
+var fontSize;
+var fontFamily;
+var fontCont;
 
 function Whiteboard() {
 
@@ -244,7 +245,7 @@ function Whiteboard() {
                 line: false,
                 eraser: false,
                 curve: false,
-                text: {fontFamily, fontSize},
+                text: {fontFamily, fontSize, fontCont},
                 shapes: false
             };
         }
@@ -459,6 +460,8 @@ function Whiteboard() {
                             <option value="Webdings" style={{"fontFamily": "Webdings"}}>Webdings</option>
                             <option value="Wingdings" style={{"fontFamily": "Wingdings"}}>Wingdings</option>
                         </select>
+                        <label className='font-light'>Text content:</label>
+                        <textarea cols="20" rows="5" onInput={(e) => fontCont = e.target.value}></textarea>
                     </div>
 
                 </div>
