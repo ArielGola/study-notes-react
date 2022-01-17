@@ -103,8 +103,8 @@ function CanvasComp(props) {
         if (propsValues.selectedTool.pencil) asPencil(x1, y1, x2, y2, context, propsValues);
         if (propsValues.selectedTool.line) asLine(x1, y1, x2, y2, context, propsValues);
         if (propsValues.selectedTool.eraser) asEraser(x1, y1, x2, y2, context, propsValues);
-        if (propsValues.selectedTool.text) asText(x1, y1, x2, y2, context, propsValues);
-        if (propsValues.selectedTool.curve) asCurve(x1, y1, x2, context, propsValues, curvePointX, curvePointY);
+        if (propsValues.selectedTool.curve) asCurve(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY);
+        if (propsValues.selectedTool.text) asText(x1, y1, x2, context, propsValues);
         if (propsValues.selectedShape) {
             let fill;
             if (propsValues.selectedShape.square) {
@@ -206,10 +206,11 @@ function CanvasComp(props) {
 
     function asText(x1, y1, x2, context, propsValues) {
         let textProps = propsValues.selectedTool.text;
-        let width = x2  - x1;
+        let width = x2-x1;
         context.beginPath();
         context.font = `${textProps.fontSize} ${textProps.fontFamily}`;
         context.fillStyle = propsValues.color;
+        context.lineWidth = propsValues.thickness;
         context.textAlign = "left";
         context.fillText(textProps.fontCont, x1, y1, width);
         context.stroke();
