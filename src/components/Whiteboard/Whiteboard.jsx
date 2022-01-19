@@ -22,13 +22,14 @@ function Whiteboard() {
 
     const [pencilCounter, setPencilCounter] = useState(1);
     const [shapesCounter, setShapesCounter] = useState(1);
-    const [fontCounter, setFontCounter] = useState(1);
+    //const [fontCounter, setFontCounter] = useState(1);
     const [activeCounter, setActiveCounter] = useState(1);
     const [gridCouter, setGridCouter] = useState(1);
     const [favCounter, setFavCounter] = useState(1);
 
     //const [fontSize, setFontSize] = useState("");
     //const [fontFamily, setFontFamily] = useState("");
+    //const [fontCont, setFontCont] = useState("");
     //const [tools, setTools] = useState({});
     //const [color, setColor] = useState("#FFFF");
     //const [thickness, setThickness] = useState(5);
@@ -42,6 +43,14 @@ function Whiteboard() {
             selectedShape
         };
     }
+
+    function returnText() {
+        return {
+            fontSize,
+            fontFamily,
+            fontCont
+        }
+    };
     
 
     function showRange(e) {
@@ -245,7 +254,7 @@ function Whiteboard() {
                 line: false,
                 eraser: false,
                 curve: false,
-                text: {fontFamily, fontSize, fontCont},
+                text: true,
                 shapes: false
             };
         }
@@ -412,7 +421,7 @@ function Whiteboard() {
                         </div>
 
                         <div className='sizing-div-canvas'>
-                            <CanvasComp func={() => returnValues()}></CanvasComp>
+                            <CanvasComp func={() => returnValues()} textFunc={() => returnText()}></CanvasComp>
                         </div>
 
                     </div>
@@ -437,9 +446,9 @@ function Whiteboard() {
 
                     <div id='FontDiv' className='display-off'>
                         <label className='font-light'>Font size:</label>
-                        <input type="number" onInput={(e) => fontSize = `${e.target.value}px`} />
+                        <input type="number" onChange={(e) => fontSize = (`${e.target.value}px`)} />
                         <label className='font-light'>Font familiy:</label>
-                        <select name="font-family" id="FontFamily" onInput={(e) => fontFamily = e.target.value}>
+                        <select name="font-family" id="FontFamily" onChange={(e) => fontFamily = (e.target.value)}>
                             <option value="Arial" style={{"fontFamily": "Arial"}}>Arial</option>
                             <option value="Helvetica" style={{"fontFamily": "Helvetica"}}>Helvetica</option>
                             <option value="Calibri" style={{"fontFamily": "Calibri"}}>Calibri</option>
@@ -461,7 +470,7 @@ function Whiteboard() {
                             <option value="Wingdings" style={{"fontFamily": "Wingdings"}}>Wingdings</option>
                         </select>
                         <label className='font-light'>Text content:</label>
-                        <textarea cols="20" rows="5" onInput={(e) => fontCont = e.target.value}></textarea>
+                        <textarea cols="20" rows="5" onChange={(e) => fontCont = (e.target.value)}></textarea>
                     </div>
 
                 </div>

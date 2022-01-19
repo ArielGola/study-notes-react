@@ -26,7 +26,7 @@
 }
 
 .fas:hover, .far:hover, .fal:hover {
-    color: rgb(100, 110, 180);
+    color: rgb(110, 110, 110);
     cursor: pointer;
 }
 
