@@ -14,6 +14,8 @@ function CanvasComp(props) {
 
     useEffect(() => {
 
+        var statesCanvas = [];
+
         var x = 0;
         var y = 0;
         var x2 = 0;
@@ -95,6 +97,17 @@ function CanvasComp(props) {
             curveY = [];
             widthCircle = [];
             heightCircle = [];
+
+            if (statesCanvas.length < 10) {
+                let base64canvas = canvas.toDataURL();
+                statesCanvas.push(base64canvas);
+                console.log(statesCanvas);
+            } else { 
+                statesCanvas.shift();
+                let base64canvas = canvas.toDataURL();
+                statesCanvas.push(base64canvas);
+                console.log(statesCanvas);
+            }
         })
 
         canvas.addEventListener('mouseout', () => {
