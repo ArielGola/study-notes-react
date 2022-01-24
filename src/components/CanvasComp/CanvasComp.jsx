@@ -98,17 +98,15 @@ function CanvasComp(props) {
             widthCircle = [];
             heightCircle = [];
 
-            if (statesCanvas.length < 10) {
-                let base64canvas = canvas.toDataURL();
+            
+            let base64canvas = canvas.toDataURL();
+
+            if (statesCanvas.length <= 10) {
                 statesCanvas.push(base64canvas);
-                //console.log(statesCanvas);
-                //localStorage.setItem("imageStates", statesCanvas);
-            } else { 
+            } 
+            if (statesCanvas.length === 10) { 
                 statesCanvas.shift();
-                let base64canvas = canvas.toDataURL();
                 statesCanvas.push(base64canvas);
-                //console.log(statesCanvas);
-                //localStorage.setItem("imageStates", statesCanvas);
             }
         })
 
@@ -132,16 +130,20 @@ function CanvasComp(props) {
                 })
             }
         })
+
+
+        //let test = ["a", "b", "c", "d"];
+        //test.splice(1, 1);
+        //console.log(test);
         
     }, [])
 
     
     function beforeImage() {
         let lastImage = String(statesCanvas[statesCanvas.length - 2]);
-        statesCanvas.splice(statesCanvas.length - 2);
+        statesCanvas.splice(statesCanvas.length - 2, 1);
         let base64Img = new Image();
         base64Img.src = lastImage;
-        document.body.appendChild(base64Img);
         return base64Img;
     };
 
