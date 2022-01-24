@@ -11,10 +11,10 @@ function CanvasComp(props) {
         const textFunc = props.textFunc;
         return textFunc();
     };
+    
+    var statesCanvas = [];
 
     useEffect(() => {
-
-        var statesCanvas = [];
 
         var x = 0;
         var y = 0;
@@ -101,20 +101,51 @@ function CanvasComp(props) {
             if (statesCanvas.length < 10) {
                 let base64canvas = canvas.toDataURL();
                 statesCanvas.push(base64canvas);
-                console.log(statesCanvas);
+                //console.log(statesCanvas);
+                //localStorage.setItem("imageStates", statesCanvas);
             } else { 
                 statesCanvas.shift();
                 let base64canvas = canvas.toDataURL();
                 statesCanvas.push(base64canvas);
-                console.log(statesCanvas);
+                //console.log(statesCanvas);
+                //localStorage.setItem("imageStates", statesCanvas);
             }
         })
 
         canvas.addEventListener('mouseout', () => {
             drawing = false;
         })
+
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Control") {
+                document.addEventListener('keydown', (i) => {
+                    if (i.key === "z" || i.key === "Z") {
+                        if (window.location.pathname.includes('whiteboard')) {
+                            let imgDone = beforeImage();
+                            imgDone.onload = () => {
+                                context.clearRect(0, 0, canvas.width, canvas.height);
+                                context.drawImage(imgDone, 0, 0);
+                            };
+                        }
+                    }
+                })
+            }
+        })
         
     }, [])
+
+    
+    function beforeImage() {
+        let lastImage = String(statesCanvas[statesCanvas.length - 2]);
+        statesCanvas.splice(statesCanvas.length - 2);
+        let base64Img = new Image();
+        base64Img.src = lastImage;
+        document.body.appendChild(base64Img);
+        return base64Img;
+    };
+
+
 
     function onDrawing(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY, middlePointX, middlePointY) {
         //console.log(propsValues);
