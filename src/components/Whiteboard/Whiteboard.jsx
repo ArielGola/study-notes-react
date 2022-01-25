@@ -34,6 +34,8 @@ function Whiteboard() {
     //const [color, setColor] = useState("#FFFF");
     //const [thickness, setThickness] = useState(5);
 
+    //const restoreBtn = document.getElementById('Restore');
+    //console.log(restoreBtn);
 
     function returnValues() {
         return {
@@ -421,7 +423,12 @@ function Whiteboard() {
                         </div>
 
                         <div className='sizing-div-canvas'>
-                            <CanvasComp func={() => returnValues()} textFunc={() => returnText()}></CanvasComp>
+                            <CanvasComp 
+                                func={() => returnValues()} 
+                                textFunc={() => returnText()} 
+                                //undoFunc={() => restoreBtn.onclick}
+                                //undoBtn={restoreBtn}
+                                ></CanvasComp>
                         </div>
 
                     </div>
@@ -475,7 +482,7 @@ function Whiteboard() {
 
                 </div>
                 <div className='state-bar'>
-                    <p>Download</p>
+                    <i id='Restore' className="m-fas-w fas fa-undo fa-lg"></i>
                     <p>Size: 654kb</p>
                     <p>Last saved 20:43</p>
                     <p>Saved 100%</p>

@@ -14,6 +14,8 @@ function CanvasComp(props) {
     
     var statesCanvas = [];
 
+
+    // Probar window.onload
     useEffect(() => {
 
         var x = 0;
@@ -101,12 +103,14 @@ function CanvasComp(props) {
             
             let base64canvas = canvas.toDataURL();
 
-            if (statesCanvas.length <= 10) {
+            if (statesCanvas.length <= 4) {
                 statesCanvas.push(base64canvas);
+                console.log(statesCanvas.length);
             } 
-            if (statesCanvas.length === 10) { 
+            if (statesCanvas.length > 5) { 
                 statesCanvas.shift();
                 statesCanvas.push(base64canvas);
+                console.log(statesCanvas.length);
             }
         })
 
@@ -114,37 +118,35 @@ function CanvasComp(props) {
             drawing = false;
         })
 
-
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Control") {
-                document.addEventListener('keydown', (i) => {
-                    if (i.key === "z" || i.key === "Z") {
-                        if (window.location.pathname.includes('whiteboard')) {
-                            let imgDone = beforeImage();
-                            imgDone.onload = () => {
-                                context.clearRect(0, 0, canvas.width, canvas.height);
-                                context.drawImage(imgDone, 0, 0);
-                            };
-                        }
-                    }
-                })
-            }
-        })
-
+        const restoreBtn = document.getElementById('Restore');
+        
+        restoreBtn.onclick = () => {
+            let imgDone = beforeImage();
+            imgDone.onload = () => {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(imgDone, 0, 0);
+            };
+        }
 
         //let test = ["a", "b", "c", "d"];
         //test.splice(1, 1);
+        //test.shift();
         //console.log(test);
         
     }, [])
 
     
     function beforeImage() {
-        let lastImage = String(statesCanvas[statesCanvas.length - 2]);
-        statesCanvas.splice(statesCanvas.length - 2, 1);
-        let base64Img = new Image();
-        base64Img.src = lastImage;
-        return base64Img;
+        let lastImage = String(statesCanvas[statesCanvas.length-2]);
+        console.log(statesCanvas);
+        console.log(lastImage);
+        if (lastImage) {
+            //statesCanvas.splice(statesCanvas.length - 1, 1);
+            statesCanvas.splice(statesCanvas.length - 2, 1);
+            let base64Img = new Image();
+            base64Img.src = lastImage;
+            return base64Img;
+        }
     };
 
 
@@ -275,7 +277,7 @@ function CanvasComp(props) {
 
     
     const whiteboard = (
-        <canvas id='Canvas' width="1195" height="590"></canvas>
+        <canvas id='Canvas' width="1195" height="590" tabIndex="1"></canvas>
     )
 
     return (
