@@ -66,7 +66,7 @@ function CanvasComp(props) {
             }
         })
 
-        canvas.addEventListener('mouseup', (e) => {
+        canvas.addEventListener('mouseup', async (e) => {
 
             x2 = e.clientX - rect.left;
             y2 = e.clientY - rect.top;
@@ -101,16 +101,21 @@ function CanvasComp(props) {
             heightCircle = [];
 
             
-            let base64canvas = canvas.toDataURL();
+            let base64canvas = await canvas.toDataURL();
 
-            if (statesCanvas.length <= 4) {
+            if (statesCanvas.length <= 5) {
+
                 statesCanvas.push(base64canvas);
                 console.log(statesCanvas.length);
-            } 
-            if (statesCanvas.length > 5) { 
+                return;
+
+            } else if (statesCanvas.length > 5) { 
+
                 statesCanvas.shift();
                 statesCanvas.push(base64canvas);
                 console.log(statesCanvas.length);
+                return;
+
             }
         })
 
@@ -141,8 +146,7 @@ function CanvasComp(props) {
         console.log(statesCanvas);
         console.log(lastImage);
         if (lastImage) {
-            //statesCanvas.splice(statesCanvas.length - 1, 1);
-            statesCanvas.splice(statesCanvas.length - 2, 1);
+            statesCanvas.pop();
             let base64Img = new Image();
             base64Img.src = lastImage;
             return base64Img;
