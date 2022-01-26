@@ -14,9 +14,8 @@ function CanvasComp(props) {
     
     var statesCanvas = [];
 
-
-    // Probar window.onload
-    useEffect(() => {
+    //useEffect
+    window.onload = () => {
 
         var x = 0;
         var y = 0;
@@ -133,19 +132,12 @@ function CanvasComp(props) {
             };
         }
 
-        //let test = ["a", "b", "c", "d"];
-        //test.splice(1, 1);
-        //test.shift();
-        //console.log(test);
-        
-    }, [])
+    }
 
     
     function beforeImage() {
         let lastImage = String(statesCanvas[statesCanvas.length-2]);
-        console.log(statesCanvas);
-        console.log(lastImage);
-        if (lastImage) {
+        if (statesCanvas.length > 1) {
             statesCanvas.pop();
             let base64Img = new Image();
             base64Img.src = lastImage;
