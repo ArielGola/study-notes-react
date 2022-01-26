@@ -147,8 +147,19 @@ function CanvasComp(props) {
 
 
 
-    function onDrawing(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY, middlePointX, middlePointY) {
-        //console.log(propsValues);
+    function onDrawing(
+        x1, 
+        y1, 
+        x2, 
+        y2, 
+        context, 
+        propsValues, 
+        curvePointX, 
+        curvePointY, 
+        middlePointX, 
+        middlePointY
+        ) {
+
         if (propsValues.selectedTool.pencil) return asPencil(x1, y1, x2, y2, context, propsValues);
         if (propsValues.selectedTool.line) return asLine(x1, y1, x2, y2, context, propsValues);
         if (propsValues.selectedTool.eraser) return asEraser(x1, y1, x2, y2, context, propsValues);
