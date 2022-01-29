@@ -39,14 +39,14 @@ function CanvasComp(props) {
 
     };
 
-    const execFunc = () => { 
-        const func = props.func;
-        return func();
+    const toolsValues = () => { 
+        const toolObject = props.toolObject;
+        return toolObject();
     };
 
-    const execFuncText = () => {
-        const textFunc = props.textFunc;
-        return textFunc();
+    const textValues = () => {
+        const textOptions = props.textOptions;
+        return textOptions();
     };
 
 
@@ -60,7 +60,7 @@ function CanvasComp(props) {
 
     const mousemoveF = (e, context, rect) => {
 
-        let propsValues = execFunc();
+        let propsValues = toolsValues();
         x2 = e.clientX - rect.left;
         y2 = e.clientY - rect.top;
 
@@ -111,7 +111,7 @@ function CanvasComp(props) {
         let middlePointY = heightCircle[itemCircleY];
 
         if (drawing === true) {
-            let propsValues = execFunc();
+            let propsValues = toolsValues();
             onDrawing(
                 x, 
                 y, 
@@ -123,7 +123,7 @@ function CanvasComp(props) {
                 curvePointY, 
                 middlePointX, 
                 middlePointY,
-                execFuncText()
+                textValues()
             );
             x = 0;
             y = 0;

@@ -4,6 +4,37 @@ import CanvasComp from '../CanvasComp/CanvasComp';
 
 import './Whiteboard.css';
 
+// Si es par (true) o si es impar (false)
+function isEven(x) { return String(x/2).includes('.') ? false : true };
+
+const toolsObject = {
+    toolsOptions: {
+        color: "#ffff",
+        thickness: 1
+    },
+    tools: {     
+        pencil: false,
+        line: false,
+        eraser: false,
+        curve: false,
+        text: false,
+        shapes: {
+            squareF: false,
+            square: false,
+            circleF: false,
+            circle: false
+        }
+    }
+};
+
+const fontOptions = {
+    fontSize: "",
+    fontFamily: "",
+    fontContent: ""
+};
+
+//-----------------------------------
+
 var color;
 var thickness;
 var tools;
@@ -37,7 +68,7 @@ function Whiteboard() {
     //const restoreBtn = document.getElementById('Restore');
     //console.log(restoreBtn);
 
-    function returnValues() {
+    function returnToolObject() {
         return {
             color,
             thickness,
@@ -46,7 +77,7 @@ function Whiteboard() {
         };
     }
 
-    function returnText() {
+    function returnTextOptions() {
         return {
             fontSize,
             fontFamily,
@@ -424,8 +455,8 @@ function Whiteboard() {
 
                         <div className='sizing-div-canvas'>
                             <CanvasComp 
-                                func={() => returnValues()} 
-                                textFunc={() => returnText()} 
+                                toolObject={() => returnToolObject()} 
+                                textOptions={() => returnTextOptions()} 
                                 //undoFunc={() => restoreBtn.onclick}
                                 //undoBtn={restoreBtn}
                                 ></CanvasComp>
