@@ -51,22 +51,11 @@ var fontCont;
 
 function Whiteboard() {
 
-    const [pencilCounter, setPencilCounter] = useState(1);
-    const [shapesCounter, setShapesCounter] = useState(1);
-    //const [fontCounter, setFontCounter] = useState(1);
-    const [activeCounter, setActiveCounter] = useState(1);
-    const [gridCouter, setGridCouter] = useState(1);
-    const [favCounter, setFavCounter] = useState(1);
-
-    //const [fontSize, setFontSize] = useState("");
-    //const [fontFamily, setFontFamily] = useState("");
-    //const [fontCont, setFontCont] = useState("");
-    //const [tools, setTools] = useState({});
-    //const [color, setColor] = useState("#FFFF");
-    //const [thickness, setThickness] = useState(5);
-
-    //const restoreBtn = document.getElementById('Restore');
-    //console.log(restoreBtn);
+    let pencilCounter = 1;
+    let shapesCounter = 1;
+    let activeCounter = 1;
+    let gridCounter = 1;
+    let favCounter = 1;
 
     function returnToolObject() {
         return {
@@ -89,15 +78,13 @@ function Whiteboard() {
     function showRange(e) {
 
         let newCount = pencilCounter + 1;
-        setPencilCounter(newCount);
-
-        let division = pencilCounter / 2;
+        pencilCounter = newCount;
 
         let rangeDiv = document.getElementById('RangeDiv');
 
         let thicknessIcon = e.target;
 
-        if (String(division).includes('.')) {
+        if (isEven(pencilCounter)) {
             rangeDiv.className = "range-div display-on";
             thicknessIcon.className = "m-fas-w fas fa-brush fa-lg active";
         } else {
@@ -111,9 +98,7 @@ function Whiteboard() {
     function changeActive(e) {
 
         let newCount = activeCounter + 1;
-        setActiveCounter(newCount);
-
-        let division = activeCounter / 2;
+        activeCounter = newCount;
 
         let selected = e.target.id;
         let selectedClassName = e.target.className;
@@ -143,7 +128,7 @@ function Whiteboard() {
         };
 
         disableActives(e, selectedClassName, pencil, line, eraser, curve, shapes, iconText, shapesDiv, fontDiv);
-        enableActives(division, selected, pencil, line, eraser, curve, shapes, iconText, shapesDiv, fontDiv);
+        enableActives(selected, pencil, line, eraser, curve, shapes, iconText, shapesDiv, fontDiv);
 
     };
 
@@ -212,8 +197,7 @@ function Whiteboard() {
         }
     };
 
-    function enableActives(
-        division, 
+    function enableActives( 
         selected, 
         pencil, 
         line, 
@@ -225,7 +209,7 @@ function Whiteboard() {
         fontDiv
     ) {
 
-        if (String(division).includes('.') && selected === pencil.id) {
+        if (isEven(activeCounter) && selected === pencil.id) {
             pencil.className = `${pencil.className} active`;
             tools = {
                 pencil: true,
@@ -235,7 +219,7 @@ function Whiteboard() {
                 text: false,
                 shapes: false
             }; 
-        } else if (String(division).includes('.') && selected === line.id) {
+        } else if (isEven(activeCounter) && selected === line.id) {
             line.className = `${line.className} active`;
             tools = {
                 pencil: false,
@@ -245,7 +229,7 @@ function Whiteboard() {
                 text: false,
                 shapes: false
             };
-        } else if (String(division).includes('.') && selected === eraser.id) {
+        } else if (isEven(activeCounter) && selected === eraser.id) {
             eraser.className = `${eraser.className} active`;
             tools = {
                 pencil: false,
@@ -255,7 +239,7 @@ function Whiteboard() {
                 text: false,
                 shapes: false
             };
-        } else if (String(division).includes('.') && selected === curve.id) {
+        } else if (isEven(activeCounter) && selected === curve.id) {
             curve.className = `${curve.className} active`;
             tools = {
                 pencil: false,
@@ -265,7 +249,7 @@ function Whiteboard() {
                 text: false,
                 shapes: false
             };
-        } else if (String(division).includes('.') && selected === shapes.id) {
+        } else if (isEven(activeCounter) && selected === shapes.id) {
 
             shapesDiv.className = "shapes-div display-on";
             shapes.className = `${shapes.className} active`;
@@ -278,7 +262,7 @@ function Whiteboard() {
                 shapes: selectedShape
             };
             
-        } else if (String(division).includes('.') && selected === iconText.id) {
+        } else if (isEven(activeCounter) && selected === iconText.id) {
             
             fontDiv.className = 'font-div display-on';
             iconText.className = `${iconText.className} active`;
@@ -298,9 +282,7 @@ function Whiteboard() {
     function handleShapes(e) {
 
         let newCount = shapesCounter + 1;
-        setShapesCounter(newCount);
-
-        let division = shapesCounter / 2;
+        shapesCounter = newCount;
 
         let selectedCN = e.target.className;
         let selected = e.target.id;
@@ -320,34 +302,34 @@ function Whiteboard() {
         };
 
         disableShapes(e, selectedCN, squareF, square, circleF, circle);
-        enableShapes(selected, division, squareF, square, circleF, circle, shapesDiv);
+        enableShapes(selected, squareF, square, circleF, circle, shapesDiv);
     }
 
 
-    function enableShapes(selected, division, squareF, square, circleF, circle, shapesDiv) {
+    function enableShapes(selected, squareF, square, circleF, circle, shapesDiv) {
 
-        if (String(division).includes('.') && selected === squareF.id) {
+        if (isEven(shapesCounter) && selected === squareF.id) {
             selectedShape.squareF = true;
             selectedShape.square = false;
             selectedShape.circleF = false;
             selectedShape.circle = false;
             shapesDiv.className = "display-off";
             squareF.className = `${squareF.className} active`;
-        } else if (String(division).includes('.') && selected === square.id) {
+        } else if (isEven(shapesCounter) && selected === square.id) {
             selectedShape.squareF = false;
             selectedShape.square = true;
             selectedShape.circleF = false;
             selectedShape.circle = false;
             shapesDiv.className = "display-off";
             square.className = `${square.className} active`;
-        } else if (String(division).includes('.') && selected === circleF.id) {
+        } else if (isEven(shapesCounter) && selected === circleF.id) {
             selectedShape.squareF = false;
             selectedShape.square = false;
             selectedShape.circleF = true;
             selectedShape.circle = false;
             shapesDiv.className = "display-off";
             circleF.className = `${circleF.className} active`;
-        } else if (String(division).includes('.') && selected === circle.id) {
+        } else if (isEven(shapesCounter) && selected === circle.id) {
             selectedShape.squareF = false;
             selectedShape.square = false;
             selectedShape.circleF = false;
@@ -395,16 +377,14 @@ function Whiteboard() {
 
 
     function gridActive(e) {
-        let newCount = gridCouter + 1;
-        setGridCouter(newCount);
-
-        let division = gridCouter / 2;
+        let newCount = gridCounter + 1;
+        gridCounter = newCount;
 
         let gridIcon = e.target;
 
         let canvasBG = document.getElementById('Canvas');
 
-        if (String(division).includes('.')) {
+        if (isEven(gridCounter)) {
             gridIcon.className = "m-fas-w fas fa-border-all fa-lg active";
             canvasBG.className = "grid-dark";
         } else {
@@ -416,13 +396,11 @@ function Whiteboard() {
 
     function favActive(e) {
         let newCount = favCounter + 1;
-        setFavCounter(newCount);
-
-        let division = favCounter / 2;
+        favCounter = newCount;
 
         let favIcon = e.target;
 
-        if (String(division).includes('.')) {
+        if (isEven(favIcon)) {
             favIcon.className = "m-fas-w fas fa-star fa-lg";
         } else {
             favIcon.className = "m-fas-w far fa-star fa-lg";
