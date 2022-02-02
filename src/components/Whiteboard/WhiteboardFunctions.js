@@ -1,24 +1,28 @@
+import { fontOptions, toolsOptions } from './Whiteboard';
+
 let pencilCounter = 1;
 let shapesCounter = 1;
 let activeCounter = 1;
 let gridCounter = 1;
 let favCounter = 1;
 
-var tools;
-
-var selectedShape = {
-    squareF: false,
-    square: false,
-    circleF: false,
-    circle: false
+const toolsObject = {
+    //toolsOptions,
+    tools: {     
+        pencil: false,
+        line: false,
+        eraser: false,
+        curve: false,
+        text: false,
+        shapes: {
+            squareF: false,
+            square: false,
+            circleF: false,
+            circle: false
+        }
+    }
 };
 
-var color;
-var thickness;
-
-var fontSize;
-var fontFamily;
-var fontCont;
 
 // Si es par (true) o si es impar (false)
 function isEven(x) { return String(x/2).includes('.') ? false : true };
@@ -31,7 +35,7 @@ class ObjectTools {
         this.eraser = eraser;
         this.curve = curve;
         this.text = text;
-        this.shapes = shapes
+        this.shapes = shapes;
     }
 };
 
@@ -45,27 +49,17 @@ class SelectionShapes {
     }
 };
 
+//let shapesSelected = new SelectionShapes("A", "B", "C", "D");
+//let objectClassTest = new ObjectTools(1, 2, 3, 4, 5, shapesSelected);
+//console.log(objectClassTest);
 
-export function returnToolObject() {
-    return {
-        color,
-        thickness,
-        selectedTool: tools,
-        selectedShape
-    };
-};
 
-export function returnTextOptions() {
-    return {
-        fontSize,
-        fontFamily,
-        fontCont
-    }
-};
+export function returnToolObject() {return toolsObject};
+
+export function returnTextOptions() {return fontOptions};
 
 
 export function showRange(e) {
-    console.log("log");
 
     let newCount = pencilCounter + 1;
     pencilCounter = newCount;
@@ -132,20 +126,8 @@ export function changeActive(e) {
     
     let shapesDiv = document.getElementById('ShapesDiv');
     let fontDiv = document.getElementById('FontDiv');
-
-    tools = {
-        pencil: false,
-        line: false,
-        eraser: false,
-        curve: false,
-        text: false,
-        shapes: {
-            squareF: false,
-            square: false,
-            circleF: false,
-            circle: false
-        }
-    };
+    
+    toolsObject.tools = new ObjectTools(false, false, false, false, false, false);
 
     disableActives(selectE, pencil, line, eraser, curve, shapes, iconText, shapesDiv, fontDiv);
     enableActives(selectE, pencil, line, eraser, curve, shapes, iconText, shapesDiv, fontDiv);
@@ -227,7 +209,7 @@ function enableActives(
 
     } else if (isEven(activeCounter) && selected.id === shapes.id) {
         
-        enableOneActive(shapes, [false, false, false, false, false, selectedShape], shapesDiv, null);
+        enableOneActive(shapes, [false, false, false, false, false, toolsObject.tools.shapes], shapesDiv, null);
 
     } else if (isEven(activeCounter) && selected.id === iconText.id) {
 
@@ -242,7 +224,7 @@ function enableOneActive(tool, toolActive, shapesDiv, fontDiv) {
     if (fontDiv) { fontDiv.className = 'font-div display-on' };
     tool.className = `${tool.className} active`;
     let i = toolActive;
-    tools = new ObjectTools(i[0], i[1], i[2], i[3], i[4], i[5]);
+    toolsObject.tools = new ObjectTools(i[0], i[1], i[2], i[3], i[4], i[5]);
 };
 
 
@@ -272,13 +254,8 @@ export function handleShapes(e) {
     let circle = document.getElementById('Circle');
 
     let shapesDiv = document.getElementById('ShapesDiv');
-
-    selectedShape = {
-        squareF: false,
-        square: false,
-        circleF: false,
-        circle: false
-    };
+    
+    toolsObject.tools.shapes = new SelectionShapes(false, false, false, false);
 
     disableShapes(selectE, squareF, square, circleF, circle);
     enableShapes(selectE, squareF, square, circleF, circle, shapesDiv);
@@ -344,5 +321,5 @@ function enableOneShape(shapeSelect, shapeActive, shapeDiv) {
     if (shapeDiv) { shapeDiv.className = "display-off"; };
     shapeSelect.className = `${shapeSelect.className} active`;
     let i = shapeActive;
-    selectedShape = new SelectionShapes(i[0], i[1], i[2], i[3]);
+    toolsObject.tools.shapes = new SelectionShapes(i[0], i[1], i[2], i[3]);
 };

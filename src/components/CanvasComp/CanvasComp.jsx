@@ -68,7 +68,7 @@ function CanvasComp(props) {
         //console.log(x2, y2);
 
         if (drawing === true) {
-            if (propsValues.selectedTool.pencil || propsValues.selectedTool.eraser) {   
+            if (propsValues.tools.pencil || propsValues.tools.eraser) {   
                 onDrawing(x, y, x2, y2, context, propsValues);
                 x = e.clientX - rect.left;
                 y = e.clientY - rect.top;
@@ -76,18 +76,17 @@ function CanvasComp(props) {
                 y2 = 0;
                 return;
             };
-            if (propsValues.selectedTool.curve) {
+            if (propsValues.tools.curve) {
                 curveX.push(x2);
                 curveY.push(y2);
                 return;
             };
-            if (propsValues.selectedShape.circle || propsValues.selectedShape.circleF) {
+            if (propsValues.tools.shapes.circle || propsValues.tools.shapes.circleF) {
                 widthCircle.push(x2);
                 heightCircle.push(y2);
                 return;
             };
         };
-        console.log("Move");
     };
 
 

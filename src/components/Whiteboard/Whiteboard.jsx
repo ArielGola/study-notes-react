@@ -14,48 +14,16 @@ import CanvasComp from '../CanvasComp/CanvasComp';
 
 import './Whiteboard.css';
 
-const toolsObject = {
-    toolsOptions: {
-        color: "#ffff",
-        thickness: 1
-    },
-    tools: {     
-        pencil: false,
-        line: false,
-        eraser: false,
-        curve: false,
-        text: false,
-        shapes: {
-            squareF: false,
-            square: false,
-            circleF: false,
-            circle: false
-        }
-    }
-};
-
-const fontOptions = {
+export const fontOptions = {
     fontSize: "",
     fontFamily: "",
     fontContent: ""
 };
 
-//-----------------------------------
-
-var color;
-var thickness;
-var tools;
-var selectedShape = {
-    squareF: false,
-    square: false,
-    circleF: false,
-    circle: false
+export const toolsOptions = {
+    color: "#ffff",
+    thickness: 1
 };
-
-var fontSize;
-var fontFamily;
-var fontCont;
-
 
 
 function Whiteboard() {
@@ -68,7 +36,7 @@ function Whiteboard() {
                             <input 
                                 type="color" 
                                 className='input-color'
-                                onInput={(e) => color = e.target.value}
+                                onInput={(e) => toolsOptions.color = e.target.value}
                             />
                             <i className="m-fas-w fas fa-brush fa-lg" onClick={(e) => showRange(e)}></i>
                             <i id='Pencil' className="m-fas-w fas fa-pen fa-lg" onClick={(e) => changeActive(e)}></i>
@@ -99,7 +67,7 @@ function Whiteboard() {
                             min="1" 
                             max="5" 
                             defaultValue={1}
-                            onInput={(e) => thickness = Number(e.target.value)}
+                            onInput={(e) => toolsOptions.thickness = Number(e.target.value)}
                         />
                     </div>
 
@@ -112,9 +80,16 @@ function Whiteboard() {
 
                     <div id='FontDiv' className='display-off'>
                         <label className='font-light'>Font size:</label>
-                        <input type="number" onChange={(e) => fontSize = (`${e.target.value}px`)} />
+                        <input 
+                            type="number" 
+                            onChange={(e) => fontOptions.fontSize = (`${e.target.value}px`)} 
+                        />
                         <label className='font-light'>Font familiy:</label>
-                        <select name="font-family" id="FontFamily" onChange={(e) => fontFamily = (e.target.value)}>
+                        <select 
+                            name="font-family" 
+                            id="FontFamily" 
+                            onChange={(e) => fontOptions.fontFamily = e.target.value}
+                        >
                             <option value="Arial" style={{"fontFamily": "Arial"}}>Arial</option>
                             <option value="Helvetica" style={{"fontFamily": "Helvetica"}}>Helvetica</option>
                             <option value="Calibri" style={{"fontFamily": "Calibri"}}>Calibri</option>
@@ -136,7 +111,11 @@ function Whiteboard() {
                             <option value="Wingdings" style={{"fontFamily": "Wingdings"}}>Wingdings</option>
                         </select>
                         <label className='font-light'>Text content:</label>
-                        <textarea cols="20" rows="5" onChange={(e) => fontCont = (e.target.value)}></textarea>
+                        <textarea 
+                            cols="20" 
+                            rows="5" 
+                            onChange={(e) => fontOptions.fontCont = e.target.value}
+                        ></textarea>
                     </div>
 
                 </div>
