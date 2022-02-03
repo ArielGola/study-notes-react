@@ -1,13 +1,6 @@
 import React from 'react';
 
-import { 
-    showRange, 
-    changeActive, 
-    gridActive, 
-    favActive, 
-    handleShapes, 
-    toolsObject
-} from './WhiteboardFunctions';
+import { showRange, changeActive, gridActive, favActive, handleShapes, toolsObject } from './WhiteboardFunctions';
 
 import CanvasComp from '../CanvasComp/CanvasComp';
 

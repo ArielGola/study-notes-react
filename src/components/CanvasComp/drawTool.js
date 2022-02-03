@@ -18,24 +18,11 @@ export function onDrawing(
     if (propsValues.tools.curve) return asCurve(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY);
     if (propsValues.tools.text) return asText(x1, y1, x2, context, propsValues, execFuncText);
     if (propsValues.tools.shapes) {
-        let fill;
-        if (propsValues.tools.shapes.square) {
-            fill = false;
-            asSquare(x1, y1, x2, y2, context, propsValues, fill);
-        }
-        if (propsValues.tools.shapes.squareF) {
-            fill = true;
-            asSquare(x1, y1, x2, y2, context, propsValues, fill);
-        }
-        if (propsValues.tools.shapes.circle) {
-            fill = false;
-            asCircle(x1, y1, x2, y2, context, propsValues, fill, middlePointX, middlePointY);
-        }
-        if (propsValues.tools.shapes.circleF) {
-            fill = true;
-            asCircle(x1, y1, x2, y2, context, propsValues, fill, middlePointX, middlePointY);
-        }
-    }
+        if (propsValues.tools.shapes.square) return asSquare(x1, y1, x2, y2, context, propsValues, false);
+        if (propsValues.tools.shapes.squareF) return asSquare(x1, y1, x2, y2, context, propsValues, true);
+        if (propsValues.tools.shapes.circle) return asCircle(x1, y1, x2, y2, context, propsValues, false, middlePointX, middlePointY);
+        if (propsValues.tools.shapes.circleF) return asCircle(x1, y1, x2, y2, context, propsValues, true, middlePointX, middlePointY);
+    };
 };
 
 
@@ -47,7 +34,6 @@ function asPencil(x1, y1, x2, y2, context, propsValues) {
     context.lineTo(x2, y2);
     context.stroke();
     context.closePath();
-    return context;
 };
 
 
@@ -59,7 +45,6 @@ function asLine(x1, y1, x2, y2, context, propsValues) {
     context.lineTo(x2, y2);
     context.stroke();
     context.closePath();
-    return context;
 };
 
 
@@ -71,7 +56,6 @@ function asEraser(x1, y1, x2, y2, context, propsValues) {
     context.lineTo(x2, y2);
     context.stroke();
     context.closePath();
-    return context;
 };
 
 
@@ -84,7 +68,6 @@ function asCurve(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY)
     console.log(x1, y1, x2, y2);
     context.stroke();
     context.closePath();
-    return context;
 };
 
 
@@ -101,16 +84,12 @@ function asSquare(x1, y1, x2, y2, context, propsValues, fill) {
     }
     context.stroke();
     context.closePath();
-    return context;
 };
 
 
 function asCircle(x1, y1, x2, y2, context, propsValues, fill) {
     let centerX = (x2 - x1) / 2;
     let centerY = (y2 - y1) / 2;
-    if (centerX < 0) return centerX * -1;
-    if (centerY < 0) return centerY * -1;
-    console.log(centerX, centerY);
     context.beginPath();
     context.strokeStyle = propsValues.toolsOptions.color;
     context.lineWidth = propsValues.toolsOptions.thickness;
@@ -124,7 +103,6 @@ function asCircle(x1, y1, x2, y2, context, propsValues, fill) {
     }
     context.stroke();
     context.closePath();
-    return context;
 };
 
 
@@ -143,5 +121,4 @@ function asText(x1, y1, x2, context, propsValues, execFuncText) {
     context.fillText(textPropsG.fontCont, x1, y1, width);
     context.stroke();
     context.closePath();
-    return context;
 };

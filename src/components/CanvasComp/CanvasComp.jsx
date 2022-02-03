@@ -54,7 +54,6 @@ function CanvasComp(props) {
         x = e.clientX - rect.left;
         y = e.clientY - rect.top;
         drawing = true;
-        console.log("Down");
     };
 
 
@@ -63,9 +62,6 @@ function CanvasComp(props) {
         let propsValues = toolsValues();
         x2 = e.clientX - rect.left;
         y2 = e.clientY - rect.top;
-
-        //console.log(x, y);
-        //console.log(x2, y2);
 
         if (drawing === true) {
             if (propsValues.tools.pencil || propsValues.tools.eraser) {   
@@ -136,21 +132,18 @@ function CanvasComp(props) {
         widthCircle = [];
         heightCircle = [];
 
-        console.log("Up");
         
         let base64canvas = await canvas.toDataURL();
 
         if (statesCanvas.length <= 5) {
 
             statesCanvas.push(base64canvas);
-            //console.log(statesCanvas.length);
             return;
 
         } else if (statesCanvas.length > 5) { 
 
             statesCanvas.shift();
             statesCanvas.push(base64canvas);
-            //console.log(statesCanvas.length);
             return;
 
         };

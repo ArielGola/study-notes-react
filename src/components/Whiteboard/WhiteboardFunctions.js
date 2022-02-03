@@ -212,15 +212,6 @@ function enableActives(
 };
 
 
-function enableOneActive(tool, toolActive, shapesDiv, fontDiv) {
-    if (shapesDiv) { shapesDiv.className = 'font-div display-on' };
-    if (fontDiv) { fontDiv.className = 'font-div display-on' };
-    tool.className = `${tool.className} active`;
-    let i = toolActive;
-    toolsObject.tools = new ObjectTools(i[0], i[1], i[2], i[3], i[4], i[5]);
-};
-
-
 function disableOneActive(tool, shapesDiv, fontDiv, iconText) {
     if (shapesDiv) { shapesDiv.className = "display-off"; };
     if (fontDiv) { fontDiv.className = 'display-off'; };
@@ -230,6 +221,15 @@ function disableOneActive(tool, shapesDiv, fontDiv, iconText) {
         let push = `${splited[0]} ${splited[1]} ${splited[2]} ${splited[3]}`;
         tool.className = push;
     };
+};
+
+
+function enableOneActive(tool, toolActive, shapesDiv, fontDiv) {
+    if (shapesDiv) { shapesDiv.className = 'font-div display-on' };
+    if (fontDiv) { fontDiv.className = 'font-div display-on' };
+    tool.className = `${tool.className} active`;
+    let i = toolActive;
+    toolsObject.tools = new ObjectTools(i[0], i[1], i[2], i[3], i[4], i[5]);
 };
 
 
@@ -247,7 +247,7 @@ export function handleShapes(e) {
     let circle = document.getElementById('Circle');
 
     let shapesDiv = document.getElementById('ShapesDiv');
-    
+
     toolsObject.tools.shapes = new SelectionShapes(false, false, false, false);
 
     disableShapes(selectE, squareF, square, circleF, circle);
@@ -259,19 +259,19 @@ function enableShapes(selectE, squareF, square, circleF, circle, shapesDiv) {
 
     if (isEven(shapesCounter) && selectE.id === squareF.id) {
 
-        enableOneShape(squareF, (true, false, false, false), shapesDiv);
+        enableOneShape(squareF, [true, false, false, false], shapesDiv);
 
     } else if (isEven(shapesCounter) && selectE.id === square.id) {
 
-        enableOneShape(square, (false, true, false, false), shapesDiv);
+        enableOneShape(square, [false, true, false, false], shapesDiv);
 
     } else if (isEven(shapesCounter) && selectE.id === circleF.id) {
 
-        enableOneShape(circleF, (false, false, true, false), shapesDiv);
+        enableOneShape(circleF, [false, false, true, false], shapesDiv);
 
     } else if (isEven(shapesCounter) && selectE.id === circle.id) {
 
-        enableOneShape(circle, (false, false, false, true), shapesDiv);
+        enableOneShape(circle, [false, false, false, true], shapesDiv);
 
     }
 };
