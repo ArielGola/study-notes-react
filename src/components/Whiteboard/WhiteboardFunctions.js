@@ -1,13 +1,8 @@
-import { fontOptions, toolsOptions } from './Whiteboard';
-
-let pencilCounter = 1;
-let shapesCounter = 1;
-let activeCounter = 1;
-let gridCounter = 1;
-let favCounter = 1;
-
-const toolsObject = {
-    //toolsOptions,
+export const toolsObject = {
+    toolsOptions: {
+        color: "#ffff",
+        thickness: 1
+    },
     tools: {     
         pencil: false,
         line: false,
@@ -22,6 +17,13 @@ const toolsObject = {
         }
     }
 };
+
+
+let pencilCounter = 1;
+let shapesCounter = 1;
+let activeCounter = 1;
+let gridCounter = 1;
+let favCounter = 1;
 
 
 // Si es par (true) o si es impar (false)
@@ -48,15 +50,6 @@ class SelectionShapes {
         this.circle = circle;
     }
 };
-
-//let shapesSelected = new SelectionShapes("A", "B", "C", "D");
-//let objectClassTest = new ObjectTools(1, 2, 3, 4, 5, shapesSelected);
-//console.log(objectClassTest);
-
-
-export function returnToolObject() {return toolsObject};
-
-export function returnTextOptions() {return fontOptions};
 
 
 export function showRange(e) {

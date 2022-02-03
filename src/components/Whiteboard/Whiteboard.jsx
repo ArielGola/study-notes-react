@@ -6,27 +6,26 @@ import {
     gridActive, 
     favActive, 
     handleShapes, 
-    returnToolObject, 
-    returnTextOptions 
+    toolsObject
 } from './WhiteboardFunctions';
 
 import CanvasComp from '../CanvasComp/CanvasComp';
 
 import './Whiteboard.css';
 
-export const fontOptions = {
-    fontSize: "",
-    fontFamily: "",
-    fontContent: ""
-};
-
-export const toolsOptions = {
-    color: "#ffff",
-    thickness: 1
-};
-
 
 function Whiteboard() {
+
+    const fontOptions = {
+        fontSize: "",
+        fontFamily: "",
+        fontContent: ""
+    };
+
+
+    function returnToolObject() {return toolsObject};
+
+    function returnTextOptions() {return fontOptions};
 
     return (
             <div className='full-height align-divs-canvas'>
@@ -36,7 +35,7 @@ function Whiteboard() {
                             <input 
                                 type="color" 
                                 className='input-color'
-                                onInput={(e) => toolsOptions.color = e.target.value}
+                                onInput={(e) => toolsObject.toolsOptions.color = e.target.value}
                             />
                             <i className="m-fas-w fas fa-brush fa-lg" onClick={(e) => showRange(e)}></i>
                             <i id='Pencil' className="m-fas-w fas fa-pen fa-lg" onClick={(e) => changeActive(e)}></i>
@@ -67,7 +66,7 @@ function Whiteboard() {
                             min="1" 
                             max="5" 
                             defaultValue={1}
-                            onInput={(e) => toolsOptions.thickness = Number(e.target.value)}
+                            onInput={(e) => toolsObject.toolsOptions.thickness = Number(e.target.value)}
                         />
                     </div>
 
