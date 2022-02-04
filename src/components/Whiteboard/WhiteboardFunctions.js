@@ -52,6 +52,12 @@ class SelectionShapes {
 };
 
 
+export async function saveCanvas() {
+    //let canvasSave = document.getElementById('Canvas');
+    //let canvasBase64 = await canvasSave.toDataURL();
+};
+
+
 export function showRange(e) {
 
     let newCount = pencilCounter + 1;

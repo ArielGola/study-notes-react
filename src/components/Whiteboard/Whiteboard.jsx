@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import { showRange, changeActive, gridActive, favActive, handleShapes, toolsObject } from './WhiteboardFunctions';
+import { showRange, changeActive, gridActive, favActive, handleShapes, toolsObject, saveCanvas } from './WhiteboardFunctions';
 
 import CanvasComp from '../CanvasComp/CanvasComp';
+import SaveScreen from '../SaveScreen/SaveScreen';
 
 import './Whiteboard.css';
 
 
 function Whiteboard() {
+
+    let saveScreen = true;
 
     const fontOptions = {
         fontSize: "",
@@ -21,6 +24,12 @@ function Whiteboard() {
     function returnTextOptions() {return fontOptions};
 
     return (
+        <Fragment>
+                
+            {
+                saveScreen ? <SaveScreen /> : ""
+            }
+            
             <div className='full-height align-divs-canvas'>
                 <div className='bg-dark-2 center-container-canvas'>
                     <div className='container-up-canvas'>
@@ -38,7 +47,7 @@ function Whiteboard() {
                             <i id='Shapes' className="m-fas-w fas fa-shapes fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i id='FontIcon' className="m-fas-w fas fa-font fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i className="m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
-                            <i className="m-fas-w fas fa-save fa-lg"></i>
+                            <i className="m-fas-w fas fa-save fa-lg" onClick={() => saveScreen = true}></i>
                             <i className="m-fas-w fas fa-file-download fa-lg"></i>
                             <i className="m-fas-w far fa-star fa-lg" onClick={(e) => favActive(e)}></i>
                         </div>
@@ -118,6 +127,7 @@ function Whiteboard() {
                     <p>Saved 100%</p>
                 </div>
             </div>
+        </Fragment>
     )
 }
 
