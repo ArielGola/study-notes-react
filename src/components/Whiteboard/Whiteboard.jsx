@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
-import { showRange, changeActive, gridActive, favActive, handleShapes, toolsObject, saveCanvas } from './WhiteboardFunctions';
+import { showRange, changeActive, gridActive, favActive, handleShapes, toolsObject, downloadImg } from './WhiteboardFunctions';
 
 import CanvasComp from '../CanvasComp/CanvasComp';
 import SaveScreen from '../SaveScreen/SaveScreen';
@@ -10,7 +10,7 @@ import './Whiteboard.css';
 
 function Whiteboard() {
 
-    let saveScreen = true;
+    const [saveScreen, setSaveScreen] = useState(false);
 
     const fontOptions = {
         fontSize: "",
@@ -18,6 +18,7 @@ function Whiteboard() {
         fontContent: ""
     };
 
+    const closeSaveScreen = () => {setSaveScreen(false)};
 
     function returnToolObject() {return toolsObject};
 
@@ -27,7 +28,7 @@ function Whiteboard() {
         <Fragment>
                 
             {
-                saveScreen ? <SaveScreen /> : ""
+                saveScreen ? <SaveScreen closeFunction={closeSaveScreen} /> : ""
             }
             
             <div className='full-height align-divs-canvas'>
@@ -47,8 +48,8 @@ function Whiteboard() {
                             <i id='Shapes' className="m-fas-w fas fa-shapes fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i id='FontIcon' className="m-fas-w fas fa-font fa-lg" onClick={(e) => changeActive(e)}></i>
                             <i className="m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
-                            <i className="m-fas-w fas fa-save fa-lg" onClick={() => saveScreen = true}></i>
-                            <i className="m-fas-w fas fa-file-download fa-lg"></i>
+                            <i className="m-fas-w fas fa-save fa-lg" onClick={() => setSaveScreen(true)}></i>
+                            <i className="m-fas-w fas fa-file-download fa-lg" onClick={() => downloadImg()}></i>
                             <i className="m-fas-w far fa-star fa-lg" onClick={(e) => favActive(e)}></i>
                         </div>
 

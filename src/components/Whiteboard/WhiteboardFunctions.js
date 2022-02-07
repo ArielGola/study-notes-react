@@ -52,11 +52,6 @@ class SelectionShapes {
 };
 
 
-export async function saveCanvas() {
-    //let canvasSave = document.getElementById('Canvas');
-    //let canvasBase64 = await canvasSave.toDataURL();
-};
-
 
 export function showRange(e) {
 
@@ -107,6 +102,17 @@ export function favActive(e) {
         favIcon.className = "m-fas-w far fa-star fa-lg";
     }
 };
+
+
+export async function downloadImg() {
+    const canvas = document.getElementById('Canvas');
+    const imageBase64 = await canvas.toDataURL();
+
+    const link = document.createElement('a');
+    link.href = imageBase64;
+    link.download = "Drawing";
+    link.click();
+}
 
 
 export function changeActive(e) {
