@@ -10,19 +10,30 @@ function SaveScreen(props) {
     };
 
     const saveFunction = async () => {
+
         let saveName = document.getElementById('SaveName');
+
         if (saveName.value !== "") {
+
             let canvasSave = document.getElementById('Canvas');
             let canvasBase64 = await canvasSave.toDataURL();
+
+            let isFav = (document.getElementById('Fav').className).includes('active');
 
             const objectSave = {
                 name: saveName.value,
                 date: new Date(),
-                base64: canvasBase64
+                base64: canvasBase64,
+                fav: isFav
             };
 
-            localStorage.setItem(`${saveName.value}`, JSON.stringify(objectSave));
-            console.log(objectSave);
+            let notesLS = await JSON.parse(localStorage.getItem('notes'));
+            if (notesLS === undefined || notesLS === null) {notesLS = []};
+
+            await notesLS.push(objectSave);
+
+            localStorage.setItem("notes", JSON.stringify(notesLS));
+            console.log(notesLS);
 
             closeSSFunction();
         }

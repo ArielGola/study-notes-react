@@ -50,7 +50,7 @@ function Whiteboard() {
                             <i className="m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
                             <i className="m-fas-w fas fa-save fa-lg" onClick={() => setSaveScreen(true)}></i>
                             <i className="m-fas-w fas fa-file-download fa-lg" onClick={() => downloadImg()}></i>
-                            <i className="m-fas-w far fa-star fa-lg" onClick={(e) => favActive(e)}></i>
+                            <i id='Fav' className="m-fas-w far fa-star fa-lg" onClick={(e) => favActive(e)}></i>
                         </div>
 
                         <div className='sizing-div-canvas'>

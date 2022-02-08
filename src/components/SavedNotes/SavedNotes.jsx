@@ -9,12 +9,12 @@ function SavedNotes() {
 
     useEffect(() => {
 
-        function getNotesLS() {
+        async function getNotesLS() {
             try {
 
-                let notes = localStorage.getItem('notes');
+                let notes = await JSON.parse(localStorage.getItem('notes'));
 
-                if (notes === null || notes === undefined) {
+                if (notes === typeof null || notes === typeof undefined) {
                     setErrorLS(true);
                 } else {
                     setNotesLS(notes);
@@ -24,6 +24,7 @@ function SavedNotes() {
 
             } catch (error) {
                 setErrorLS(true);
+                console.log(error);
             };
         }
 
@@ -43,7 +44,7 @@ function SavedNotes() {
                 Loader
             </div>
         );
-    } else if (!errorLS) { // Change it
+    } else if (errorLS) { // Change it
         return (
             <div className='full-height'>
                 Error
@@ -59,13 +60,17 @@ function SavedNotes() {
                             <h3>Your saved studies notes...</h3>
                         </div>
                         <div className='notes-saveds-container'>
-                            <div className="note-saved-card"><p>A</p></div>
-                            <div className="note-saved-card"><p>B</p></div>
-                            <div className="note-saved-card"><p>C</p></div>
-                            <div className="note-saved-card"><p>D</p></div>
-                            <div className="note-saved-card"><p>E</p></div>
-                            <div className="note-saved-card"><p>F</p></div>
-                            <div className="note-saved-card"><p>G</p></div>
+                            {
+                                notesLS.map(note => 
+                                    <div className="note-saved-card">
+                                        <img src={note.base64} alt="imgTest" className='saved-img-note' />
+                                        <div className='note-sub-card'>
+                                            <p>{note.name}</p>
+                                            <i className="m-fas-w far fa-star fa-lg"></i>
+                                        </div>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                     :

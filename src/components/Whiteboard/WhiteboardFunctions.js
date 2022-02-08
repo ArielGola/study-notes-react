@@ -96,8 +96,8 @@ export function favActive(e) {
 
     let favIcon = e.target;
 
-    if (isEven(favIcon)) {
-        favIcon.className = "m-fas-w fas fa-star fa-lg";
+    if (isEven(favCounter)) {
+        favIcon.className = "m-fas-w fas fa-star fa-lg active";
     } else {
         favIcon.className = "m-fas-w far fa-star fa-lg";
     }
