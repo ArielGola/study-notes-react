@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { onDrawing } from './drawTool';
+
+import * as template1 from '../../images/Template1.png';
+import * as template2 from '../../images/Template2.png';
 
 function CanvasComp(props) {
 
@@ -18,7 +21,30 @@ function CanvasComp(props) {
 
     var statesCanvas = [];
 
+    useEffect(() => {
+            
+        var canvas = document.getElementById('Canvas');
+        var context = canvas.getContext('2d');
+        var rect = canvas.getBoundingClientRect();
 
+        
+        canvas.addEventListener('mousedown', (e) => mousedownF(e, rect));
+
+        canvas.addEventListener('mousemove', (e) => mousemoveF(e, context, rect));
+        
+        canvas.addEventListener('mouseup', (e) => mouseupF(e, rect, context, canvas));
+
+        canvas.addEventListener('mouseout', () => mouseoutF());
+
+
+        document.getElementById('Restore').onclick = () => restoreBtn(canvas, context);
+        
+
+        loadTemplates(context, canvas);
+
+    }, []);
+    
+    /*
     window.onload = () => {
 
         var canvas = document.getElementById('Canvas');
@@ -36,7 +62,39 @@ function CanvasComp(props) {
 
 
         document.getElementById('Restore').onclick = () => restoreBtn(canvas, context);
+        
 
+        loadTemplates(context, canvas);
+        
+    };
+    */
+
+    
+    const loadTemplates = (context, canvas) => {
+        const url = window.location.pathname.split('/');
+        
+        if (url[2] === "template1") {
+            let imgNew1 = document.createElement('img');
+            imgNew1.width = canvas.width;
+            imgNew1.height = canvas.height;
+            imgNew1.src = template1.default;
+
+            imgNew1.onload = () => {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(imgNew1, 0, 0);
+            };
+        };
+        if (url[2] === "template2") {
+            let imgNew2 = document.createElement('img');
+            imgNew2.width = canvas.width;
+            imgNew2.height = canvas.height;
+            imgNew2.src = template2.default;
+
+            imgNew2.onload = () => {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(imgNew2, 0, 0);
+            };
+        };
     };
 
     const toolsValues = () => { 

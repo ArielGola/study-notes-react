@@ -1,6 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Template1 from '../../images/Template1.png';
+import Template2 from '../../images/Template2.png';
+import NewNote from '../../images/NewNote.png';
+
 import './HomeComp.css';
 
 function HomeComp() {
@@ -49,14 +53,25 @@ function HomeComp() {
             </div>
             <div className='sizing-container-div-nv'>
                 <div className='align-templates-container'>
-                    <div className='format-template-card' onClick={newNote}>
-                        <p>Create note</p>
+                    <div className="note-saved-card" onClick={newNote}>
+                        <img src={NewNote} alt="imgTest" className='saved-img-note' />
+                        <div className='note-sub-card'>
+                            <p>Create Note</p>
+                        </div>
                     </div>
-                    <div className='format-template-card' onClick={template1}>
-                        <p>Template 1</p>
+
+                    <div className="note-saved-card" onClick={template1}>
+                        <img src={Template1} alt="imgTest" className='saved-img-note' />
+                        <div className='note-sub-card'>
+                            <p>Template 1</p>
+                        </div>
                     </div>
-                    <div className='format-template-card' onClick={template2}>
-                        <p>Template 2</p>
+                    
+                    <div className="note-saved-card" onClick={template2}>
+                        <img src={Template2} alt="imgTest" className='saved-img-note' />
+                        <div className='note-sub-card'>
+                            <p>Template 2</p>
+                        </div>
                     </div>
                 </div>
             </div>
