@@ -38,6 +38,32 @@ function SavedNotes() {
     const [loader, setLoader] = useState(true);
 
 
+    async function unFav(element) {
+
+        const arrayIndex = notesLS.indexOf(element);
+        let newFavValue;
+        if (element.fav === false) {
+            newFavValue = true;
+        };
+        if (element.fav === true) {
+            newFavValue = false;
+        };
+
+        const copyNotesLS = notesLS;
+
+        copyNotesLS[arrayIndex] = {
+            name: element.name,
+            date: element.date,
+            base64: element.base64,
+            fav: newFavValue
+        };
+
+        //console.log(copyNotesLS);
+        setNotesLS(copyNotesLS);
+        localStorage.setItem('notes', JSON.stringify(copyNotesLS));
+    };
+
+
     if (loader) {
         return (
             <div className='full-height'>
@@ -51,6 +77,7 @@ function SavedNotes() {
             </div>
         )
     } else {
+        console.log(notesLS);
         return (
             <div className='full-height bg-dark-2'>
                 {
@@ -62,12 +89,17 @@ function SavedNotes() {
                         <div className='notes-saveds-container'>
                             {
                                 notesLS.map(note => 
-                                    <div className="note-saved-card">
+                                    <div className="note-saved-card" key={notesLS.indexOf(note)}>
                                         <img src={note.base64} alt="imgTest" className='saved-img-note' />
                                         <div className='note-sub-card'>
                                             <p>{note.name}</p>
                                             <div className='icons-saves'>
-                                                <i className="m-fas-w far fa-star fa-lg no-margin"></i>
+                                                <i 
+                                                    className={
+                                                        `m-fas-w ${note.fav ? "fas" : "far"} fa-star fa-lg no-margin ${note.fav ? "active" : ""}`
+                                                    }
+                                                    onClick={() => unFav(note)}
+                                                ></i>
                                                 <i className="m-fas-w fas fa-times fa-lg no-margin"></i>
                                             </div>
                                         </div>
