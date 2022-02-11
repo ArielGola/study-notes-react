@@ -74,7 +74,19 @@ h3, p {
     width: 160px;
     height: 80px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;
+}
+
+
+.icons-saves {
+    display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
+}
+
+.no-margin {
+    margin: 10px 15px 10px 0;
 }

@@ -43,32 +43,7 @@ function CanvasComp(props) {
         loadTemplates(context, canvas);
 
     }, []);
-    
-    /*
-    window.onload = () => {
-
-        var canvas = document.getElementById('Canvas');
-        var context = canvas.getContext('2d');
-        var rect = canvas.getBoundingClientRect();
-
-        
-        canvas.addEventListener('mousedown', (e) => mousedownF(e, rect));
-
-        canvas.addEventListener('mousemove', (e) => mousemoveF(e, context, rect));
-        
-        canvas.addEventListener('mouseup', (e) => mouseupF(e, rect, context, canvas));
-
-        canvas.addEventListener('mouseout', () => mouseoutF());
-
-
-        document.getElementById('Restore').onclick = () => restoreBtn(canvas, context);
-        
-
-        loadTemplates(context, canvas);
-        
-    };
-    */
-
+  
     
     const loadTemplates = (context, canvas) => {
         const url = window.location.pathname.split('/');

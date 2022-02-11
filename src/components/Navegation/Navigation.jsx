@@ -51,7 +51,9 @@ function Navigation() {
                     <i className="fas fa-house-user fa-lg" onClick={() => navigate("/home")}></i>
                     <i className="fas fa-folder-plus fa-lg" onClick={() => navigate("/whiteboard/new")}></i>
                     <i className="fas fa-sticky-note fa-lg" onClick={() => navigate("/saves")}></i>
-                    <i className="fas fa-star fa-lg" onClick={() => navigate("/fauvorites")}></i>
+                    {
+                    //<i className="fas fa-star fa-lg" onClick={() => navigate("/fauvorites")}></i>
+                    }
                     <i className="fas fa-adjust fa-lg" onClick={() => turnDisplayTheme()}></i>
                     <i className="fas fa-user fa-lg" onClick={() => turnDisplayUserConfig()}></i>
                 </div>

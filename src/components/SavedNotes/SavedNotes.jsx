@@ -66,7 +66,10 @@ function SavedNotes() {
                                         <img src={note.base64} alt="imgTest" className='saved-img-note' />
                                         <div className='note-sub-card'>
                                             <p>{note.name}</p>
-                                            <i className="m-fas-w far fa-star fa-lg"></i>
+                                            <div className='icons-saves'>
+                                                <i className="m-fas-w far fa-star fa-lg no-margin"></i>
+                                                <i className="m-fas-w fas fa-times fa-lg no-margin"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 )
