@@ -9,25 +9,6 @@ function SavedNotes() {
 
     useEffect(() => {
 
-        async function getNotesLS() {
-            try {
-
-                let notes = await JSON.parse(localStorage.getItem('notes'));
-
-                if (notes === typeof null || notes === typeof undefined) {
-                    setErrorLS(true);
-                } else {
-                    setNotesLS(notes);
-                };
-
-                setLoader(false);
-
-            } catch (error) {
-                setErrorLS(true);
-                console.log(error);
-            };
-        }
-
         getNotesLS();
 
     }, []);
@@ -36,9 +17,29 @@ function SavedNotes() {
     const [notesLS, setNotesLS] = useState(null);
     const [errorLS, setErrorLS] = useState(false);
     const [loader, setLoader] = useState(true);
+    
+
+    async function getNotesLS() {
+        try {
+
+            let notes = await JSON.parse(localStorage.getItem('notes'));
+
+            if (notes === typeof null || notes === typeof undefined) {
+                setErrorLS(true);
+            } else {
+                setNotesLS(notes);
+            };
+
+            setLoader(false);
+
+        } catch (error) {
+            setErrorLS(true);
+            console.log(error);
+        };
+    }
 
 
-    async function unFav(element) {
+    function unFav(element) {
 
         const arrayIndex = notesLS.indexOf(element);
         let newFavValue;
@@ -58,9 +59,23 @@ function SavedNotes() {
             fav: newFavValue
         };
 
-        //console.log(copyNotesLS);
         setNotesLS(copyNotesLS);
         localStorage.setItem('notes', JSON.stringify(copyNotesLS));
+
+        getNotesLS();
+    };
+
+
+    function removeItemSaved(element) {
+        const arrayIndex = notesLS.indexOf(element);
+
+        const copyNotesLS = notesLS;
+        copyNotesLS.splice(arrayIndex, 1);
+
+        setNotesLS(copyNotesLS);
+        localStorage.setItem('notes', JSON.stringify(copyNotesLS));
+
+        getNotesLS();
     };
 
 
@@ -77,7 +92,6 @@ function SavedNotes() {
             </div>
         )
     } else {
-        console.log(notesLS);
         return (
             <div className='full-height bg-dark-2'>
                 {
@@ -90,7 +104,12 @@ function SavedNotes() {
                             {
                                 notesLS.map(note => 
                                     <div className="note-saved-card" key={notesLS.indexOf(note)}>
-                                        <img src={note.base64} alt="imgTest" className='saved-img-note' />
+                                        <img 
+                                            src={note.base64} 
+                                            alt={note.name}  
+                                            className='saved-img-note' 
+                                            onClick={() => navigate(`/whiteboard/${note.name}`)}
+                                        />
                                         <div className='note-sub-card'>
                                             <p>{note.name}</p>
                                             <div className='icons-saves'>
@@ -100,7 +119,10 @@ function SavedNotes() {
                                                     }
                                                     onClick={() => unFav(note)}
                                                 ></i>
-                                                <i className="m-fas-w fas fa-times fa-lg no-margin"></i>
+                                                <i 
+                                                    className="m-fas-w fas fa-times fa-lg no-margin"
+                                                    onClick={() => removeItemSaved(note)}
+                                                ></i>
                                             </div>
                                         </div>
                                     </div>

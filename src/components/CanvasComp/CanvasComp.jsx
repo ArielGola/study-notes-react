@@ -40,38 +40,10 @@ function CanvasComp(props) {
         document.getElementById('Restore').onclick = () => restoreBtn(canvas, context);
         
 
-        loadTemplates(context, canvas);
+        templateOrSave(canvas, context);
 
     }, []);
   
-    
-    const loadTemplates = (context, canvas) => {
-        const url = window.location.pathname.split('/');
-        
-        if (url[2] === "template1") {
-            let imgNew1 = document.createElement('img');
-            imgNew1.width = canvas.width;
-            imgNew1.height = canvas.height;
-            imgNew1.src = template1.default;
-
-            imgNew1.onload = () => {
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                context.drawImage(imgNew1, 0, 0);
-            };
-        };
-        if (url[2] === "template2") {
-            let imgNew2 = document.createElement('img');
-            imgNew2.width = canvas.width;
-            imgNew2.height = canvas.height;
-            imgNew2.src = template2.default;
-
-            imgNew2.onload = () => {
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                context.drawImage(imgNew2, 0, 0);
-            };
-        };
-    };
-
     const toolsValues = () => { 
         const toolObject = props.toolObject;
         return toolObject();
@@ -80,6 +52,46 @@ function CanvasComp(props) {
     const textValues = () => {
         const textOptions = props.textOptions;
         return textOptions();
+    };
+
+
+    function templateOrSave(canvas, context) {
+        const url = window.location.pathname.split('/');
+        if (url[2] === "template1" || url[2] === "template2") {
+            loadTemplates(url, canvas, context);
+        } else {
+            loadSaves(url, canvas, context);
+        };
+    };
+
+    
+    const loadTemplates = (url, canvas, context) => {
+        if (url[2] === "template1") {
+            drawImg(canvas, context, template1.default);
+        };
+        if (url[2] === "template2") {
+            drawImg(canvas, context, template2.default);
+        };
+    };
+
+
+    const loadSaves = async (url, canvas, context) => {
+        const localStorageArray = await JSON.parse(localStorage.getItem('notes'));
+        let noteFind = localStorageArray.find(note => note.name === url[2]);
+        drawImg(canvas, context, noteFind.base64);
+    };
+
+
+    const drawImg = (canvas, context, src) => {
+        let imgNew = document.createElement('img');
+        imgNew.width = canvas.width;
+        imgNew.height = canvas.height;
+        imgNew.src = src;
+
+        imgNew.onload = () => {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(imgNew, 0, 0);
+        };
     };
 
 
