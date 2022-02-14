@@ -6,7 +6,6 @@ import Navigation from './components/Navegation/Navigation';
 import HomeComp from './components/HomeComp/HomeComp';
 import Whiteboard from './components/Whiteboard/Whiteboard';
 import SavedNotes from './components/SavedNotes/SavedNotes';
-import FauvoritesNotes from './components/FauvoritesNotes/FauvoritesNotes';
 
 function App() {
   return (
@@ -23,8 +22,6 @@ function App() {
         <Route path="/whiteboard/:model" element={<Whiteboard />} />
 
         <Route path="/saves" element={<SavedNotes />} />
-
-        <Route path="/fauvorites" element={<FauvoritesNotes />} />
 
       </Routes>
     </Router>

@@ -30,7 +30,7 @@ p {
 .sizing-icons-canvas {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     align-content: center;
     flex-wrap: nowrap;

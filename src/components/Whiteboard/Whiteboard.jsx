@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 
-import { showRange, changeActive, gridActive, favActive, handleShapes, toolsObject, downloadImg } from './WhiteboardFunctions';
+import { showRange, changeActive, gridActive, handleShapes, toolsObject, downloadImg } from './WhiteboardFunctions';
 
 import CanvasComp from '../CanvasComp/CanvasComp';
 import SaveScreen from '../SaveScreen/SaveScreen';
@@ -50,7 +50,6 @@ function Whiteboard() {
                             <i className="m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
                             <i className="m-fas-w fas fa-save fa-lg" onClick={() => setSaveScreen(true)}></i>
                             <i className="m-fas-w fas fa-file-download fa-lg" onClick={() => downloadImg()}></i>
-                            <i id='Fav' className="m-fas-w far fa-star fa-lg" onClick={(e) => favActive(e)}></i>
                         </div>
 
                         <div className='sizing-div-canvas'>

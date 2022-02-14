@@ -90,20 +90,6 @@ export function gridActive(e) {
 };
 
 
-export function favActive(e) {
-    let newCount = favCounter + 1;
-    favCounter = newCount;
-
-    let favIcon = e.target;
-
-    if (isEven(favCounter)) {
-        favIcon.className = "m-fas-w fas fa-star fa-lg active";
-    } else {
-        favIcon.className = "m-fas-w far fa-star fa-lg";
-    }
-};
-
-
 export async function downloadImg() {
     const canvas = document.getElementById('Canvas');
     const imageBase64 = await canvas.toDataURL();

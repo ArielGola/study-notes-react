@@ -18,13 +18,13 @@ function SaveScreen(props) {
             let canvasSave = document.getElementById('Canvas');
             let canvasBase64 = await canvasSave.toDataURL();
 
-            let isFav = (document.getElementById('Fav').className).includes('active');
+            //let isFav = (document.getElementById('Fav').className).includes('active');
 
             const objectSave = {
                 name: saveName.value,
                 date: new Date(),
                 base64: canvasBase64,
-                fav: isFav
+                fav: false
             };
 
             let notesLS = await JSON.parse(localStorage.getItem('notes'));
