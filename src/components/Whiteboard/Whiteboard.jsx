@@ -24,6 +24,8 @@ function Whiteboard() {
 
     function returnTextOptions() {return fontOptions};
 
+    console.log(window.localStorage.getItem);
+
     return (
         <Fragment>
                 
@@ -122,7 +124,7 @@ function Whiteboard() {
                 </div>
                 <div className='state-bar'>
                     <i id='Restore' className="m-fas-w fas fa-undo fa-lg"></i>
-                    <p>Size: 654kb</p>
+                    <p>Current theme: Dark</p>
                     <p>Last saved 20:43</p>
                     <p>Saved 100%</p>
                 </div>

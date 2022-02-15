@@ -1,14 +1,27 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './Navigation.css';
 
 function Navigation() {
 
+    useEffect(() => {
+        localStorage.setItem('darkTheme', true);
+    }, []);
+    
+
     const navigate = useNavigate();
 
     const [themeCounter, setThemeCounter] = useState(1);
     const [userCounter, setUserCounter] = useState(1);
+
+    function darkThemeOff() {
+        localStorage.setItem('darkTheme', false);
+    };
+
+    function darkThemeOn() {
+        localStorage.setItem('darkTheme', true);
+    };
 
     function turnDisplayTheme() {
         
@@ -59,8 +72,8 @@ function Navigation() {
                 </div>
             </nav>
             <div id='ThemeConfig' className='dropdown-theme display-off'>
-                <p className='light-theme'>Light Theme</p>
-                <p className='dark-theme'>Dark Theme</p>
+                <p className='light-theme' onClick={() => darkThemeOff()}>Light Theme</p>
+                <p className='dark-theme' onClick={() => darkThemeOn()}>Dark Theme</p>
             </div>
             <div id='UserOptions' className='dropdown-user display-off'>
                 <p className='user-action'>Sign In</p>
