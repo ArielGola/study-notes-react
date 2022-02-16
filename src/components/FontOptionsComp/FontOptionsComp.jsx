@@ -5,7 +5,7 @@ function FontOptionsComp(props) {
     const fontOptions = {};
 
     return (
-        <div id='FontDiv' className='display-off'>
+        <div id='FontDiv' className='display-off bg-dark-t'>
             <label className='font-light'>Font size:</label>
             <input 
                 type="number" 

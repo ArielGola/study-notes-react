@@ -98,12 +98,12 @@ function SavedNotes() {
                     notesLS ? 
                     <div className="saveds-container">
                         <div className='saveds-title'>
-                            <h3>Your saved studies notes...</h3>
+                            <h3 className='p-dark-35'>Your saved studies notes...</h3>
                         </div>
                         <div className='notes-saveds-container'>
                             {
                                 notesLS.map(note => 
-                                    <div className="note-saved-card" key={notesLS.indexOf(note)}>
+                                    <div className="note-saved-card bg-dark-45-t" key={notesLS.indexOf(note)}>
                                         <img 
                                             src={note.base64} 
                                             alt={note.name}  
@@ -111,16 +111,16 @@ function SavedNotes() {
                                             onClick={() => navigate(`/whiteboard/${note.name}`)}
                                         />
                                         <div className='note-sub-card'>
-                                            <p>{note.name}</p>
+                                            <p className='p-dark-35'>{note.name}</p>
                                             <div className='icons-saves'>
                                                 <i 
                                                     className={
-                                                        `m-fas-w ${note.fav ? "fas" : "far"} fa-star fa-lg no-margin ${note.fav ? "active" : ""}`
+                                                        `i-dark m-fas-w ${note.fav ? "fas" : "far"} fa-star fa-lg no-margin ${note.fav ? "active" : ""}`
                                                     }
                                                     onClick={() => unFav(note)}
                                                 ></i>
                                                 <i 
-                                                    className="m-fas-w fas fa-times fa-lg no-margin"
+                                                    className="i-dark m-fas-w fas fa-times fa-lg no-margin"
                                                     onClick={() => removeItemSaved(note)}
                                                 ></i>
                                             </div>
@@ -133,11 +133,11 @@ function SavedNotes() {
                     :
                     <div className="saveds-container">
                         <div className='saveds-title'>
-                            <h3>You don't have saved studies notes...</h3>
+                            <h3 className='p-dark-35'>You don't have saved studies notes...</h3>
                         </div>
                         <div className='notes-saveds-container'>
                             <div className="note-saved-card" onClick={() => navigate('/whiteboard/new')}>
-                                <p>New Note</p>
+                                <p className='p-dark-35'>New Note</p>
                             </div>
                         </div>
                     </div>

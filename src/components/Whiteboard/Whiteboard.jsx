@@ -40,25 +40,25 @@ function Whiteboard() {
             <div className='full-height align-divs-canvas'>
                 <div className='bg-dark-2 center-container-canvas'>
                     <div className='container-up-canvas'>
-                        <div className='sizing-icons-canvas'>
+                        <div className='sizing-icons-canvas bg-dark-45'>
                             <input 
                                 type="color" 
                                 className='input-color'
                                 onInput={(e) => toolsObject.toolsOptions.color = e.target.value}
                             />
-                            <i className="m-fas-w fas fa-brush fa-lg" onClick={(e) => showRange(e)}></i>
-                            <i id='Pencil' className="m-fas-w fas fa-pen fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='Line' className="m-fas-w fas fa-arrows-alt-h fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='Eraser' className="m-fas-w fas fa-eraser fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='Curve' className="m-fas-w fas fa-route fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='Shapes' className="m-fas-w fas fa-shapes fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='FontIcon' className="m-fas-w fas fa-font fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i className="m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
-                            <i className="m-fas-w fas fa-save fa-lg" onClick={() => setSaveScreen(true)}></i>
-                            <i className="m-fas-w fas fa-file-download fa-lg" onClick={() => downloadImg()}></i>
+                            <i className="i-dark m-fas-w fas fa-brush fa-lg" onClick={(e) => showRange(e)}></i>
+                            <i id='Pencil' className="i-dark m-fas-w fas fa-pen fa-lg" onClick={(e) => changeActive(e)}></i>
+                            <i id='Line' className="i-dark m-fas-w fas fa-arrows-alt-h fa-lg" onClick={(e) => changeActive(e)}></i>
+                            <i id='Eraser' className="i-dark m-fas-w fas fa-eraser fa-lg" onClick={(e) => changeActive(e)}></i>
+                            <i id='Curve' className="i-dark m-fas-w fas fa-route fa-lg" onClick={(e) => changeActive(e)}></i>
+                            <i id='Shapes' className="i-dark m-fas-w fas fa-shapes fa-lg" onClick={(e) => changeActive(e)}></i>
+                            <i id='FontIcon' className="i-dark m-fas-w fas fa-font fa-lg" onClick={(e) => changeActive(e)}></i>
+                            <i className="i-dark m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
+                            <i className="i-dark m-fas-w fas fa-save fa-lg" onClick={() => setSaveScreen(true)}></i>
+                            <i className="i-dark m-fas-w fas fa-file-download fa-lg" onClick={() => downloadImg()}></i>
                         </div>
 
-                        <div className='sizing-div-canvas'>
+                        <div className='sizing-div-canvas bg-dark-70'>
                             <CanvasComp 
                                 toolObject={() => returnToolObject()} 
                                 textOptions={() => returnTextOptions()} 
@@ -68,7 +68,7 @@ function Whiteboard() {
                     </div>
 
                     <div id='RangeDiv' className='display-off'>
-                        <p>Thickness</p>
+                        <p className='p-dark'>Thickness</p>
                         <input 
                             type="range" 
                             min="1" 
@@ -79,26 +79,26 @@ function Whiteboard() {
                     </div>
 
                     <div id='ShapesDiv' className='display-off'>
-                        <i id='CircleF' className="fas fa-circle fa-lg" onClick={(e) => handleShapes(e)}></i>
-                        <i id='Circle' className="far fa-circle fa-lg" onClick={(e) => handleShapes(e)}></i>
-                        <i id='SquareF' className="fas fa-square fa-lg" onClick={(e) => handleShapes(e)}></i>
-                        <i id='Square' className="far fa-square fa-lg" onClick={(e) => handleShapes(e)}></i>
+                        <i id='CircleF' className="i-dark fas fa-circle fa-lg" onClick={(e) => handleShapes(e)}></i>
+                        <i id='Circle' className="i-dark far fa-circle fa-lg" onClick={(e) => handleShapes(e)}></i>
+                        <i id='SquareF' className="i-dark fas fa-square fa-lg" onClick={(e) => handleShapes(e)}></i>
+                        <i id='Square' className="i-dark far fa-square fa-lg" onClick={(e) => handleShapes(e)}></i>
                     </div>
 
                     <FontOptionsComp onOptionsChange={setFontOptions} />
 
                 </div>
-                <div className='state-bar'>
-                    <i id='Restore' className="m-fas-w fas fa-undo fa-lg"></i>
-                    <p>
+                <div className='state-bar bg-dark-45'>
+                    <i id='Restore' className="i-dark m-fas-w fas fa-undo fa-lg"></i>
+                    <p className='p-dark'>
                         Current Theme: 
                         {
                             localStorage.getItem('darkTheme') ?
                             " Dark " : " Light "
                         }
                     </p>
-                    <p>Last saved 20:43</p>
-                    <p>Saved 100%</p>
+                    <p className='p-dark'>Last saved 20:43</p>
+                    <p className='p-dark'>Saved 100%</p>
                 </div>
             </div>
         </Fragment>

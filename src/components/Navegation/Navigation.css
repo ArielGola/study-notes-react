@@ -21,19 +21,18 @@
     height: 100%;
 }
 
-.fas, .far, .fal {
+
+.i-dark {
     color: rgb(200, 200, 200);
 }
 
-.fas:hover, .far:hover, .fal:hover {
+.i-dark:hover {
     color: rgb(110, 110, 110);
-    cursor: pointer;
+    cursor: pointer;  
 }
 
 
 .dropdown-user {
-    background-color: rgba(44, 44, 44, 0.9);
-
     margin-left: 60px;
     width: 80px;
 
@@ -52,7 +51,7 @@
     padding: 5px;
 }
 
-.user-action:hover {
+.bg-dark-t:hover {
     background-color: rgb(68, 68, 68);
     cursor: pointer;
 }
@@ -105,4 +104,11 @@
 .dark-theme:hover {
     background-color: rgb(68, 68, 68);
     cursor: pointer;
+}
+
+
+/* LIGHT THEME */
+
+.bg-light {
+    background-color: rgb(168, 175, 201);
 }

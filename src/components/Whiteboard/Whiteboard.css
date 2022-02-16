@@ -1,4 +1,4 @@
-p {
+.p-dark {
     color: rgb(200, 200, 200);
 }
 
@@ -35,7 +35,6 @@ p {
     align-content: center;
     flex-wrap: nowrap;
 
-    background-color: rgb(45, 45, 45);
     height: 90vh;
     width: 8vh;
 }
@@ -63,7 +62,6 @@ p {
     align-items: left;
     align-content: center;
     
-    background-color: rgb(70, 70, 70);
     height: 90vh;
     width: 182vh;
 }
@@ -74,18 +72,23 @@ p {
     justify-content: space-around;
     align-items: center;
 
-    background-color: rgb(45, 45, 45);
     width: 100%;
     height: 4vh;
 }
 
+.bg-dark-45 {
+    background-color: rgb(45, 45, 45);
+}
+
+.bg-dark-70 {
+    background-color: rgb(70, 70, 70);
+}
 
 .range-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(44, 44, 44, 0.9);
     position: fixed;
     float: left;
     margin-bottom: 68vh;
@@ -102,15 +105,13 @@ p {
     align-items: center;
     align-content: center;
 
-    background-color: rgba(44, 44, 44, 0.9);
-
     width: 40px;
     height: 140px;
 
     position: fixed;
     float: left;
 
-    margin-bottom: 14vh;
+    margin-bottom: 0;
     margin-right: 168vh;
 }
 
@@ -121,8 +122,6 @@ p {
     justify-content: space-around;
     align-items: center;
     align-content: center;
-
-    background-color: rgba(44, 44, 44, 0.9);
 
     width: 200px;
     height: 210px;
@@ -136,7 +135,34 @@ p {
     margin-right: 144vh;
 }
 
+.bg-dark-t {
+    background-color: rgba(44, 44, 44, 0.9);
+}
+
 
 .grid-dark {
     background-image: url("../../images/darkgrid.png");
+}
+
+
+/* LIGHT THEME */
+
+.bg-light-t {
+    background-color: rgba(216, 216, 216, 0.9);
+}
+
+.grid-light {
+    background-image: url("../../images/darkgrid.png"); /*Cambiar*/
+}
+
+.bg-light-210 {
+    background-color: rgb(210, 210, 210);
+}
+
+.bg-light-170 {
+    background-color: rgb(170, 170, 170);
+}
+
+.p-light {
+    color: rgb(55, 55, 55);
 }
