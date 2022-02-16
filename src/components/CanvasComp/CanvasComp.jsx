@@ -163,7 +163,7 @@ function CanvasComp(props) {
                 curvePointY, 
                 middlePointX, 
                 middlePointY,
-                textValues()
+                textValues
             );
             x = 0;
             y = 0;

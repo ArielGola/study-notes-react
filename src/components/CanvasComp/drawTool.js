@@ -107,7 +107,7 @@ function asCircle(x1, y1, x2, y2, context, propsValues, fill) {
 
 
 function asText(x1, y1, x2, context, propsValues, execFuncText) {
-    let textPropsG = execFuncText;
+    let textPropsG = execFuncText();
     console.log(textPropsG);
     let width = x2-x1;
     if (textPropsG.fontCont === undefined) {

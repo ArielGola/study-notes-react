@@ -4,6 +4,7 @@ import { showRange, changeActive, gridActive, handleShapes, toolsObject, downloa
 
 import CanvasComp from '../CanvasComp/CanvasComp';
 import SaveScreen from '../SaveScreen/SaveScreen';
+import FontOptionsComp from '../FontOptionsComp/FontOptionsComp';
 
 import './Whiteboard.css';
 
@@ -12,7 +13,7 @@ function Whiteboard() {
 
     const [saveScreen, setSaveScreen] = useState(false);
 
-    const fontOptions = {
+    let fontOptions = {
         fontSize: "",
         fontFamily: "",
         fontContent: ""
@@ -24,7 +25,10 @@ function Whiteboard() {
 
     function returnTextOptions() {return fontOptions};
 
-    console.log(window.localStorage.getItem);
+    function setFontOptions(dataFontOptions) {
+        fontOptions = dataFontOptions;
+        console.log(dataFontOptions);
+    };
 
     return (
         <Fragment>
@@ -81,50 +85,18 @@ function Whiteboard() {
                         <i id='Square' className="far fa-square fa-lg" onClick={(e) => handleShapes(e)}></i>
                     </div>
 
-                    <div id='FontDiv' className='display-off'>
-                        <label className='font-light'>Font size:</label>
-                        <input 
-                            type="number" 
-                            onChange={(e) => fontOptions.fontSize = (`${e.target.value}px`)} 
-                        />
-                        <label className='font-light'>Font familiy:</label>
-                        <select 
-                            name="font-family" 
-                            id="FontFamily" 
-                            onChange={(e) => fontOptions.fontFamily = e.target.value}
-                        >
-                            <option value="Arial" style={{"fontFamily": "Arial"}}>Arial</option>
-                            <option value="Helvetica" style={{"fontFamily": "Helvetica"}}>Helvetica</option>
-                            <option value="Calibri" style={{"fontFamily": "Calibri"}}>Calibri</option>
-                            <option value="Lucida Sans" style={{"fontFamily": "Lucida Sans"}}>Lucida Sans</option>
-                            <option value="Franklin Gothic Medium" style={{"fontFamily": "Franklin Gothic Medium"}}>Franklin Gothic Medium</option>
-                            <option value="Trebuchet MS" style={{"fontFamily": "Trebuchet MS"}}>Trebuchet MS</option>
-                            <option value="Segoe UI" style={{"fontFamily": "Segoe UI"}}>Segoe UI</option>
-                            <option value="Times New Roman" style={{"fontFamily": "Times New Roman"}}>Times New Roman</option>
-                            <option value="Impact" style={{"fontFamily": "Impact"}}>Impact</option>
-                            <option value="Courier New" style={{"fontFamily": "Courier New"}}>Courier New</option>
-                            <option value="Segoe Script" style={{"fontFamily": "Segoe Script"}}>Segoe Script</option>
-                            <option value="MV Boli" style={{"fontFamily": "MV Boli"}}>MV Boli</option>
-                            <option value="Lucida Console" style={{"fontFamily": "Lucida Console"}}>Lucida Console</option>
-                            <option value="Microsoft Tai Le" style={{"fontFamily": ""}}>Microsoft Tai Le</option>
-                            <option value="San Serif" style={{"fontFamily": "San Serif"}}>San Serif</option>
-                            <option value="MS PGothic" style={{"fontFamily": "MS PGothic"}}>MS PGothic</option>
-                            <option value="Symbol" style={{"fontFamily": "Symbol"}}>Symbol</option>
-                            <option value="Webdings" style={{"fontFamily": "Webdings"}}>Webdings</option>
-                            <option value="Wingdings" style={{"fontFamily": "Wingdings"}}>Wingdings</option>
-                        </select>
-                        <label className='font-light'>Text content:</label>
-                        <textarea 
-                            cols="20" 
-                            rows="5" 
-                            onChange={(e) => fontOptions.fontCont = e.target.value}
-                        ></textarea>
-                    </div>
+                    <FontOptionsComp onOptionsChange={setFontOptions} />
 
                 </div>
                 <div className='state-bar'>
                     <i id='Restore' className="m-fas-w fas fa-undo fa-lg"></i>
-                    <p>Current theme: Dark</p>
+                    <p>
+                        Current Theme: 
+                        {
+                            localStorage.getItem('darkTheme') ?
+                            " Dark " : " Light "
+                        }
+                    </p>
                     <p>Last saved 20:43</p>
                     <p>Saved 100%</p>
                 </div>
