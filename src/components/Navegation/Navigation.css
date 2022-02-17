@@ -110,5 +110,14 @@
 /* LIGHT THEME */
 
 .bg-light {
-    background-color: rgb(168, 175, 201);
+    background-color: rgb(144, 157, 202);
+}
+
+.i-light {
+    color: rgb(37, 37, 37);
+}
+
+.i-light:hover {
+    color: rgb(87, 87, 87);
+    cursor: pointer;  
 }

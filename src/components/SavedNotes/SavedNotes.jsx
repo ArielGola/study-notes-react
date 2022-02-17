@@ -5,6 +5,8 @@ import './SavedNotes.css';
 
 function SavedNotes() {
 
+    let darkT = JSON.parse(localStorage.getItem('darkTheme'));
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -93,17 +95,17 @@ function SavedNotes() {
         )
     } else {
         return (
-            <div className='full-height bg-dark-2'>
+            <div className={`full-height ${darkT ? "bg-dark-2" : "bg-light-2"}`}>
                 {
                     notesLS ? 
                     <div className="saveds-container">
                         <div className='saveds-title'>
-                            <h3 className='p-dark-35'>Your saved studies notes...</h3>
+                            <h3 className={`${darkT ? "p-dark-35" : "p-light-215"}`}>Your saved studies notes...</h3>
                         </div>
                         <div className='notes-saveds-container'>
                             {
                                 notesLS.map(note => 
-                                    <div className="note-saved-card bg-dark-45-t" key={notesLS.indexOf(note)}>
+                                    <div className={`note-saved-card ${darkT ? "bg-dark-45-t": "bg-light-210-t"}`} key={notesLS.indexOf(note)}>
                                         <img 
                                             src={note.base64} 
                                             alt={note.name}  
@@ -111,16 +113,16 @@ function SavedNotes() {
                                             onClick={() => navigate(`/whiteboard/${note.name}`)}
                                         />
                                         <div className='note-sub-card'>
-                                            <p className='p-dark-35'>{note.name}</p>
+                                            <p className={`${darkT ? "p-dark-35" : "p-light-215"}`}>{note.name}</p>
                                             <div className='icons-saves'>
                                                 <i 
                                                     className={
-                                                        `i-dark m-fas-w ${note.fav ? "fas" : "far"} fa-star fa-lg no-margin ${note.fav ? "active" : ""}`
+                                                        `${darkT ? "i-dark" : "i-light"} m-fas-w ${note.fav ? "fas" : "far"} fa-star fa-lg no-margin ${note.fav ? "active" : ""}`
                                                     }
                                                     onClick={() => unFav(note)}
                                                 ></i>
                                                 <i 
-                                                    className="i-dark m-fas-w fas fa-times fa-lg no-margin"
+                                                    className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-times fa-lg no-margin`}
                                                     onClick={() => removeItemSaved(note)}
                                                 ></i>
                                             </div>
@@ -133,11 +135,11 @@ function SavedNotes() {
                     :
                     <div className="saveds-container">
                         <div className='saveds-title'>
-                            <h3 className='p-dark-35'>You don't have saved studies notes...</h3>
+                            <h3 className={`${darkT ? "p-dark-35" : "p-light-215"}`}>You don't have saved studies notes...</h3>
                         </div>
                         <div className='notes-saveds-container'>
                             <div className="note-saved-card" onClick={() => navigate('/whiteboard/new')}>
-                                <p className='p-dark-35'>New Note</p>
+                                <p className={`${darkT ? "p-dark-35" : "p-light-215"}`}>New Note</p>
                             </div>
                         </div>
                     </div>

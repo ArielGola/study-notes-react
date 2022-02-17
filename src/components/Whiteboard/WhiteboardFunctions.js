@@ -26,6 +26,8 @@ let gridCounter = 1;
 let favCounter = 1;
 
 
+let darkT = JSON.parse(localStorage.getItem('darkTheme'));
+
 // Si es par (true) o si es impar (false)
 function isEven(x) { return String(x/2).includes('.') ? false : true };
 
@@ -63,7 +65,7 @@ export function showRange(e) {
     let thicknessIcon = e.target;
 
     if (isEven(pencilCounter)) {
-        rangeDiv.className = "range-div bg-dark-t display-on";
+        rangeDiv.className = `range-div ${darkT ? "bg-dark-t" : "bg-light-t"} display-on`;
         thicknessIcon.className = "m-fas-w fas fa-brush fa-lg active";
     } else {
         rangeDiv.className = "display-off";
@@ -223,8 +225,8 @@ function disableOneActive(tool, shapesDiv, fontDiv, iconText) {
 
 
 function enableOneActive(tool, toolActive, shapesDiv, fontDiv) {
-    if (shapesDiv) { shapesDiv.className = 'shapes-div bg-dark-t display-on' };
-    if (fontDiv) { fontDiv.className = 'font-div bg-dark-t display-on' };
+    if (shapesDiv) { shapesDiv.className = `shapes-div ${darkT ? "bg-dark-t" : "bg-light-t"} display-on` };
+    if (fontDiv) { fontDiv.className = `font-div ${darkT ? "bg-dark-t" : "bg-light-t"} display-on` };
     tool.className = `${tool.className} active`;
     let i = toolActive;
     toolsObject.tools = new ObjectTools(i[0], i[1], i[2], i[3], i[4], i[5]);

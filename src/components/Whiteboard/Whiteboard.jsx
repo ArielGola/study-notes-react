@@ -11,6 +11,8 @@ import './Whiteboard.css';
 
 function Whiteboard() {
 
+    let darkT = JSON.parse(localStorage.getItem('darkTheme'));
+
     const [saveScreen, setSaveScreen] = useState(false);
 
     let fontOptions = {
@@ -38,27 +40,27 @@ function Whiteboard() {
             }
             
             <div className='full-height align-divs-canvas'>
-                <div className='bg-dark-2 center-container-canvas'>
+                <div className={`${darkT ? "bg-dark-2" : "bg-light-2"} center-container-canvas`}>
                     <div className='container-up-canvas'>
-                        <div className='sizing-icons-canvas bg-dark-45'>
+                        <div className={`sizing-icons-canvas ${darkT ? "bg-dark-45" : "bg-light-210"}`}>
                             <input 
                                 type="color" 
                                 className='input-color'
                                 onInput={(e) => toolsObject.toolsOptions.color = e.target.value}
                             />
-                            <i className="i-dark m-fas-w fas fa-brush fa-lg" onClick={(e) => showRange(e)}></i>
-                            <i id='Pencil' className="i-dark m-fas-w fas fa-pen fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='Line' className="i-dark m-fas-w fas fa-arrows-alt-h fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='Eraser' className="i-dark m-fas-w fas fa-eraser fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='Curve' className="i-dark m-fas-w fas fa-route fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='Shapes' className="i-dark m-fas-w fas fa-shapes fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i id='FontIcon' className="i-dark m-fas-w fas fa-font fa-lg" onClick={(e) => changeActive(e)}></i>
-                            <i className="i-dark m-fas-w fas fa-border-all fa-lg" onClick={(e) => gridActive(e)}></i>
-                            <i className="i-dark m-fas-w fas fa-save fa-lg" onClick={() => setSaveScreen(true)}></i>
-                            <i className="i-dark m-fas-w fas fa-file-download fa-lg" onClick={() => downloadImg()}></i>
+                            <i className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-brush fa-lg`} onClick={(e) => showRange(e)}></i>
+                            <i id='Pencil' className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-pen fa-lg`} onClick={(e) => changeActive(e)}></i>
+                            <i id='Line' className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-arrows-alt-h fa-lg`} onClick={(e) => changeActive(e)}></i>
+                            <i id='Eraser' className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-eraser fa-lg`} onClick={(e) => changeActive(e)}></i>
+                            <i id='Curve' className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-route fa-lg`} onClick={(e) => changeActive(e)}></i>
+                            <i id='Shapes' className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-shapes fa-lg`} onClick={(e) => changeActive(e)}></i>
+                            <i id='FontIcon' className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-font fa-lg`} onClick={(e) => changeActive(e)}></i>
+                            <i className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-border-all fa-lg`} onClick={(e) => gridActive(e)}></i>
+                            <i className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-save fa-lg`} onClick={() => setSaveScreen(true)}></i>
+                            <i className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-file-download fa-lg`} onClick={() => downloadImg()}></i>
                         </div>
 
-                        <div className='sizing-div-canvas bg-dark-70'>
+                        <div className={`sizing-div-canvas ${darkT ? "bg-dark-70" : "bg-light-170"}`}>
                             <CanvasComp 
                                 toolObject={() => returnToolObject()} 
                                 textOptions={() => returnTextOptions()} 
@@ -68,7 +70,7 @@ function Whiteboard() {
                     </div>
 
                     <div id='RangeDiv' className='display-off'>
-                        <p className='p-dark'>Thickness</p>
+                        <p className={`${darkT ? "p-dark" : "p-light"}`}>Thickness</p>
                         <input 
                             type="range" 
                             min="1" 
@@ -79,26 +81,26 @@ function Whiteboard() {
                     </div>
 
                     <div id='ShapesDiv' className='display-off'>
-                        <i id='CircleF' className="i-dark fas fa-circle fa-lg" onClick={(e) => handleShapes(e)}></i>
-                        <i id='Circle' className="i-dark far fa-circle fa-lg" onClick={(e) => handleShapes(e)}></i>
-                        <i id='SquareF' className="i-dark fas fa-square fa-lg" onClick={(e) => handleShapes(e)}></i>
-                        <i id='Square' className="i-dark far fa-square fa-lg" onClick={(e) => handleShapes(e)}></i>
+                        <i id='CircleF' className={`${darkT ? "i-dark" : "i-light"} fas fa-circle fa-lg`} onClick={(e) => handleShapes(e)}></i>
+                        <i id='Circle' className={`${darkT ? "i-dark" : "i-light"} far fa-circle fa-lg`} onClick={(e) => handleShapes(e)}></i>
+                        <i id='SquareF' className={`${darkT ? "i-dark" : "i-light"} fas fa-square fa-lg`} onClick={(e) => handleShapes(e)}></i>
+                        <i id='Square' className={`${darkT ? "i-dark" : "i-light"} far fa-square fa-lg`} onClick={(e) => handleShapes(e)}></i>
                     </div>
 
                     <FontOptionsComp onOptionsChange={setFontOptions} />
 
                 </div>
-                <div className='state-bar bg-dark-45'>
-                    <i id='Restore' className="i-dark m-fas-w fas fa-undo fa-lg"></i>
-                    <p className='p-dark'>
+                <div className={`state-bar ${darkT ? "bg-dark-45" : "bg-light-210"}`}>
+                    <i id='Restore' className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-undo fa-lg`}></i>
+                    <p className={`${darkT ? "p-dark" : "p-light"}`}>
                         Current Theme: 
                         {
-                            localStorage.getItem('darkTheme') ?
+                            darkT ?
                             " Dark " : " Light "
                         }
                     </p>
-                    <p className='p-dark'>Last saved 20:43</p>
-                    <p className='p-dark'>Saved 100%</p>
+                    <p className={`${darkT ? "p-dark" : "p-light"}`}>Last saved 20:43</p>
+                    <p className={`${darkT ? "p-dark" : "p-light"}`}>Saved 100%</p>
                 </div>
             </div>
         </Fragment>

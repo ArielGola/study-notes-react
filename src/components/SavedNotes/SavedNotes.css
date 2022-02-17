@@ -101,14 +101,15 @@
 
 /* LIGHT THEME */
 
-.bg-dark-210-t {
-    background-color: rgba(210, 210, 210, 0.5);
+.bg-light-210-t {
+    /*background-color: rgba(210, 210, 210, 0.5);*/
+    background-color: rgba(210, 210, 210, 0.25);
 }
 
-.bg-dark-210-t:hover {
-    background-color: rgba(210, 210, 210, 0.8);
+.bg-light-210-t:hover {
+    background-color: rgba(210, 210, 210, 0.6);
 }
 
-.p-dark-215 {
+.p-light-215 {
     color: rgb(36, 36, 36);
 }

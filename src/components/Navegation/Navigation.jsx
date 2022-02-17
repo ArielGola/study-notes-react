@@ -6,8 +6,14 @@ import './Navigation.css';
 function Navigation() {
 
     useEffect(() => {
-        localStorage.setItem('darkTheme', true);
+
+        if (!localStorage.getItem('darkTheme')) {
+            localStorage.setItem('darkTheme', true);
+        }
+
     }, []);
+
+    let darkT = JSON.parse(localStorage.getItem('darkTheme'));
     
 
     const navigate = useNavigate();
@@ -59,13 +65,28 @@ function Navigation() {
 
     return (
         <Fragment>
-            <nav className='nav-container bg-dark'>
+            <nav className={`nav-container ${darkT ? "bg-dark" : "bg-light"}`}>
                 <div className='align-icons'>
-                    <i className="i-dark fas fa-house-user fa-lg" onClick={() => navigate("/home")}></i>
-                    <i className="i-dark fas fa-folder-plus fa-lg" onClick={() => navigate("/whiteboard/new")}></i>
-                    <i className="i-dark fas fa-sticky-note fa-lg" onClick={() => navigate("/saves")}></i>
-                    <i className="i-dark fas fa-adjust fa-lg" onClick={() => turnDisplayTheme()}></i>
-                    <i className="i-dark fas fa-user fa-lg" onClick={() => turnDisplayUserConfig()}></i>
+                    <i 
+                        className={`${darkT ? "i-dark" : "i-light"} fas fa-house-user fa-lg`} 
+                        onClick={() => navigate("/home")}
+                    ></i>
+                    <i 
+                        className={`${darkT ? "i-dark" : "i-light"} fas fa-folder-plus fa-lg`} 
+                        onClick={() => navigate("/whiteboard/new")}
+                    ></i>
+                    <i 
+                        className={`${darkT ? "i-dark" : "i-light"} fas fa-sticky-note fa-lg`}
+                        onClick={() => navigate("/saves")}
+                    ></i>
+                    <i 
+                        className={`${darkT ? "i-dark" : "i-light"} fas fa-adjust fa-lg`}
+                        onClick={() => turnDisplayTheme()}
+                    ></i>
+                    <i 
+                        className={`${darkT ? "i-dark" : "i-light"} fas fa-user fa-lg`}
+                        onClick={() => turnDisplayUserConfig()}
+                    ></i>
                 </div>
             </nav>
             <div id='ThemeConfig' className='dropdown-theme display-off'>
@@ -73,9 +94,9 @@ function Navigation() {
                 <p className='dark-theme' onClick={() => darkThemeOn()}>Dark Theme</p>
             </div>
             <div id='UserOptions' className='dropdown-user display-off'>
-                <p className='user-action bg-dark-t'>Sign In</p>
-                <p className='user-action bg-dark-t'>Sign Up</p>
-                <p className='user-action bg-dark-t'>Logout</p>
+                <p className={`user-action ${darkT ? "bg-dark-t" : "bg-light-t"}`}>Sign In</p>
+                <p className={`user-action ${darkT ? "bg-dark-t" : "bg-light-t"}`}>Sign Up</p>
+                <p className={`user-action ${darkT ? "bg-dark-t" : "bg-light-t"}`}>Logout</p>
             </div>
         </Fragment>
     )

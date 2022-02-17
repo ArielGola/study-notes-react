@@ -2,11 +2,13 @@ import React from 'react';
 
 function FontOptionsComp(props) {
 
+    let darkT = JSON.parse(localStorage.getItem('darkTheme'));
+
     const fontOptions = {};
 
     return (
-        <div id='FontDiv' className='display-off bg-dark-t'>
-            <label className='font-light'>Font size:</label>
+        <div id='FontDiv' className={`display-off ${darkT ? "bg-dark-t" : "bg-light-t"}`}>
+            <label className={`${darkT ? "font-light" : "font-dark"}`}>Font size:</label>
             <input 
                 type="number" 
                 onChange={
@@ -16,7 +18,7 @@ function FontOptionsComp(props) {
                     }
                 } 
             />
-            <label className='font-light'>Font familiy:</label>
+            <label className={`${darkT ? "font-light" : "font-dark"}`}>Font familiy:</label>
             <select 
                 name="font-family" 
                 id="FontFamily" 
@@ -47,7 +49,7 @@ function FontOptionsComp(props) {
                 <option value="Webdings" style={{"fontFamily": "Webdings"}}>Webdings</option>
                 <option value="Wingdings" style={{"fontFamily": "Wingdings"}}>Wingdings</option>
             </select>
-            <label className='font-light'>Text content:</label>
+            <label className={`${darkT ? "font-light" : "font-dark"}`}>Text content:</label>
             <textarea 
                 cols="20" 
                 rows="5" 

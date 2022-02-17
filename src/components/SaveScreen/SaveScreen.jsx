@@ -4,6 +4,8 @@ import './SaveScreen.css'
 
 function SaveScreen(props) {
 
+    let darkT = JSON.parse(localStorage.getItem('darkTheme'));
+
     const closeSSFunction = () => {
         const closeSS = props.closeFunction;
         closeSS();
@@ -41,11 +43,11 @@ function SaveScreen(props) {
 
     return (
         <div className='ss-background'>
-            <div className="ss-card bg-dark-45">
+            <div className={`ss-card ${darkT ? "bg-dark-45" : "bg-light-210"}`}>
                 <input id='SaveName' className='ss-input' type="text" name="save-name" placeholder='Write...'/>
                 <div className="ss-buttons">
-                    <button className='btn-save bg-dark-70' onClick={saveFunction}>Save</button>
-                    <button className='btn-cancel bg-dark-70' onClick={closeSSFunction}>Cancel</button>
+                    <button className={`btn-save ${darkT ? "bg-dark-70 p-dark" : "bg-light-170 p-light"}`} onClick={saveFunction}>Save</button>
+                    <button className={`btn-cancel ${darkT ? "bg-dark-70 p-dark" : "bg-light-170 p-light"}`} onClick={closeSSFunction}>Cancel</button>
                 </div>
             </div>
         </div>
