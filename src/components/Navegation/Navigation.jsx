@@ -22,11 +22,19 @@ function Navigation() {
     const [userCounter, setUserCounter] = useState(1);
 
     function darkThemeOff() {
-        localStorage.setItem('darkTheme', false);
+        const confirmYes = window.confirm("Warning! If you change the theme, it will lost you're drawing right now. Are you sure?");
+        if (confirmYes) {
+            localStorage.setItem('darkTheme', false);
+            window.location.reload();
+        }
     };
 
     function darkThemeOn() {
-        localStorage.setItem('darkTheme', true);
+        const confirmYes = window.confirm("Warning! If you change the theme, it will lost you're drawing right now. Are you sure?");
+        if (confirmYes) {
+            localStorage.setItem('darkTheme', true);
+            window.location.reload();
+        }
     };
 
     function turnDisplayTheme() {
