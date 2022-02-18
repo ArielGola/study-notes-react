@@ -60,24 +60,24 @@ function HomeComp() {
             <div className='sizing-container-div-nv'>
                 <div className='align-templates-container'>
                     
-                    <div className={`note-saved-card ${darkT ? "bg-dark-45-t": "bg-light-210-t"}`} onClick={newNote}>
+                    <div className="note-saved-card bg-dark-45-t" onClick={newNote}>
                         <img src={NewNote} alt="imgTest" className='saved-img-note' />
                         <div className='note-sub-card'>
-                            <p className={`${darkT ? "p-dark-35" : "p-light-215"}`}>Create Note</p>
+                            <p className="p-dark-35">Create Note</p>
                         </div>
                     </div>
 
-                    <div className={`note-saved-card ${darkT ? "bg-dark-45-t": "bg-light-210-t"}`} onClick={template1}>
+                    <div className="note-saved-card bg-dark-45-t" onClick={template1}>
                         <img src={Template1} alt="imgTest" className='saved-img-note' />
                         <div className='note-sub-card'>
-                            <p className={`${darkT ? "p-dark-35" : "p-light-215"}`}>Template 1</p>
+                            <p className="p-dark-35">Template 1</p>
                         </div>
                     </div>
                     
-                    <div className={`note-saved-card ${darkT ? "bg-dark-45-t": "bg-light-210-t"}`} onClick={template2}>
+                    <div className="note-saved-card bg-dark-45-t" onClick={template2}>
                         <img src={Template2} alt="imgTest" className='saved-img-note' />
                         <div className='note-sub-card'>
-                            <p className={`${darkT ? "p-dark-35" : "p-light-215"}`}>Template 2</p>
+                            <p className="p-dark-35">Template 2</p>
                         </div>
                     </div>
                 </div>

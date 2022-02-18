@@ -84,7 +84,7 @@ export function gridActive(e) {
 
     if (isEven(gridCounter)) {
         gridIcon.className = "m-fas-w fas fa-border-all fa-lg active";
-        canvasBG.className = "grid-dark";
+        canvasBG.className = `${darkT ? "grid-dark" : "grid-light"}`;
     } else {
         gridIcon.className = "m-fas-w fas fa-border-all fa-lg";
         canvasBG.className = "";

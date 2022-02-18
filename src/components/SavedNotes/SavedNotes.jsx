@@ -105,7 +105,7 @@ function SavedNotes() {
                         <div className='notes-saveds-container'>
                             {
                                 notesLS.map(note => 
-                                    <div className={`note-saved-card ${darkT ? "bg-dark-45-t": "bg-light-210-t"}`} key={notesLS.indexOf(note)}>
+                                    <div className="note-saved-card bg-dark-45-t" key={notesLS.indexOf(note)}>
                                         <img 
                                             src={note.base64} 
                                             alt={note.name}  
@@ -113,16 +113,16 @@ function SavedNotes() {
                                             onClick={() => navigate(`/whiteboard/${note.name}`)}
                                         />
                                         <div className='note-sub-card'>
-                                            <p className={`${darkT ? "p-dark-35" : "p-light-215"}`}>{note.name}</p>
+                                            <p className="p-dark-35">{note.name}</p>
                                             <div className='icons-saves'>
                                                 <i 
                                                     className={
-                                                        `${darkT ? "i-dark" : "i-light"} m-fas-w ${note.fav ? "fas" : "far"} fa-star fa-lg no-margin ${note.fav ? "active" : ""}`
+                                                        `i-dark m-fas-w ${note.fav ? "fas" : "far"} fa-star fa-lg no-margin ${note.fav ? "active" : ""}`
                                                     }
                                                     onClick={() => unFav(note)}
                                                 ></i>
                                                 <i 
-                                                    className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-times fa-lg no-margin`}
+                                                    className="i-dark m-fas-w fas fa-times fa-lg no-margin"
                                                     onClick={() => removeItemSaved(note)}
                                                 ></i>
                                             </div>

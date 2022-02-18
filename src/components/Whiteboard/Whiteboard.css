@@ -152,7 +152,7 @@
 }
 
 .grid-light {
-    background-image: url("../../images/darkgrid.png"); /*Cambiar*/
+    background-image: url("../../images/lightgrid.png");
 }
 
 .bg-light-210 {
@@ -160,7 +160,7 @@
 }
 
 .bg-light-170 {
-    background-color: rgb(170, 170, 170);
+    background-color: rgb(190, 190, 190);
 }
 
 .p-light {
