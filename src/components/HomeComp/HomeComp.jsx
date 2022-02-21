@@ -48,12 +48,12 @@ function HomeComp() {
             <div className='header-sizing-nv'>
                 <div>
                     <h1 className={`title-sizing ${darkT ? "p-dark-35" : "p-light-210"}`}>
-                        Welcome to TESchool!
+                        Welcome to NSchool!
                     </h1>
                 </div>
                 <div>
                     <p className={`p-text-sizing ${darkT ? "p-dark-35" : "p-light-210"}`}>
-                        Hello userName, these are actions for today :)
+                        Hello, this is an app for draw and make your notes, these are actions for today :)
                     </p>
                 </div>
             </div>

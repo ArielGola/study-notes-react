@@ -49,8 +49,10 @@ function asLine(x1, y1, x2, y2, context, propsValues) {
 
 
 function asEraser(x1, y1, x2, y2, context, propsValues) {
+    let darkT = JSON.parse(localStorage.getItem('darkTheme'));
+    let eraserColor = darkT ? "#464646" : "#BEBEBE"
     context.beginPath();
-    context.strokeStyle = "#464646";
+    context.strokeStyle = eraserColor;
     context.lineWidth = propsValues.toolsOptions.thickness * 3;
     context.moveTo(x1, y1);
     context.lineTo(x2, y2);
