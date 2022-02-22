@@ -1,6 +1,6 @@
 export const toolsObject = {
     toolsOptions: {
-        color: "#ffff",
+        color: "#000000",
         thickness: 1
     },
     tools: {     
@@ -23,7 +23,6 @@ let pencilCounter = 1;
 let shapesCounter = 1;
 let activeCounter = 1;
 let gridCounter = 1;
-let favCounter = 1;
 
 
 let darkT = JSON.parse(localStorage.getItem('darkTheme'));

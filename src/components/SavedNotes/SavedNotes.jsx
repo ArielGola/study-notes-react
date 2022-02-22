@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './SavedNotes.css';
+//import './SavedNotes.css';
+
+//import '../../styles/texts.css';
+//import '../../styles/backgrounds.css';
+//import '../../styles/savedNotesFormat.css';
 
 function SavedNotes() {
 

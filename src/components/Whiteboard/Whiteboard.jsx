@@ -6,7 +6,11 @@ import CanvasComp from '../CanvasComp/CanvasComp';
 import SaveScreen from '../SaveScreen/SaveScreen';
 import FontOptionsComp from '../FontOptionsComp/FontOptionsComp';
 
-import './Whiteboard.css';
+//import './Whiteboard.css';
+
+//import '../../styles/texts.css';
+//import '../../styles/backgrounds.css';
+//import '../../styles/whiteboardFormat.css';
 
 
 function Whiteboard() {

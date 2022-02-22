@@ -1,4 +1,12 @@
-import './App.css';
+import './App.css'; 
+
+import './styles/texts.css';
+import './styles/backgrounds.css';
+import './styles/whiteboardFormat.css';
+import './styles/saveScreenFormat.css';
+import './styles/savedNotesFormat.css';
+import './styles/navigationFormat.css';
+import './styles/homeCompFormat.css';
 
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 

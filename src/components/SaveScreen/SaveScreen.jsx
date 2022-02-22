@@ -1,6 +1,10 @@
 import React from 'react';
 
-import './SaveScreen.css'
+//import './SaveScreen.css'
+
+//import '../../styles/texts.css';
+//import '../../styles/backgrounds.css';
+//import '../../styles/saveScreenFormat.css';
 
 function SaveScreen(props) {
 

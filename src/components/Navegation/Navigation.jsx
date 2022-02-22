@@ -1,7 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './Navigation.css';
+//import './Navigation.css';
+
+//import '../../styles/texts.css';
+//import '../../styles/backgrounds.css';
+//import '../../styles/navigationFormat.css';
 
 function Navigation() {
 
