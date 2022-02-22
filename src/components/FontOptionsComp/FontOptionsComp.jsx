@@ -8,7 +8,7 @@ function FontOptionsComp(props) {
 
     return (
         <div id='FontDiv' className={`display-off ${darkT ? "bg-dark-t" : "bg-light-t"}`}>
-            <label className={`${darkT ? "font-light" : "font-dark"}`}>Font size:</label>
+            <label className={`${darkT ? "p-dark" : "p-light"}`}>Font size:</label>
             <input 
                 type="number" 
                 onChange={
@@ -18,7 +18,7 @@ function FontOptionsComp(props) {
                     }
                 } 
             />
-            <label className={`${darkT ? "font-light" : "font-dark"}`}>Font familiy:</label>
+            <label className={`${darkT ? "p-dark" : "p-light"}`}>Font familiy:</label>
             <select 
                 name="font-family" 
                 id="FontFamily" 
@@ -49,7 +49,7 @@ function FontOptionsComp(props) {
                 <option value="Webdings" style={{"fontFamily": "Webdings"}}>Webdings</option>
                 <option value="Wingdings" style={{"fontFamily": "Wingdings"}}>Wingdings</option>
             </select>
-            <label className={`${darkT ? "font-light" : "font-dark"}`}>Text content:</label>
+            <label className={`${darkT ? "p-dark" : "p-light"}`}>Text content:</label>
             <textarea 
                 cols="20" 
                 rows="5" 

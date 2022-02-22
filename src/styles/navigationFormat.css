@@ -1,0 +1,68 @@
+.nav-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 60px;
+    height: 100vh;
+
+    position: fixed;
+}
+
+
+.align-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    height: 100%;
+}
+
+
+.dropdown-user {
+    margin-left: 60px;
+    width: 190px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+
+    position: fixed;
+    float: left;
+    height: 92px;
+
+    margin-top: 78vh;
+}
+
+
+.user-action {
+    padding: 5px;
+}
+
+
+.dropdown-theme {
+    margin-left: 60px;
+    width: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+
+    position: fixed;
+    float: left;
+    height: 100%;
+
+    margin-top: 65vh;
+}
+
+
+.display-on {
+    display: flex;
+    transition: 500ms;
+}
+
+
+.display-off {
+    display: none;
+    transition: 500ms;
+}

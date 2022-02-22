@@ -98,8 +98,8 @@ function Navigation() {
                 </div>
             </nav>
             <div id='ThemeConfig' className='dropdown-theme display-off'>
-                <p className='light-theme' onClick={() => darkThemeOff()}>Light Theme</p>
-                <p className='dark-theme' onClick={() => darkThemeOn()}>Dark Theme</p>
+                <p className='light-theme p-light' onClick={() => darkThemeOff()}>Light Theme</p>
+                <p className='dark-theme p-dark' onClick={() => darkThemeOn()}>Dark Theme</p>
             </div>
             <div id='UserOptions' className='dropdown-user display-off'>
                 <p className={`user-action ${darkT ? "p-dark bg-dark-t" : "p-light bg-light-t"}`}>

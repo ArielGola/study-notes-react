@@ -1,0 +1,89 @@
+.full-height {
+    height: 100vh;
+    margin-left: 60px;
+}
+
+
+.header-sizing-nv {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    height: 45vh;
+}
+
+
+.note-saved-card {
+    width: 200px;
+    height: 170px;
+    margin: 20px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-weight: 600;
+}
+
+
+.note-saved-card:hover {
+    width: 210px;
+    height: 180px;
+
+    transition-duration: 350ms;
+
+    cursor: pointer;
+}
+
+
+.saved-img-note {
+    width: 200px;
+    height: 100px;
+}
+
+
+.note-sub-card {
+    width: 160px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;
+}
+
+
+.title-sizing {
+    margin-top: 30px;
+}
+
+
+.p-text-sizing {
+    font-weight: 600;
+}
+
+
+.header-sizing-nv > h3 {
+    font-size: 50px;
+}
+
+
+.sizing-container-div-nv {
+
+    height: 53vh;
+}
+
+
+.align-templates-container {
+    height: 100%;
+    width: 100%;
+
+    margin-top: 2vh;
+
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: center;
+}

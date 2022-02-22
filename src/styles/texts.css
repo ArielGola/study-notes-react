@@ -1,0 +1,43 @@
+.p-dark {
+    color: rgb(200, 200, 200);
+}
+
+.p-dark-35 {
+    color: rgb(220, 220, 220);
+}
+
+.i-dark {
+    color: rgb(200, 200, 200);
+}
+
+.i-dark:hover {
+    color: rgb(110, 110, 110);
+    cursor: pointer;  
+}
+
+
+/* LIGHT THEME */
+
+.p-light {
+    color: rgb(55, 55, 55);
+}
+
+.p-light-215 {
+    color: rgb(36, 36, 36);
+}
+
+.i-light {
+    color: rgb(37, 37, 37);
+}
+
+.i-light:hover {
+    color: rgb(87, 87, 87);
+    cursor: pointer;  
+}
+
+
+/* BOTH THEMES */
+
+.active {
+    color: rgb(41, 149, 212);
+}

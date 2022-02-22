@@ -1,0 +1,113 @@
+.bg-dark-2 {
+    background: -webkit-linear-gradient(to right, #1a4b6b, #4c3261);
+    background: linear-gradient(to right, #1a4b6b, #4c3261);
+}
+
+.bg-dark {
+    background-color: rgb(40, 45, 90);
+}
+
+.bg-dark-45 {
+    background-color: rgb(45, 45, 45);
+}
+
+.bg-dark-70 {
+    background-color: rgb(70, 70, 70);
+}
+
+.bg-dark-t {
+    background-color: rgba(44, 44, 44, 0.9);
+}
+
+.bg-dark-t:hover {
+    background-color: rgb(68, 68, 68);
+    cursor: pointer;
+}
+
+.grid-dark {
+    background-image: url("../../images/darkgrid.png");
+}
+
+.bg-dark-45-t {
+    background-color: rgba(41, 41, 41, 0.5);
+}
+
+.bg-dark-45-t:hover {
+    background-color: rgba(41, 41, 41, 0.8);
+}
+
+
+/* LIGHT THEME */
+
+
+.bg-light-2 {
+    background: -webkit-linear-gradient(to right, #aac7da, #dfbafd);
+    background: linear-gradient(to right, #86adc7, #c0b0ce);
+}
+
+.bg-light {
+    background-color: rgb(225, 225, 225);
+}
+
+.bg-light-210 {
+    background-color: rgb(210, 210, 210);
+}
+
+.bg-light-170 {
+    background-color: rgb(190, 190, 190);
+}
+
+.bg-light-t {
+    background-color: rgba(225, 225, 225, 0.9);
+}
+
+.bg-light-t:hover {
+    background-color: rgb(184, 184, 184);
+}
+
+.grid-light {
+    background-image: url("../../images/lightgrid.png");
+}
+
+.bg-light-210-t {
+    /*background-color: rgba(210, 210, 210, 0.5);*/
+    background-color: rgba(210, 210, 210, 0.25);
+}
+
+.bg-light-210-t:hover {
+    background-color: rgba(210, 210, 210, 0.6);
+}
+
+
+/* BOTH THEMES */
+
+
+.bg-cancel:hover {
+    background-color: rgb(105, 60, 60);
+}
+
+.bg-save:hover {
+    background-color: rgb(61, 97, 66);
+}
+
+.dark-theme {
+    background-color: rgba(41, 41, 41, 0.9);
+
+    padding: 5px;
+}
+
+.dark-theme:hover {
+    background-color: rgb(68, 68, 68);
+    cursor: pointer;
+}
+
+.light-theme {
+    background-color: rgba(223, 223, 223, 0.9);
+
+    padding: 5px;
+}
+
+.light-theme:hover {
+    background-color: rgb(194, 194, 194);
+    cursor: pointer;
+}
