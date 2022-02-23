@@ -36,6 +36,12 @@ function Whiteboard() {
         console.log(dataFontOptions);
     };
 
+    function clearWhiteboard() {
+        let canvas = document.getElementById('Canvas');
+        let context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    };
+
     return (
         <Fragment>
                 
@@ -96,15 +102,14 @@ function Whiteboard() {
                 </div>
                 <div className={`state-bar ${darkT ? "bg-dark-45" : "bg-light-210"}`}>
                     <i id='Restore' className={`${darkT ? "i-dark" : "i-light"} m-fas-w fas fa-undo fa-lg`}></i>
+                    <p className={`${darkT ? "i-dark" : "i-light"}`} onClick={() => clearWhiteboard()}>Clear Whiteboard</p>
                     <p className={`${darkT ? "p-dark" : "p-light"}`}>
                         Current Theme: 
                         {
-                            darkT ?
-                            " Dark " : " Light "
+                            darkT ? " Dark " : " Light "
                         }
                     </p>
-                    <p className={`${darkT ? "p-dark" : "p-light"}`}>Last saved 20:43</p>
-                    <p className={`${darkT ? "p-dark" : "p-light"}`}>Saved 100%</p>
+                    <p className={`${darkT ? "p-dark" : "p-light"}`}>Copyright Ⓒ 2022 All Rights Reserveds</p>
                 </div>
             </div>
         </Fragment>
