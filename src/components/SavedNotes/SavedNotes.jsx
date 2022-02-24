@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-//import './SavedNotes.css';
-
-//import '../../styles/texts.css';
-//import '../../styles/backgrounds.css';
-//import '../../styles/savedNotesFormat.css';
 
 function SavedNotes() {
 
@@ -87,8 +82,10 @@ function SavedNotes() {
 
     if (loader) {
         return (
-            <div className='full-height'>
-                Loader
+            <div className={`full-height ${darkT ? "bg-dark-2" : "bg-light-2"}`}>
+                <div className="card-loader">
+                    <div className="loader"></div>
+                </div>
             </div>
         );
     } else if (errorLS) { // Change it

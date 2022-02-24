@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { onDrawing } from './drawTool';
 
 import * as template1 from '../../images/Template1.png';
 import * as template2 from '../../images/Template2.png';
 
 function CanvasComp(props) {
+
+    const [error, setError] = useState(false);
 
     var drawing = false;
 
@@ -22,25 +24,30 @@ function CanvasComp(props) {
     var statesCanvas = [];
 
     useEffect(() => {
+        
+        try {
             
-        var canvas = document.getElementById('Canvas');
-        var context = canvas.getContext('2d');
-        var rect = canvas.getBoundingClientRect();
+            var canvas = document.getElementById('Canvas');
+            var context = canvas.getContext('2d');
+            var rect = canvas.getBoundingClientRect();
 
-        
-        canvas.addEventListener('mousedown', (e) => mousedownF(e, rect));
+            canvas.addEventListener('mousedown', (e) => mousedownF(e, rect));
 
-        canvas.addEventListener('mousemove', (e) => mousemoveF(e, context, rect));
-        
-        canvas.addEventListener('mouseup', (e) => mouseupF(e, rect, context, canvas));
-
-        canvas.addEventListener('mouseout', () => mouseoutF());
-
-
-        document.getElementById('Restore').onclick = () => restoreBtn(canvas, context);
-        
-
-        templateOrSave(canvas, context);
+            canvas.addEventListener('mousemove', (e) => mousemoveF(e, context, rect));
+            
+            canvas.addEventListener('mouseup', (e) => mouseupF(e, rect, context, canvas));
+    
+            canvas.addEventListener('mouseout', () => mouseoutF());
+    
+    
+            document.getElementById('Restore').onclick = () => restoreBtn(canvas, context);
+            
+    
+            templateOrSave(canvas, context);
+            
+        } catch (error) {
+            setError(true);
+        };
 
     }, []);
   
@@ -224,9 +231,17 @@ function CanvasComp(props) {
         <canvas id='Canvas' width="1195" height="590" tabIndex="1"></canvas>
     );
 
-    return (
-        whiteboard
-    );
+    if (error) { // Change it
+        return (
+            <div className='full-height'>
+                Error
+            </div>
+        );
+    } else {
+        return (
+            whiteboard
+        );
+    }
 }
 
 export default CanvasComp;

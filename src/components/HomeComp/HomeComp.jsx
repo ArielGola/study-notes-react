@@ -5,11 +5,6 @@ import Template1 from '../../images/Template1.png';
 import Template2 from '../../images/Template2.png';
 import NewNote from '../../images/NewNote.png';
 
-//import './HomeComp.css';
-
-//import '../../styles/texts.css';
-//import '../../styles/backgrounds.css';
-//import '../../styles/homeCompFormat.css';
 
 function HomeComp() {
 
