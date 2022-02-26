@@ -81,7 +81,6 @@ function CanvasComp(props) {
             
         } catch (error) {
             setError(true);
-            console.log(error);
         }
     };
 
@@ -98,7 +97,6 @@ function CanvasComp(props) {
             
         } catch (error) {
             setError(true);
-            console.log(error);
         }
     };
 
@@ -113,7 +111,6 @@ function CanvasComp(props) {
             
         } catch (error) {
             setError(true);
-            console.log(error);
         }
     };
 
@@ -133,7 +130,6 @@ function CanvasComp(props) {
             
         } catch (error) {
             setError(true);
-            console.log(error);
         }
     };
 
@@ -175,7 +171,6 @@ function CanvasComp(props) {
             
         } catch (error) {
             setError(true);
-            console.log(error);
         }
     };
 
@@ -245,7 +240,6 @@ function CanvasComp(props) {
             
         } catch (error) {
             setError(true);
-            console.log(error);
         }
     };
 
@@ -264,7 +258,6 @@ function CanvasComp(props) {
             };
         } catch (error) {
             setError(true);
-            console.log(error);
         }
     };
 
@@ -279,8 +272,7 @@ function CanvasComp(props) {
                 return base64Img;
             };
         } catch (error) {
-            setError(true);  
-            console.log(error);
+            setError(true);
         };
     };
 
