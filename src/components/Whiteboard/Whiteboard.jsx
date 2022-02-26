@@ -8,15 +8,15 @@ import FontOptionsComp from '../FontOptionsComp/FontOptionsComp';
 
 
 
-function Whiteboard() {
+function Whiteboard(props) {
 
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
 
     const [saveScreen, setSaveScreen] = useState(false);
-    const [error, setError] = useState(false);
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
+        console.log(props);
         setLoader(false);
     }, []);
     
@@ -58,12 +58,6 @@ function Whiteboard() {
                 </div>
             </div>
         );
-    } else if (error) { // Change it
-        return (
-            <div className='full-height'>
-                Error
-            </div>
-        )
     } else {
 
         return (

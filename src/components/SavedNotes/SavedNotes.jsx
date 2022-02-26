@@ -90,8 +90,15 @@ function SavedNotes() {
         );
     } else if (errorLS) { // Change it
         return (
-            <div className='full-height'>
-                Error
+            <div className={`full-height ${darkT ? "bg-dark-2" : "bg-light-2"}`}>
+                <div className="card-loader">
+                    <h3 className={`${darkT ? "p-dark" : "p-light"}`}>
+                        Sorry, there was an error with the found data.
+                    </h3>
+                    <h3 className={`${darkT ? "p-dark" : "p-light"}`}>
+                        Try reload the page with "F5".
+                    </h3>
+                </div>
             </div>
         )
     } else {
