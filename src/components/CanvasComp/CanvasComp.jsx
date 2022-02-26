@@ -108,7 +108,7 @@ function CanvasComp(props) {
             
             const localStorageArray = await JSON.parse(localStorage.getItem('notes'));
             let noteFind = localStorageArray.find(note => note.name === url[2]);
-            //if (noteFind === undefined) { return drawImg(canvas, context, false) };
+            if (noteFind === undefined) { return drawImg(canvas, context, false) };
             drawImg(canvas, context, noteFind.base64);
             
         } catch (error) {
