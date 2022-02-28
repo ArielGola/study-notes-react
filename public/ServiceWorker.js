@@ -1,30 +1,92 @@
 /* eslint-disable no-restricted-globals */
 
+var cacheStaticName = "static-v-1.1";
 
-const cacheStatic = "static-v-1.1";
-const cacheInmutable = "inmutable-v-1.3";
+const cacheStaticFiles = [
+    "/",
+    "index.html",
+    "robots.txt",
+    "ServiceWorker.js",
+    "asset-manifest.json",
+    "static/css/main.00f2c435.css",
+    "static/css/main.00f2c435.css.map",
+    "static/js/787.774729bc.chunk.js",
+    "static/js/787.774729bc.chunk.js.map",
+    "static/js/main.3d67b0db.js",
+    "static/js/main.3d67b0db.js.LICENSE.txt",
+    "static/js/main.3d67b0db.js.map",
+    "static/media/NewNote.2dce5ddca7e6c979fa4c.png",
+    "static/media/Template1.c17cd0ff43214e93d1f7.png",
+    "static/media/Template2.0b739e0d3a063921a78a.png",
+    "favicon_io/android-chrome-192x192.png",
+    "favicon_io/android-chrome-512x512.png",
+    "favicon_io/apple-touch-icon.png",
+    "favicon_io/favicon-16x16.png",
+    "favicon_io/favicon-32x32.png",
+    "favicon_io/favicon.ico",
+    "favicon_io/site.webmanifest"
+];
 
-// Change elements
+const cacheInmutableName = "inmutable-v-1.1";
+
+
 self.addEventListener("install", (e) => {
-    console.log(e);
-    const cacheStaticPromise = caches.open(cacheStatic).then((cache) => {
-        return cache.addAll([
-            "/service-worker.js",
-            "/favicon.ico",
-            "/manifest.json",
-            "/logo192.png"
-        ]);
+
+    const cacheStaticPromise = caches.open(cacheStaticName).then((cache) => {
+        return cache.addAll(cacheStaticFiles);
     });
 
-    const cacheInmutablePromise = caches.open(cacheInmutable).then((cache) => {
+    const cacheInmutablePromise = caches.open(cacheInmutableName).then((cache) => {
         return cache.addAll([
-            "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap",
-            "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
-            "https://unpkg.com/react/umd/react.production.min.js",
-            "https://unpkg.com/react-dom/umd/react-dom.production.min.js",
-            "https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
+            "https://use.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff2",
+            "https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         ]);
     });
 
     e.waitUntil(Promise.all([cacheInmutablePromise, cacheStaticPromise]));
 });
+
+
+
+self.addEventListener('fetch', (e) => {
+    e.respondWith(
+        caches.match(e.request)
+        .then((res) => {
+            if (res) {
+                return res;
+            };
+            return fetch(e.request)
+            .then((res) => {
+                return caches.open(cacheStaticName).then((cache) => {
+                    cache.put(e.request.url, res.clone());
+                    return res;
+                })
+            })
+        })
+        .catch(() => {
+            console.log('There have been an error with fetching data in ServiceWorker.js');
+        })
+    );
+});
+
+
+self.addEventListener('activate', (e) => {
+    console.log('Activating new service worker...');
+
+    const cacheAllowList = [cacheStaticName];
+
+    e.waitUntil(
+        caches.keys()
+        .then((cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheAllowList.indexOf(cacheName) === -1) {
+                        return caches.delete(cacheName);
+                    };
+                })
+            );
+        }))
+    );
+});
+
+cacheStaticName = "static-v-1.2";
