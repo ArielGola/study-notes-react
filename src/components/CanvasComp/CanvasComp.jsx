@@ -60,7 +60,7 @@ function CanvasComp(props) {
             setError(true);
         };
 
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
     // Tools object
     const toolsValues = () => { 

@@ -108,15 +108,15 @@ function Navigation() {
             <div id='UserOptions' className='dropdown-user display-off'>
                 <p className={`user-action ${darkT ? "p-dark bg-dark-t" : "p-light bg-light-t"}`}>
                     Contact with&nbsp;
-                    <a className={`${darkT ? "p-dark" : "p-light"}`} href="https://github.com/ArielGola/" target="_blank">my Github</a>
+                    <a className={`${darkT ? "p-dark" : "p-light"}`} href="https://github.com/ArielGola/" target="_blank" rel="noreferrer">my Github</a>
                 </p>
                 <p className={`user-action ${darkT ? "p-dark bg-dark-t" : "p-light bg-light-t"}`}>
                     Contact with&nbsp;
-                    <a className={`${darkT ? "p-dark" : "p-light"}`} href="https://www.linkedin.com/in/ariel-gola-497737215/" target="_blank">my Linkedin</a>
+                    <a className={`${darkT ? "p-dark" : "p-light"}`} href="https://www.linkedin.com/in/ariel-gola-497737215/" target="_blank" rel="noreferrer">my Linkedin</a>
                 </p>
                 <p className={`user-action ${darkT ? "p-dark bg-dark-t" : "p-light bg-light-t"}`}>
                     Contact with&nbsp;
-                    <a className={`${darkT ? "p-dark" : "p-light"}`} href="https://mail.google.com/mail/u/0/?hl=es-419#inbox?compose=CllgCJZZzSgjqCQnQxsnSHlNzrXgGlWBBgSNcQfClnQvRpkHmnbclpFFRqbbcQkbtNNBpWMcrbB" target="_blank">my email</a>
+                    <a className={`${darkT ? "p-dark" : "p-light"}`} href="https://mail.google.com/mail/u/0/?hl=es-419#inbox?compose=CllgCJZZzSgjqCQnQxsnSHlNzrXgGlWBBgSNcQfClnQvRpkHmnbclpFFRqbbcQkbtNNBpWMcrbB" target="_blank" rel="noreferrer">my email</a>
                 </p>
             </div>
         </Fragment>
