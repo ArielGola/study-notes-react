@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/services
+
+/public/ServiceWorker.(readable).js
