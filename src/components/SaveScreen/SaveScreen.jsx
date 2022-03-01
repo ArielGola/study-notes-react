@@ -34,7 +34,6 @@ function SaveScreen(props) {
             await notesLS.push(objectSave);
 
             localStorage.setItem("notes", JSON.stringify(notesLS));
-            console.log(notesLS);
 
             closeSSFunction();
         }

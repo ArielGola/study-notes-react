@@ -18,13 +18,13 @@ const cacheStaticFiles = [
     "static/media/NewNote.2dce5ddca7e6c979fa4c.png",
     "static/media/Template1.c17cd0ff43214e93d1f7.png",
     "static/media/Template2.0b739e0d3a063921a78a.png",
-    "favicon_io/android-chrome-192x192.png",
-    "favicon_io/android-chrome-512x512.png",
-    "favicon_io/apple-touch-icon.png",
-    "favicon_io/favicon-16x16.png",
-    "favicon_io/favicon-32x32.png",
-    "favicon_io/favicon.ico",
-    "favicon_io/site.webmanifest"
+    "android-chrome-192x192.png",
+    "android-chrome-512x512.png",
+    "apple-touch-icon.png",
+    "favicon-16x16.png",
+    "favicon-32x32.png",
+    "favicon.ico",
+    "site.webmanifest"
 ];
 
 const cacheInmutableName = "inmutable-v-1.1";

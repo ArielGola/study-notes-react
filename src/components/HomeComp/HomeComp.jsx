@@ -13,6 +13,7 @@ function HomeComp() {
     const navigate = useNavigate();
 
     const [loader, setLoader] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         setLoader(false);
@@ -25,7 +26,7 @@ function HomeComp() {
             navigate("/whiteboard/newnote");
             
         } catch (error) {
-            console.log(error.stack);
+            setError(true);
         }
     };
 
@@ -35,7 +36,7 @@ function HomeComp() {
             navigate("/whiteboard/template1");
 
         } catch (error) {
-            console.log(error.stack);
+            setError(true);
         }
     };
 
@@ -45,7 +46,7 @@ function HomeComp() {
             navigate("/whiteboard/template2");
 
         } catch (error) {
-            console.log(error.stack);
+            setError(true);
         }
     };
 

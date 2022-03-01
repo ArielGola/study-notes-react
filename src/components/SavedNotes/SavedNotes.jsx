@@ -35,7 +35,6 @@ function SavedNotes() {
 
         } catch (error) {
             setErrorLS(true);
-            console.log(error);
         };
     }
 
@@ -88,7 +87,7 @@ function SavedNotes() {
                 </div>
             </div>
         );
-    } else if (errorLS) { // Change it
+    } else if (errorLS) {
         return (
             <div className={`full-height ${darkT ? "bg-dark-2" : "bg-light-2"}`}>
                 <div className="card-loader">

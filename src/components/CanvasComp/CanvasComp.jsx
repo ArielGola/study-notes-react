@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { onDrawing } from './drawTool';
 
@@ -9,8 +8,6 @@ import * as template2 from '../../images/Template2.png';
 function CanvasComp(props) {
 
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
-
-    const navigate = useNavigate();
 
     const [error, setError] = useState(false);
 
@@ -53,7 +50,6 @@ function CanvasComp(props) {
             
         } catch (error) {
             setError(true);
-            console.log(error);
         };
 
     }, []);
@@ -105,9 +101,11 @@ function CanvasComp(props) {
         try {
             
             const localStorageArray = await JSON.parse(localStorage.getItem('notes'));
-            let noteFind = localStorageArray.find(note => note.name === url[2]);
-            if (noteFind === undefined) { return drawImg(canvas, context, false) };
-            drawImg(canvas, context, noteFind.base64);
+            if (localStorageArray) {
+                let noteFind = localStorageArray.find(note => note.name === url[2]);
+                if (noteFind === undefined) { return drawImg(canvas, context, false) };
+                drawImg(canvas, context, noteFind.base64);
+            };
             
         } catch (error) {
             setError(true);

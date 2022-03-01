@@ -67,7 +67,6 @@ function asCurve(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY)
     context.lineWidth = propsValues.toolsOptions.thickness;
     context.moveTo(x1, y1);
     context.quadraticCurveTo(curvePointX, curvePointY, x2, y2);
-    console.log(x1, y1, x2, y2);
     context.stroke();
     context.closePath();
 };
@@ -110,7 +109,6 @@ function asCircle(x1, y1, x2, y2, context, propsValues, fill) {
 
 function asText(x1, y1, x2, context, propsValues, execFuncText) {
     let textPropsG = execFuncText();
-    console.log(textPropsG);
     let width = x2-x1;
     if (textPropsG.fontCont === undefined) {
         textPropsG.fontCont = '';

@@ -16,7 +16,6 @@ function Whiteboard(props) {
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
-        console.log(props);
         setLoader(false);
     }, []);
     
@@ -39,7 +38,6 @@ function Whiteboard(props) {
 
     function setFontOptions(dataFontOptions) {
         fontOptions = dataFontOptions;
-        console.log(dataFontOptions);
     };
 
 
