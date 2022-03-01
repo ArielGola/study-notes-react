@@ -1,30 +1,27 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-//import './Navigation.css';
-
-//import '../../styles/texts.css';
-//import '../../styles/backgrounds.css';
-//import '../../styles/navigationFormat.css';
-
 function Navigation() {
 
     useEffect(() => {
-
+        // Get theme variable
         if (!localStorage.getItem('darkTheme')) {
             localStorage.setItem('darkTheme', true);
         }
 
     }, []);
 
+    // Theme variable
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
     
 
     const navigate = useNavigate();
 
+
     const [themeCounter, setThemeCounter] = useState(1);
     const [userCounter, setUserCounter] = useState(1);
 
+    // Change theme (Light)
     function darkThemeOff() {
         const confirmYes = window.confirm("Warning! If you change the theme, it will lost you're drawing right now. Are you sure?");
         if (confirmYes) {
@@ -33,6 +30,7 @@ function Navigation() {
         }
     };
 
+    // Change theme (Dark)
     function darkThemeOn() {
         const confirmYes = window.confirm("Warning! If you change the theme, it will lost you're drawing right now. Are you sure?");
         if (confirmYes) {
@@ -41,6 +39,7 @@ function Navigation() {
         }
     };
 
+    // Theme dropdown
     function turnDisplayTheme() {
         
         let newCount = themeCounter + 1;
@@ -58,6 +57,7 @@ function Navigation() {
 
     };
 
+    // User options dropdown
     function turnDisplayUserConfig() {
 
         let newCount = userCounter + 1;

@@ -7,33 +7,41 @@ import * as template2 from '../../images/Template2.png';
 
 function CanvasComp(props) {
 
+    // Theme variable
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
 
     const [error, setError] = useState(false);
 
+    // Variables for drawing
     var drawing = false;
 
+    // Coordinates
     var x = 0;
     var y = 0;
     var x2 = 0;
     var y2 = 0;
 
+    // Arrays of pair of points for draw curves
     var curveX = [];
     var curveY = [];
 
+    // Arrays of pair of points for draw circles
     var widthCircle = [];
     var heightCircle = [];
 
+    // Array for undo an action
     var statesCanvas = [];
 
     useEffect(() => {
         
         try {
             
+            // Canvas variables
             var canvas = document.getElementById('Canvas');
             var context = canvas.getContext('2d');
             var rect = canvas.getBoundingClientRect();
 
+            // Listeners
             canvas.addEventListener('mousedown', (e) => mousedownF(e, rect));
 
             canvas.addEventListener('mousemove', (e) => mousemoveF(e, context, rect));
@@ -42,10 +50,10 @@ function CanvasComp(props) {
     
             canvas.addEventListener('mouseout', () => mouseoutF());
     
-    
+            // Undo button
             document.getElementById('Restore').onclick = () => restoreBtn(canvas, context);
             
-    
+            // New draw or get a template
             templateOrSave(canvas, context);
             
         } catch (error) {
@@ -54,17 +62,19 @@ function CanvasComp(props) {
 
     }, []);
   
+    // Tools object
     const toolsValues = () => { 
         const toolObject = props.toolObject;
         return toolObject();
     };
 
+    // Text object
     const textValues = () => {
         const textOptions = props.textOptions;
         return textOptions();
     };
 
-
+    // New draw or get a template
     function templateOrSave(canvas, context) {
         try {
         
@@ -80,7 +90,7 @@ function CanvasComp(props) {
         }
     };
 
-    
+    // Get a template
     const loadTemplates = (url, canvas, context) => {
         try {
         
@@ -96,7 +106,7 @@ function CanvasComp(props) {
         }
     };
 
-
+    // Load template
     const loadSaves = async (url, canvas, context) => {
         try {
             
@@ -112,7 +122,7 @@ function CanvasComp(props) {
         }
     };
 
-
+    // Draw templates
     const drawImg = (canvas, context, src) => {
         try {
       
@@ -131,14 +141,14 @@ function CanvasComp(props) {
         }
     };
 
-
+    // Mouse down listener function
     const mousedownF = (e, rect) => {
         x = e.clientX - rect.left;
         y = e.clientY - rect.top;
         drawing = true;
     };
 
-
+    // Mouse move listener function
     const mousemoveF = (e, context, rect) => {
         try {
 
@@ -172,7 +182,7 @@ function CanvasComp(props) {
         }
     };
 
-
+    // Mouse up listener function
     const mouseupF = async (e, rect, context, canvas) => {
         try {
 
@@ -241,12 +251,12 @@ function CanvasComp(props) {
         }
     };
 
-
+    // Mouse out listener function
     const mouseoutF = () => {
         drawing = false;
     };
 
-            
+    // Undo button        
     const restoreBtn = (canvas, context) => {
         try {
             let imgDone = beforeImage();
@@ -259,7 +269,7 @@ function CanvasComp(props) {
         }
     };
 
-    
+    // Return undo image from array of images
     const beforeImage = () => {
         try {
             let lastImage = String(statesCanvas[statesCanvas.length-2]);

@@ -7,9 +7,9 @@ import SaveScreen from '../SaveScreen/SaveScreen';
 import FontOptionsComp from '../FontOptionsComp/FontOptionsComp';
 
 
+function Whiteboard() {
 
-function Whiteboard(props) {
-
+    // Theme variable
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
 
     const [saveScreen, setSaveScreen] = useState(false);
@@ -19,27 +19,24 @@ function Whiteboard(props) {
         setLoader(false);
     }, []);
     
-
+    // Default font options
     let fontOptions = {
         fontSize: "",
         fontFamily: "",
         fontContent: ""
     };
 
-
-    const closeSaveScreen = () => {setSaveScreen(false)};
-
-
+    // Pass props
     function returnToolObject() {return toolsObject};
-
 
     function returnTextOptions() {return fontOptions};
 
 
+    const closeSaveScreen = () => {setSaveScreen(false)};
+
     function setFontOptions(dataFontOptions) {
         fontOptions = dataFontOptions;
     };
-
 
     function clearWhiteboard() {
         let canvas = document.getElementById('Canvas');

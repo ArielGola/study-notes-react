@@ -2,6 +2,7 @@ import React from 'react';
 
 function FontOptionsComp(props) {
 
+    // Theme variable
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
 
     const fontOptions = {};

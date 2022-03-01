@@ -1,10 +1,11 @@
+// Localhost or production
 const isLocalhost = Boolean(
     window.location.hostname === 'localhost' ||
     window.location.hostname === '[::1]' ||
     window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
 );
 
-
+// Initialization of service worker
 export function register(config) {
     if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
         const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
@@ -33,7 +34,7 @@ export function register(config) {
     };
 };
 
-
+// If it in localhost
 function changeConfigHeaders(swUrl, config) {
     fetch(swUrl, { headers: { 'Service-Worker': 'script' } })
         .then((res) => {
@@ -60,7 +61,7 @@ function changeConfigHeaders(swUrl, config) {
         });
 };
 
-
+// Validation of service worker file
 function validateRegister(swUrl, config) {
     navigator.serviceWorker.register(swUrl)
         .then((registration) => {
@@ -96,7 +97,7 @@ function validateRegister(swUrl, config) {
         });
 };
 
-
+// Disable service worker
 export function unregister() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.ready()

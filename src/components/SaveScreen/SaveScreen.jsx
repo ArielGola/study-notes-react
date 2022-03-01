@@ -1,15 +1,17 @@
 import React from 'react';
 
-
 function SaveScreen(props) {
 
+    // Theme variable
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
 
+    // Close input screen
     const closeSSFunction = () => {
         const closeSS = props.closeFunction;
         closeSS();
     };
 
+    // Save image in localstorage
     const saveFunction = async () => {
 
         let saveName = document.getElementById('SaveName');

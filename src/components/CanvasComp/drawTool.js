@@ -1,3 +1,4 @@
+// Function for select tool for draw
 export function onDrawing(
     x1, 
     y1, 
@@ -25,7 +26,7 @@ export function onDrawing(
     };
 };
 
-
+// Pencil
 function asPencil(x1, y1, x2, y2, context, propsValues) {
     context.beginPath();
     context.strokeStyle = propsValues.toolsOptions.color;
@@ -36,7 +37,7 @@ function asPencil(x1, y1, x2, y2, context, propsValues) {
     context.closePath();
 };
 
-
+// Line
 function asLine(x1, y1, x2, y2, context, propsValues) {
     context.beginPath();
     context.strokeStyle = propsValues.toolsOptions.color;
@@ -47,7 +48,7 @@ function asLine(x1, y1, x2, y2, context, propsValues) {
     context.closePath();
 };
 
-
+// Eraser
 function asEraser(x1, y1, x2, y2, context, propsValues) {
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
     let eraserColor = darkT ? "#464646" : "#BEBEBE"
@@ -60,7 +61,7 @@ function asEraser(x1, y1, x2, y2, context, propsValues) {
     context.closePath();
 };
 
-
+// Curve
 function asCurve(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY) {
     context.beginPath();
     context.strokeStyle = propsValues.toolsOptions.color;
@@ -71,7 +72,7 @@ function asCurve(x1, y1, x2, y2, context, propsValues, curvePointX, curvePointY)
     context.closePath();
 };
 
-
+// Square and rectangle
 function asSquare(x1, y1, x2, y2, context, propsValues, fill) {
     context.beginPath();
     context.strokeStyle = propsValues.toolsOptions.color;
@@ -87,7 +88,7 @@ function asSquare(x1, y1, x2, y2, context, propsValues, fill) {
     context.closePath();
 };
 
-
+// Circle
 function asCircle(x1, y1, x2, y2, context, propsValues, fill) {
     let centerX = (x2 - x1) / 2;
     let centerY = (y2 - y1) / 2;
@@ -106,7 +107,7 @@ function asCircle(x1, y1, x2, y2, context, propsValues, fill) {
     context.closePath();
 };
 
-
+// Text
 function asText(x1, y1, x2, context, propsValues, execFuncText) {
     let textPropsG = execFuncText();
     let width = x2-x1;

@@ -1,3 +1,4 @@
+// Default tools object
 export const toolsObject = {
     toolsOptions: {
         color: "#000000",
@@ -18,16 +19,16 @@ export const toolsObject = {
     }
 };
 
-
+// Counters
 let pencilCounter = 1;
 let shapesCounter = 1;
 let activeCounter = 1;
 let gridCounter = 1;
 
-
+// Theme variable
 let darkT = JSON.parse(localStorage.getItem('darkTheme'));
 
-// Si es par (true) o si es impar (false)
+// If is pair (true) or even (false)
 function isEven(x) { return String(x/2).includes('.') ? false : true };
 
 
@@ -53,7 +54,7 @@ class SelectionShapes {
 };
 
 
-
+// Handle display of range
 export function showRange(e) {
 
     let newCount = pencilCounter + 1;
@@ -72,7 +73,7 @@ export function showRange(e) {
     }
 };
 
-
+// Handle display of grid
 export function gridActive(e) {
     let newCount = gridCounter + 1;
     gridCounter = newCount;
@@ -90,7 +91,7 @@ export function gridActive(e) {
     }
 };
 
-
+// Download whiteboard image 
 export async function downloadImg() {
     const canvas = document.getElementById('Canvas');
     const imageBase64 = await canvas.toDataURL();
@@ -102,6 +103,7 @@ export async function downloadImg() {
 }
 
 
+// Handle active icons from navbar
 export function changeActive(e) {
 
     let newCount = activeCounter + 1;
@@ -126,7 +128,7 @@ export function changeActive(e) {
 
 };
 
-
+// Disable active icons
 function disableActives(
     selectE,
     pencil, 
@@ -170,7 +172,7 @@ function disableActives(
     };
 };
 
-
+// Enable inactive icons
 function enableActives( 
     selected, 
     pencil, 
@@ -210,7 +212,7 @@ function enableActives(
     };
 };
 
-
+// Function for display of and desactivate icons
 function disableOneActive(tool, shapesDiv, fontDiv, iconText) {
     if (shapesDiv) { shapesDiv.className = "display-off"; };
     if (fontDiv) { fontDiv.className = 'display-off'; };
@@ -222,7 +224,7 @@ function disableOneActive(tool, shapesDiv, fontDiv, iconText) {
     };
 };
 
-
+// Functions for display on and activate icons
 function enableOneActive(tool, toolActive, shapesDiv, fontDiv) {
     if (shapesDiv) { shapesDiv.className = `shapes-div ${darkT ? "bg-dark-t" : "bg-light-t"} display-on` };
     if (fontDiv) { fontDiv.className = `font-div ${darkT ? "bg-dark-t" : "bg-light-t"} display-on` };
@@ -232,7 +234,7 @@ function enableOneActive(tool, toolActive, shapesDiv, fontDiv) {
 };
 
 
-
+// Handle active shapes icons
 export function handleShapes(e) {
 
     let newCount = shapesCounter + 1;
@@ -253,7 +255,7 @@ export function handleShapes(e) {
     enableShapes(selectE, squareF, square, circleF, circle, shapesDiv);
 }
 
-
+// Enable active shapes icons
 function enableShapes(selectE, squareF, square, circleF, circle, shapesDiv) {
 
     if (isEven(shapesCounter) && selectE.id === squareF.id) {
@@ -275,7 +277,7 @@ function enableShapes(selectE, squareF, square, circleF, circle, shapesDiv) {
     }
 };
 
-
+// Disable active shapes icons
 function disableShapes(selectE, squareF, square, circleF, circle) {
         
     if (selectE.className.includes('active')) {
@@ -301,14 +303,14 @@ function disableShapes(selectE, squareF, square, circleF, circle) {
     }
 };
 
-
+// Function for desactivate active shapes icons
 function disableOneShape(toolToDisable) {
     let splited = toolToDisable.className.split(' ');
     let push = `${splited[0]} ${splited[1]} ${splited[2]}`;
     toolToDisable.className = push;
 };
 
-
+// Function for activate disable shapes icons
 function enableOneShape(shapeSelect, shapeActive, shapeDiv) {
     if (shapeDiv) { shapeDiv.className = "display-off"; };
     shapeSelect.className = `${shapeSelect.className} active`;

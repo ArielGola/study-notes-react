@@ -8,6 +8,7 @@ import NewNote from '../../images/NewNote.png';
 
 function HomeComp() {
 
+    // Theme variable
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
 
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ function HomeComp() {
         setLoader(false);
     }, []);
     
-
+    // Make new note
     const newNote = () => {
         try {
 
@@ -30,6 +31,7 @@ function HomeComp() {
         }
     };
 
+    // Load template 1
     const template1 = () => {
         try {
             
@@ -40,6 +42,7 @@ function HomeComp() {
         }
     };
 
+    // Load template 2
     const template2 = () => {
         try {
             
@@ -59,6 +62,19 @@ function HomeComp() {
                 </div>
             </div>
         );
+    } else if (error) {
+        return (
+            <div className={`full-height ${darkT ? "bg-dark-2" : "bg-light-2"}`}>
+                <div className="card-loader">
+                    <h3 className={`${darkT ? "p-dark" : "p-light"}`}>
+                        Sorry, there was an error with the found data.
+                    </h3>
+                    <h3 className={`${darkT ? "p-dark" : "p-light"}`}>
+                        Try reload the page with "F5".
+                    </h3>
+                </div>
+            </div>
+        )
     } else {
 
         return (

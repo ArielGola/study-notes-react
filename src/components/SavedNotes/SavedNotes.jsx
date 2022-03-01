@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function SavedNotes() {
 
+    // Theme variable
     let darkT = JSON.parse(localStorage.getItem('darkTheme'));
 
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ function SavedNotes() {
     const [errorLS, setErrorLS] = useState(false);
     const [loader, setLoader] = useState(true);
     
-
+    // Get notes saved in localstorage
     async function getNotesLS() {
         try {
 
@@ -38,7 +39,7 @@ function SavedNotes() {
         };
     }
 
-
+    // Disable fav
     function unFav(element) {
 
         const arrayIndex = notesLS.indexOf(element);
@@ -65,7 +66,7 @@ function SavedNotes() {
         getNotesLS();
     };
 
-
+    // Delete a item from saves
     function removeItemSaved(element) {
         const arrayIndex = notesLS.indexOf(element);
 
